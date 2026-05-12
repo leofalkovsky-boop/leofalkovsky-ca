@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { createReader } from '@keystatic/core/reader';
-import Markdoc from '@markdoc/markdoc';
-import React from 'react';
-import config from '@/keystatic.config';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+
+const POSTS_DIR = path.join(process.cwd(), 'content/posts');
 
 const CATEGORY_LABELS: Record<string, string> = {
   'mortgage-tips': 'Mortgage Tips',
@@ -18,24 +20,32 @@ const CATEGORY_LABELS: Record<string, string> = {
   'smith-manoeuvre': 'Smith Manoeuvre',
 };
 
+function getPost(slug: string) {
+  const filePath = path.join(POSTS_DIR, `${slug}.mdoc`);
+  if (!fs.existsSync(filePath)) return null;
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const { data, content } = matter(raw);
+  return { data, content };
+}
+
 export async function generateStaticParams() {
-  const reader = createReader(process.cwd(), config);
-  const posts = await reader.collections.posts.all();
-  return posts.map(p => ({ slug: p.slug }));
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  return fs.readdirSync(POSTS_DIR)
+    .filter(f => f.endsWith('.mdoc'))
+    .map(f => ({ slug: f.replace('.mdoc', '') }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const reader = createReader(process.cwd(), config);
-  const post = await reader.collections.posts.read(slug);
+  const post = getPost(slug);
   if (!post) return {};
   return {
-    title: post.title,
-    description: post.description,
+    title: post.data.title,
+    description: post.data.description,
     alternates: { canonical: `https://leofalkovsky.ca/blog/${slug}/` },
     openGraph: {
-      title: post.title,
-      description: post.description,
+      title: post.data.title,
+      description: post.data.description,
       url: `https://leofalkovsky.ca/blog/${slug}/`,
       type: 'article',
     },
@@ -44,23 +54,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const reader = createReader(process.cwd(), config);
-  const post = await reader.collections.posts.read(slug);
+  const post = getPost(slug);
   if (!post) notFound();
 
-  const contentNode = await post.content();
-  const renderable = Markdoc.renderers.react(contentNode as Parameters<typeof Markdoc.renderers.react>[0], React);
-
-  const publishedDate = post.publishDate
-    ? new Date(post.publishDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { data, content } = post;
+  const html = await marked(content);
+  const publishedDate = data.publishDate
+    ? new Date(data.publishDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })
     : '';
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: post.title,
-    description: post.description,
-    datePublished: post.publishDate,
+    headline: data.title,
+    description: data.description,
+    datePublished: data.publishDate,
     author: { '@type': 'Person', name: 'Leo Falkovsky', url: 'https://leofalkovsky.ca/about/' },
     publisher: { '@type': 'Organization', name: '8Twelve Mortgage', url: 'https://leofalkovsky.ca' },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://leofalkovsky.ca/blog/${slug}/` },
@@ -74,14 +82,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <section className="hero hero-inner" id="hero">
         <div className="container">
           <div className="hero-content">
-            <div className="hero-badge">{CATEGORY_LABELS[post.category] || post.category}</div>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(1.8rem,4vw,3rem)' }}>{post.title}</h1>
-            <div style={{ display: 'flex', gap: 16, alignItems: 'center', color: 'rgba(255,255,255,.7)', fontSize: '.85rem', marginTop: 16 }}>
+            <div className="hero-badge">{CATEGORY_LABELS[data.category] || data.category}</div>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(1.8rem,4vw,3rem)' }}>{data.title}</h1>
+            <div style={{ display: 'flex', gap: 16, color: 'rgba(255,255,255,.7)', fontSize: '.85rem', marginTop: 16, flexWrap: 'wrap' }}>
               <span>By Leo Falkovsky</span>
               <span>·</span>
               <span>{publishedDate}</span>
               <span>·</span>
-              <span>{post.readTime} min read</span>
+              <span>{data.readTime} min read</span>
             </div>
           </div>
         </div>
@@ -90,21 +98,18 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <section style={{ padding: '72px 0', background: 'var(--white)' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 56, alignItems: 'start' }}>
-            <article className="post-content" style={{
-              fontSize: '1.02rem', lineHeight: 1.8, color: 'var(--text-mid)',
-              maxWidth: '100%',
-            }}>
+            <article>
               <style>{`
-                .post-content h2 { font-family:'Playfair Display',serif; color:var(--navy-dark); margin:2em 0 .6em; font-size:1.55rem; }
-                .post-content h3 { font-family:'Playfair Display',serif; color:var(--navy-dark); margin:1.5em 0 .5em; font-size:1.2rem; }
-                .post-content p { margin-bottom:1.2em; }
-                .post-content ul, .post-content ol { margin:0 0 1.2em 1.4em; }
-                .post-content li { margin-bottom:.4em; }
-                .post-content strong { color:var(--navy-dark); font-weight:600; }
-                .post-content a { color:var(--navy-mid); text-decoration:underline; }
-                .post-content blockquote { border-left:4px solid var(--gold); padding:12px 20px; background:var(--cream); margin:1.5em 0; border-radius:0 8px 8px 0; }
+                .post-content h2{font-family:'Playfair Display',serif;color:var(--navy-dark);margin:2em 0 .6em;font-size:1.55rem;}
+                .post-content h3{font-family:'Playfair Display',serif;color:var(--navy-dark);margin:1.5em 0 .5em;font-size:1.2rem;}
+                .post-content p{margin-bottom:1.2em;font-size:1.02rem;line-height:1.8;color:var(--text-mid);}
+                .post-content ul,.post-content ol{margin:0 0 1.2em 1.4em;font-size:1rem;line-height:1.75;color:var(--text-mid);}
+                .post-content li{margin-bottom:.4em;}
+                .post-content strong{color:var(--navy-dark);font-weight:600;}
+                .post-content a{color:var(--navy-mid);text-decoration:underline;}
+                .post-content blockquote{border-left:4px solid var(--gold);padding:12px 20px;background:var(--cream);margin:1.5em 0;border-radius:0 8px 8px 0;}
               `}</style>
-              {renderable}
+              <div className="post-content" dangerouslySetInnerHTML={{ __html: html }} />
             </article>
 
             <aside style={{ position: 'sticky', top: 100 }}>
@@ -117,14 +122,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </div>
               <div className="sidebar-box" style={{ marginTop: 20 }}>
                 <div className="sidebar-title">Quick Tools</div>
-                <div className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <a href="/calculators/">Mortgage Payment Calculator</a>
-                  <a href="/calculators/">Affordability Calculator</a>
-                  <a href="/apply/">Start Application</a>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <a href="/calculators/" style={{ fontSize: '.84rem', color: 'var(--navy)' }}>Mortgage Payment Calculator</a>
+                  <a href="/calculators/" style={{ fontSize: '.84rem', color: 'var(--navy)' }}>Affordability Calculator</a>
+                  <a href="/apply/" style={{ fontSize: '.84rem', color: 'var(--navy)' }}>Start Application</a>
                 </div>
               </div>
               <div className="sidebar-box" style={{ marginTop: 20 }}>
-                <div className="sidebar-title">More Articles</div>
                 <a href="/blog/" style={{ fontSize: '.84rem', color: 'var(--navy)', fontWeight: 600 }}>← Back to Blog</a>
               </div>
             </aside>
@@ -136,7 +140,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         <div className="container cta-content" style={{ position: 'relative', zIndex: 1 }}>
           <span className="section-label">Next Step</span>
           <h2 className="section-title">Ready to Put This Into Practice?</h2>
-          <p className="cta-sub">Book a free consultation and build a strategy around your specific situation — not a generic answer.</p>
+          <p className="cta-sub">Book a free consultation and build a strategy around your specific situation.</p>
           <div className="cta-actions">
             <a href="/contact/" className="btn btn-primary btn-lg">Book Free Consultation</a>
             <a href="/calculators/" className="btn btn-outline btn-lg">Run the Numbers</a>

@@ -1,15 +1,17 @@
 import type { Metadata } from 'next';
-import { createReader } from '@keystatic/core/reader';
-import config from '@/keystatic.config';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Mortgage Blog',
-  description: 'Expert mortgage insights from Leo Falkovsky at 8Twelve Mortgage in Barrie. Articles on Manulife One, Smith Manoeuvre, investing, and Barrie market updates.',
+  description: 'Expert mortgage insights from Leo Falkovsky at 8Twelve Mortgage. Articles on Manulife One, Smith Manoeuvre, investing, and Barrie market updates.',
   alternates: { canonical: 'https://leofalkovsky.ca/blog/' },
 };
 
+const POSTS_DIR = path.join(process.cwd(), 'content/posts');
 const CATEGORY_LABELS: Record<string, string> = {
   'mortgage-tips': 'Mortgage Tips',
   'market-update': 'Market Update',
@@ -21,12 +23,23 @@ const CATEGORY_LABELS: Record<string, string> = {
   'smith-manoeuvre': 'Smith Manoeuvre',
 };
 
-export default async function BlogPage() {
-  const reader = createReader(process.cwd(), config);
-  const allPosts = await reader.collections.posts.all();
-  const posts = allPosts
-    .filter(p => p.entry.publishDate)
-    .sort((a, b) => new Date(b.entry.publishDate!).getTime() - new Date(a.entry.publishDate!).getTime());
+function getAllPosts() {
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  return fs.readdirSync(POSTS_DIR)
+    .filter(f => f.endsWith('.mdoc'))
+    .map(f => {
+      const raw = fs.readFileSync(path.join(POSTS_DIR, f), 'utf-8');
+      const { data } = matter(raw);
+      return { slug: f.replace('.mdoc', ''), ...data } as {
+        slug: string; title: string; description: string; publishDate: string; category: string; readTime: number;
+      };
+    })
+    .filter(p => p.publishDate)
+    .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+}
+
+export default function BlogPage() {
+  const posts = getAllPosts();
 
   return (
     <>
@@ -48,19 +61,19 @@ export default async function BlogPage() {
             <div className="blog-grid">
               {posts.map(post => (
                 <article className="blog-card" key={post.slug}>
-                  <div className="blog-card-img" style={{ background: 'linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)', color: 'var(--white)', fontSize: '2.5rem' }}>
-                    📰
+                  <div className="blog-card-img" style={{ background: 'linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)', height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+                    <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: 'var(--white)', textAlign: 'center', lineHeight: 1.3 }}>{post.title}</p>
                   </div>
                   <div className="blog-card-body">
-                    <div className="blog-cat">{CATEGORY_LABELS[post.entry.category] || post.entry.category}</div>
+                    <div className="blog-cat">{CATEGORY_LABELS[post.category] || post.category}</div>
                     <h2 className="blog-title">
-                      <a href={`/blog/${post.slug}/`}>{post.entry.title}</a>
+                      <a href={`/blog/${post.slug}/`}>{post.title}</a>
                     </h2>
-                    <p className="blog-excerpt">{post.entry.description}</p>
+                    <p className="blog-excerpt">{post.description}</p>
                     <div className="blog-meta">
-                      <span>{post.entry.publishDate ? new Date(post.entry.publishDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}</span>
+                      <span>{new Date(post.publishDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                       <span>·</span>
-                      <span>{post.entry.readTime} min read</span>
+                      <span>{post.readTime} min read</span>
                       <a href={`/blog/${post.slug}/`} style={{ marginLeft: 'auto' }}>Read →</a>
                     </div>
                   </div>
@@ -78,15 +91,13 @@ export default async function BlogPage() {
               </div>
               <div className="sidebar-box">
                 <div className="sidebar-title">Categories</div>
-                {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
-                  <span key={value} className="cat-pill">{label}</span>
+                {Object.values(CATEGORY_LABELS).map(label => (
+                  <span key={label} className="cat-pill">{label}</span>
                 ))}
               </div>
               <div className="sidebar-box">
                 <div className="sidebar-title">Quick Calculator</div>
-                <p style={{ fontSize: '.82rem', color: 'var(--text-mid)', marginBottom: 12 }}>
-                  Estimate your mortgage payment instantly.
-                </p>
+                <p style={{ fontSize: '.82rem', color: 'var(--text-mid)', marginBottom: 12 }}>Estimate your mortgage payment instantly.</p>
                 <a href="/calculators/" className="btn btn-ghost btn-sm" style={{ width: '100%', justifyContent: 'center' }}>Open Calculators</a>
               </div>
             </aside>
