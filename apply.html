@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply for a Mortgage Online | Leo Falkovsky | Barrie, Ontario</title>
+  <meta name="description" content="Start your mortgage application online with Leo Falkovsky. 5-step form — save your progress and return any time. Serving Barrie and Simcoe County." />
+  <link rel="canonical" href="https://leofalkovsky.ca/apply.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    #hero{background:linear-gradient(135deg,rgba(20,81,126,.78) 0%,rgba(19,86,123,.86) 100%);}
+    .progress-bar-track{height:6px;background:var(--cream-dark);border-radius:3px;margin-bottom:8px;overflow:hidden;}
+    .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;transition:width .4s ease;}
+    .progress-label{font-size:.78rem;color:var(--text-light);margin-bottom:28px;}
+    .app-dots{display:flex;gap:10px;align-items:center;margin-bottom:24px;flex-wrap:wrap;}
+    .app-dot{width:32px;height:32px;border-radius:50%;background:var(--cream-dark);color:var(--text-light);font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+    .app-dot.active{background:var(--navy);color:var(--gold);}
+    .app-dot.done{background:var(--gold);color:var(--navy-dark);}
+    .app-step{display:none;}
+    .step-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy-dark);margin-bottom:6px;}
+    .step-desc{font-size:.85rem;color:var(--text-mid);margin-bottom:24px;}
+    .step-actions{display:flex;gap:12px;justify-content:space-between;margin-top:24px;}
+    .doc-upload-box{border:2px dashed var(--cream-dark);border-radius:var(--radius-md);padding:24px;text-align:center;cursor:pointer;transition:var(--transition);background:var(--cream-light);}
+    .doc-upload-box:hover{border-color:var(--gold);background:var(--cream);}
+    .doc-icon{font-size:2rem;margin-bottom:8px;}
+    .doc-label{font-size:.85rem;color:var(--text-mid);}
+    .doc-types{font-size:.73rem;color:var(--text-light);margin-top:4px;}
+  </style>
+</head>
+<body>
+<nav id="nav"><div class="container nav-inner"><a href="index.html" class="nav-logo"><span class="nav-logo-name">Leo Falkovsky</span><span class="nav-logo-tag">Mortgage Broker &amp; Realtor · Barrie</span></a><ul class="nav-links"><li><a href="manulife-one.html">Manulife One</a></li><li><a href="refinance.html">Refinance</a></li><li><a href="calculators.html">Calculators</a></li><li><a href="blog/index.html">Blog</a></li><li><a href="about.html">About</a></li></ul><a href="contact.html" class="btn btn-primary nav-cta">Free Mortgage Review</a><button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-drawer" id="navDrawer"><button class="drawer-close" id="drawerClose">×</button><a href="manulife-one.html">Manulife One</a><a href="refinance.html">Refinance</a><a href="calculators.html">Calculators</a><a href="blog/index.html">Blog</a><a href="about.html">About</a><a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Free Mortgage Review</a></div>
+
+<section class="hero hero-inner" id="hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Apply</span></nav>
+    <div class="hero-content">
+      <div class="hero-badge">Secure 5-Step Application</div>
+      <h1 class="hero-title">Start Your Mortgage<br /><span>Application Online</span></h1>
+      <p class="hero-sub">Complete at your own pace. Save your progress and return any time. I'll review everything personally and be in touch within 1 business day.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-light);">
+  <div class="container" style="max-width:800px;">
+    <!-- APPLICATION -->
+    <div id="application-form">
+      <!-- PROGRESS -->
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="app-progress-bar" style="width:20%;"></div></div>
+      <div id="app-progress-label" class="progress-label">Step 1 of 5</div>
+      <div class="app-dots">
+        <div class="app-dot" title="Personal Info">1</div>
+        <div class="app-dot" title="Employment">2</div>
+        <div class="app-dot" title="Property">3</div>
+        <div class="app-dot" title="Assets &amp; Liabilities">4</div>
+        <div class="app-dot" title="Co-Applicant &amp; Documents">5</div>
+      </div>
+
+      <div style="background:var(--white);border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow-md);">
+
+        <!-- STEP 1: PERSONAL -->
+        <div class="app-step">
+          <h2 class="step-title">Personal Information</h2>
+          <p class="step-desc">Basic contact and personal details for the primary applicant.</p>
+          <div class="form-row"><div class="form-group"><label>First Name *</label><input type="text" placeholder="John" required /></div><div class="form-group"><label>Last Name *</label><input type="text" placeholder="Smith" required /></div></div>
+          <div class="form-row"><div class="form-group"><label>Date of Birth</label><input type="date" /></div><div class="form-group"><label>SIN (Last 3 digits only)</label><input type="text" placeholder="XXX" maxlength="3" /></div></div>
+          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="john@email.com" required /></div>
+          <div class="form-row"><div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="(705) 555-0000" required /></div><div class="form-group"><label>Alternate Phone</label><input type="tel" placeholder="(705) 555-0001" /></div></div>
+          <div class="form-group"><label>Current Home Address</label><input type="text" placeholder="123 Main St, Barrie, ON, L4N 1A1" /></div>
+          <div class="form-row"><div class="form-group"><label>Time at Current Address</label><select><option>Less than 1 year</option><option>1–2 years</option><option>2–5 years</option><option>5+ years</option></select></div><div class="form-group"><label>Housing Status</label><select><option>Own</option><option>Rent</option><option>Living with family</option></select></div></div>
+          <div class="form-group"><label>Marital Status</label><select><option>Single</option><option>Married</option><option>Common Law</option><option>Divorced / Separated</option></select></div>
+          <div class="step-actions"><div></div><button class="btn btn-navy" data-next>Next: Employment →</button></div>
+        </div>
+
+        <!-- STEP 2: EMPLOYMENT -->
+        <div class="app-step">
+          <h2 class="step-title">Employment &amp; Income</h2>
+          <p class="step-desc">Your current employment status and income details help determine your qualifying amount.</p>
+          <div class="form-group"><label>Employment Type</label><select><option>Employed Full-Time</option><option>Employed Part-Time</option><option>Self-Employed</option><option>Contract / Freelance</option><option>Retired</option></select></div>
+          <div class="form-group"><label>Employer Name / Business Name</label><input type="text" placeholder="Acme Corporation" /></div>
+          <div class="form-row"><div class="form-group"><label>Position / Title</label><input type="text" placeholder="Software Engineer" /></div><div class="form-group"><label>Years at Current Job</label><select><option>Less than 1 year</option><option>1–2 years</option><option>2–5 years</option><option>5+ years</option></select></div></div>
+          <div class="form-row"><div class="form-group"><label>Gross Annual Income ($)</label><input type="number" placeholder="85000" /></div><div class="form-group"><label>Other Annual Income ($)<span style="font-size:.7rem;font-weight:400;color:var(--text-light);"> (bonus, rental, etc.)</span></label><input type="number" placeholder="0" /></div></div>
+          <div class="form-group"><label>Previous Employer (if less than 2 years at current)</label><input type="text" placeholder="Previous Employer Name" /></div>
+          <div class="step-actions"><button class="btn btn-ghost" data-prev>← Back</button><button class="btn btn-navy" data-next>Next: Property →</button></div>
+        </div>
+
+        <!-- STEP 3: PROPERTY -->
+        <div class="app-step">
+          <h2 class="step-title">Property Details</h2>
+          <p class="step-desc">Tell me about the property — whether you're buying, refinancing, or renewing.</p>
+          <div class="form-group"><label>Application Type</label><select><option>Purchase — New Home</option><option>Refinance Existing Mortgage</option><option>Mortgage Renewal</option><option>Investment Property Purchase</option></select></div>
+          <div class="form-group"><label>Property Address (or General Area if not yet found)</label><input type="text" placeholder="456 Oak Ave, Barrie, ON" /></div>
+          <div class="form-row"><div class="form-group"><label>Property Type</label><select><option>Detached House</option><option>Semi-Detached</option><option>Townhouse</option><option>Condo</option><option>Rural / Acreage</option></select></div><div class="form-group"><label>Property Use</label><select><option>Primary Residence</option><option>Secondary / Vacation</option><option>Rental / Investment</option></select></div></div>
+          <div class="form-row"><div class="form-group"><label>Purchase Price / Estimated Value ($)</label><input type="number" placeholder="650000" /></div><div class="form-group"><label>Down Payment / Equity ($)</label><input type="number" placeholder="130000" /></div></div>
+          <div class="form-row"><div class="form-group"><label>Desired Amortization</label><select><option>20 years</option><option value="25" selected>25 years</option><option>30 years</option></select></div><div class="form-group"><label>Preferred Rate Type</label><select><option>Fixed Rate</option><option>Variable Rate</option><option>Not Sure — Advise Me</option></select></div></div>
+          <div class="form-group"><label>Interested in Manulife One?</label><select><option>Yes — please explain more</option><option>No</option><option>Already familiar — please set it up</option></select></div>
+          <div class="form-group"><label>Target Closing Date</label><input type="date" /></div>
+          <div class="step-actions"><button class="btn btn-ghost" data-prev>← Back</button><button class="btn btn-navy" data-next>Next: Assets &amp; Liabilities →</button></div>
+        </div>
+
+        <!-- STEP 4: ASSETS & LIABILITIES -->
+        <div class="app-step">
+          <h2 class="step-title">Assets &amp; Liabilities</h2>
+          <p class="step-desc">A summary of your financial picture helps identify the optimal mortgage strategy.</p>
+          <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px;">Assets</p>
+          <div class="form-row"><div class="form-group"><label>Chequing / Savings ($)</label><input type="number" placeholder="25000" /></div><div class="form-group"><label>RRSP / TFSA ($)</label><input type="number" placeholder="50000" /></div></div>
+          <div class="form-row"><div class="form-group"><label>Other Real Estate ($)</label><input type="number" placeholder="0" /></div><div class="form-group"><label>Other Assets ($)</label><input type="number" placeholder="0" /></div></div>
+          <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Monthly Liabilities</p>
+          <div class="form-row"><div class="form-group"><label>Credit Card Balances ($)</label><input type="number" placeholder="0" /></div><div class="form-group"><label>Car Loan Payment ($/mo)</label><input type="number" placeholder="0" /></div></div>
+          <div class="form-row"><div class="form-group"><label>Line of Credit Balance ($)</label><input type="number" placeholder="0" /></div><div class="form-group"><label>Other Monthly Payments ($)</label><input type="number" placeholder="0" /></div></div>
+          <div class="form-group"><label>Child Support / Alimony ($/mo)</label><input type="number" placeholder="0" /></div>
+          <div class="step-actions"><button class="btn btn-ghost" data-prev>← Back</button><button class="btn btn-navy" data-next>Next: Co-Applicant &amp; Docs →</button></div>
+        </div>
+
+        <!-- STEP 5: CO-APPLICANT + DOCS + SUBMIT -->
+        <div class="app-step">
+          <form>
+            <h2 class="step-title">Co-Applicant &amp; Documents</h2>
+            <p class="step-desc">Optional: add a co-applicant and upload any supporting documents to speed up your approval.</p>
+            <div class="form-group"><label>Do you have a co-applicant?</label><select name="co-app"><option value="no">No — single applicant</option><option value="yes">Yes — adding co-applicant</option></select></div>
+            <div id="co-app-fields" style="display:none;">
+              <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:16px 0 12px;">Co-Applicant Details</p>
+              <div class="form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" /></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" /></div></div>
+              <div class="form-row"><div class="form-group"><label>Gross Annual Income ($)</label><input type="number" placeholder="70000" /></div><div class="form-group"><label>Employment Type</label><select><option>Employed Full-Time</option><option>Self-Employed</option><option>Part-Time</option></select></div></div>
+            </div>
+            <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Upload Documents (Optional — speeds up approval)</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+              <div class="doc-upload-box"><div class="doc-icon">📄</div><div class="doc-label">T4 Slips</div><div class="doc-types">PDF, JPG, PNG</div></div>
+              <div class="doc-upload-box"><div class="doc-icon">📋</div><div class="doc-label">Notice of Assessment</div><div class="doc-types">PDF, JPG, PNG</div></div>
+              <div class="doc-upload-box"><div class="doc-icon">💰</div><div class="doc-label">Pay Stubs (last 2)</div><div class="doc-types">PDF, JPG, PNG</div></div>
+              <div class="doc-upload-box"><div class="doc-icon">🏦</div><div class="doc-label">Bank Statements (90 days)</div><div class="doc-types">PDF, JPG, PNG</div></div>
+            </div>
+            <div class="form-group"><label>Anything else Leo should know?</label><textarea name="notes" placeholder="Special circumstances, timeline concerns, questions about Manulife One or Smith Manoeuvre..."></textarea></div>
+            <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;font-size:.82rem;color:var(--text-mid);line-height:1.65;">🔒 <strong>Your privacy is protected.</strong> All information is encrypted and used solely to process your mortgage application. I will never sell or share your data.</div>
+            <button type="submit" class="btn btn-primary form-submit">Submit My Application →</button>
+            <div class="step-actions" style="margin-top:12px;justify-content:flex-start;"><button class="btn btn-ghost btn-sm" data-prev>← Back</button></div>
+          </form>
+        </div>
+
+      </div><!-- end white box -->
+    </div><!-- end application-form -->
+
+    <!-- SUCCESS -->
+    <div id="app-success" style="display:none;text-align:center;padding:60px 20px;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);">
+      <div style="font-size:4rem;color:var(--gold);margin-bottom:16px;">✓</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--navy-dark);margin-bottom:12px;">Application Received!</h2>
+      <p style="font-size:1rem;color:var(--text-mid);max-width:480px;margin:0 auto 28px;line-height:1.75;">Thank you! I've received your application and will review it personally within 1 business day. You'll hear from me to confirm next steps and any additional documents needed.</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+        <a href="contact.html" class="btn btn-navy">Ask Me a Question</a>
+        <a href="calculators.html" class="btn btn-ghost">Explore Calculators</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Show/hide co-applicant fields
+document.querySelector('[name="co-app"]')?.addEventListener('change', function() {
+  document.getElementById('co-app-fields').style.display = this.value === 'yes' ? 'block' : 'none';
+});
+</script>
+
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand-name">Leo Falkovsky</div><div class="footer-brand-tag">Mortgage Broker &amp; Real Estate Agent</div><p class="footer-brand-desc">Barrie's specialist in Manulife One, Smith Manoeuvre, Cash Damming and mortgage acceleration.</p></div><div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="manulife-one.html">Manulife One</a><a href="refinance.html">Refinancing</a><a href="contact.html">Home Purchase</a><a href="contact.html">Renewals</a></div></div><div class="footer-col"><h4>Locations</h4><div class="footer-links"><a href="barrie.html">Barrie</a><a href="innisfil.html">Innisfil</a><a href="springwater.html">Springwater</a><a href="oro-medonte.html">Oro-Medonte</a></div></div><div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="calculators.html">Calculators</a><a href="blog/index.html">Blog</a><a href="apply.html">Apply Online</a><a href="contact.html">Contact</a></div></div></div><div class="footer-fsra"><strong style="color:rgba(255,255,255,.8);">Licensing:</strong> Leo Falkovsky, FSRA Licensed Mortgage Broker #M09000003. 8Twelve Mortgage FSRA #13230. All applications are processed securely.</div><div class="footer-divider"></div><div class="footer-bottom"><span>© 2026 Leo Falkovsky · leofalkovsky.ca</span><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">FSRA Disclosure</a></div></div></div></footer>
+<button id="scrollTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg></button>
+<script src="js/main.js"></script>
+</body>
+</html>

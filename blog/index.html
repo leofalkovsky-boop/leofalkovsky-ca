@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Blog | Leo Falkovsky | Barrie Mortgage Tips & Strategies</title>
+  <meta name="description" content="Expert mortgage insights from Barrie's Leo Falkovsky. Articles on Manulife One, Smith Manoeuvre, refinancing, first-time buying, and Barrie market updates." />
+  <link rel="canonical" href="https://leofalkovsky.ca/blog/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    #hero{background:linear-gradient(135deg,rgba(20,81,126,.78) 0%,rgba(19,86,123,.86) 100%);}
+    .blog-layout{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;}
+    .blog-grid{display:grid;gap:28px;}
+    .blog-card{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--cream-dark);transition:var(--transition);display:flex;gap:0;flex-direction:column;}
+    .blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+    .blog-card-img{height:200px;display:flex;align-items:center;justify-content:center;padding:24px;flex-shrink:0;}
+    .blog-card-body{padding:24px;}
+    .blog-cat{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+    .blog-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--navy-dark);margin-bottom:10px;line-height:1.3;}
+    .blog-title a{color:inherit;transition:var(--transition);}
+    .blog-title a:hover{color:var(--gold-dark);}
+    .blog-excerpt{font-size:.86rem;color:var(--text-mid);line-height:1.7;margin-bottom:14px;}
+    .blog-meta{display:flex;align-items:center;gap:12px;font-size:.76rem;color:var(--text-light);}
+    .blog-meta a{font-weight:600;color:var(--navy);transition:var(--transition);}
+    .blog-meta a:hover{color:var(--gold-dark);}
+    /* SIDEBAR */
+    .sidebar-box{background:var(--white);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-sm);border:1px solid var(--cream-dark);margin-bottom:24px;}
+    .sidebar-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--navy-dark);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--gold);}
+    .sidebar-post{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--cream-dark);}
+    .sidebar-post:last-child{border-bottom:none;}
+    .sp-date{font-size:.72rem;color:var(--text-light);margin-bottom:2px;}
+    .sp-title{font-size:.83rem;font-weight:600;color:var(--navy);line-height:1.35;}
+    .sp-title a{color:inherit;transition:var(--transition);}
+    .sp-title a:hover{color:var(--gold-dark);}
+    .cat-pill{display:inline-block;background:var(--cream);border:1px solid var(--cream-dark);border-radius:100px;padding:5px 12px;font-size:.78rem;font-weight:500;color:var(--navy);margin:0 4px 6px 0;cursor:pointer;transition:var(--transition);}
+    .cat-pill:hover{border-color:var(--gold);color:var(--gold-dark);}
+    /* OPTIN */
+    .optin-box{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:var(--radius-md);padding:28px;color:var(--white);margin-bottom:24px;}
+    .optin-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:6px;}
+    .optin-sub{font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:16px;line-height:1.6;}
+    .optin-form input{margin-bottom:8px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--white);}
+    .optin-form input::placeholder{color:rgba(255,255,255,.4);}
+    /* MINI CALC */
+    .mini-calc{background:var(--cream);border-radius:var(--radius-sm);padding:16px;}
+    .mc-row{display:flex;justify-content:space-between;align-items:center;font-size:.83rem;padding:6px 0;border-bottom:1px solid var(--cream-dark);}
+    .mc-row:last-child{border-bottom:none;}
+    @media(max-width:900px){.blog-layout{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav id="nav"><div class="container nav-inner"><a href="../index.html" class="nav-logo"><span class="nav-logo-name">Leo Falkovsky</span><span class="nav-logo-tag">Mortgage Broker &amp; Realtor · Barrie</span></a><ul class="nav-links"><li><a href="../manulife-one.html">Manulife One</a></li><li><a href="../refinance.html">Refinance</a></li><li><a href="../calculators.html">Calculators</a></li><li><a href="index.html" class="active">Blog</a></li><li><a href="../about.html">About</a></li></ul><a href="../contact.html" class="btn btn-primary nav-cta">Free Mortgage Review</a><button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-drawer" id="navDrawer"><button class="drawer-close" id="drawerClose">×</button><a href="../manulife-one.html">Manulife One</a><a href="../refinance.html">Refinance</a><a href="../calculators.html">Calculators</a><a href="index.html">Blog</a><a href="../about.html">About</a><a href="../contact.html" class="btn btn-primary" style="margin-top:8px;">Free Mortgage Review</a></div>
+
+<section class="hero hero-inner" id="hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Blog</span></nav>
+    <div class="hero-content">
+      <div class="hero-badge">Barrie Mortgage Insights</div>
+      <h1 class="hero-title">The Mortgage<br /><span>Strategy Blog</span></h1>
+      <p class="hero-sub">Plain-language guides on Manulife One, Smith Manoeuvre, Cash Damming, refinancing, and the Barrie real estate market — from Leo Falkovsky.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-light);">
+  <div class="container">
+    <!-- CATEGORIES -->
+    <div style="margin-bottom:32px;">
+      <span class="cat-pill">All Posts</span>
+      <span class="cat-pill">Manulife One</span>
+      <span class="cat-pill">Refinance</span>
+      <span class="cat-pill">Home Buying</span>
+      <span class="cat-pill">Market Updates</span>
+      <span class="cat-pill">Smith Manoeuvre</span>
+    </div>
+
+    <div class="blog-layout">
+      <!-- POSTS -->
+      <div class="blog-grid">
+
+        <article class="blog-card">
+          <div class="blog-card-img" style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);">
+            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">Manulife One Explained: How It Really Works</p>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Manulife One</div>
+            <h2 class="blog-title"><a href="manulife-one-explained.html">Manulife One Explained: How It Really Works (And Why Most Brokers Don't Offer It)</a></h2>
+            <p class="blog-excerpt">The all-in-one account is more powerful than most people realize. Here's exactly how daily banking reduces your mortgage balance — with real numbers and a side-by-side comparison against a traditional mortgage.</p>
+            <div class="blog-meta"><span>May 2, 2026</span><span>·</span><span>8 min read</span><span>·</span><a href="manulife-one-explained.html">Read More →</a></div>
+          </div>
+        </article>
+
+        <!-- EMAIL OPT-IN BANNER (mid-feed) -->
+        <div style="background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 100%);border-radius:var(--radius-md);padding:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+          <div style="flex:1;min-width:200px;">
+            <h3 style="font-family:'Playfair Display',serif;color:var(--navy-dark);margin-bottom:6px;">Get the Free Barrie Mortgage Savings Guide</h3>
+            <p style="font-size:.83rem;color:var(--navy);opacity:.8;">Strategies to save $40K+ on your mortgage — delivered to your inbox.</p>
+          </div>
+          <form class="optin-form" style="display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;">
+            <input type="email" placeholder="Your email address" style="background:var(--white);border-color:var(--white);color:var(--text-dark);min-width:200px;" />
+            <button type="submit" class="btn btn-navy btn-sm">Download Free →</button>
+          </form>
+        </div>
+
+        <article class="blog-card">
+          <div class="blog-card-img" style="background:linear-gradient(135deg,var(--gold-dark) 0%,#44BBA4 100%);">
+            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy-dark);text-align:center;line-height:1.3;">Should You Refinance Your Barrie Mortgage in 2026?</p>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Refinance</div>
+            <h2 class="blog-title"><a href="refinancing-guide.html">Should You Refinance Your Barrie Mortgage in 2026? Here's How to Know.</a></h2>
+            <p class="blog-excerpt">Rates have shifted significantly. Here's how to calculate your penalty, model your break-even, and know with confidence whether breaking your mortgage early makes financial sense.</p>
+            <div class="blog-meta"><span>April 18, 2026</span><span>·</span><span>7 min read</span><span>·</span><a href="refinancing-guide.html">Read More →</a></div>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card-img" style="background:linear-gradient(135deg,#2e80aa 0%,var(--navy) 100%);">
+            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">5 Ways to Pay Off Your Mortgage Years Faster</p>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Acceleration</div>
+            <h2 class="blog-title"><a href="mortgage-acceleration.html">5 Ways to Pay Off Your Barrie Mortgage Years Faster (Without Earning More)</a></h2>
+            <p class="blog-excerpt">From bi-weekly payments to lump-sum strategies and Manulife One, these five proven approaches shave years off your amortization — without increasing your monthly outflow.</p>
+            <div class="blog-meta"><span>April 5, 2026</span><span>·</span><span>6 min read</span><span>·</span><a href="mortgage-acceleration.html">Read More →</a></div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <!-- OPT-IN -->
+        <div class="optin-box">
+          <h3 class="optin-title">Free Mortgage Savings Guide</h3>
+          <p class="optin-sub">Download Leo's guide: "How to Save $40,000+ on Your Barrie Mortgage" — free.</p>
+          <form class="optin-form">
+            <input type="text" placeholder="Your first name" />
+            <input type="email" placeholder="Your email address" />
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Me the Free Guide →</button>
+          </form>
+        </div>
+
+        <!-- RECENT POSTS -->
+        <div class="sidebar-box">
+          <div class="sidebar-title">Recent Posts</div>
+          <div class="sidebar-post"><div><div class="sp-date">May 2, 2026</div><div class="sp-title"><a href="manulife-one-explained.html">Manulife One Explained: How It Really Works</a></div></div></div>
+          <div class="sidebar-post"><div><div class="sp-date">Apr 18, 2026</div><div class="sp-title"><a href="refinancing-guide.html">Should You Refinance Your Barrie Mortgage in 2026?</a></div></div></div>
+          <div class="sidebar-post"><div><div class="sp-date">Apr 5, 2026</div><div class="sp-title"><a href="mortgage-acceleration.html">5 Ways to Pay Off Your Mortgage Years Faster</a></div></div></div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="sidebar-box">
+          <div class="sidebar-title">Categories</div>
+          <div style="margin-top:4px;">
+            <span class="cat-pill">Manulife One</span>
+            <span class="cat-pill">Refinance</span>
+            <span class="cat-pill">Home Buying</span>
+            <span class="cat-pill">Market Updates</span>
+            <span class="cat-pill">Smith Manoeuvre</span>
+            <span class="cat-pill">Acceleration</span>
+          </div>
+        </div>
+
+        <!-- MINI CALCULATOR -->
+        <div class="sidebar-box">
+          <div class="sidebar-title">Quick Manulife One Estimate</div>
+          <p style="font-size:.78rem;color:var(--text-mid);margin-bottom:12px;">Enter your balance to see approximate interest savings:</p>
+          <div class="form-group"><label style="font-size:.76rem;">Mortgage Balance ($)</label><input type="number" id="sb-balance" value="500000" step="10000" /></div>
+          <div class="form-group"><label style="font-size:.76rem;">Rate (%)</label><input type="number" id="sb-rate" value="5.49" step="0.01" /></div>
+          <div class="mini-calc">
+            <div class="mc-row"><span style="color:var(--text-mid);">Est. interest saved</span><span style="font-weight:700;color:var(--gold-dark);" id="sb-saved">$87,400</span></div>
+            <div class="mc-row"><span style="color:var(--text-mid);">Years saved</span><span style="font-weight:700;color:var(--navy);" id="sb-years">~7.5 yrs</span></div>
+          </div>
+          <a href="../calculators.html" class="btn btn-navy btn-sm" style="width:100%;justify-content:center;margin-top:12px;">Full Calculator →</a>
+        </div>
+
+        <!-- CTA BOX -->
+        <div style="background:var(--navy-dark);border-radius:var(--radius-md);padding:24px;text-align:center;">
+          <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:8px;">Ready to Take Action?</p>
+          <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.6;">Book a free 30-min consultation with Leo and get a personalized mortgage plan.</p>
+          <a href="../contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Free Review →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand-name">Leo Falkovsky</div><div class="footer-brand-tag">Mortgage Broker &amp; Real Estate Agent</div><p class="footer-brand-desc">Barrie's specialist in Manulife One, Smith Manoeuvre, Cash Damming and mortgage acceleration.</p></div><div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="../manulife-one.html">Manulife One</a><a href="../refinance.html">Refinancing</a><a href="../contact.html">Home Purchase</a></div></div><div class="footer-col"><h4>Locations</h4><div class="footer-links"><a href="../barrie.html">Barrie</a><a href="../innisfil.html">Innisfil</a><a href="../springwater.html">Springwater</a><a href="../oro-medonte.html">Oro-Medonte</a></div></div><div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="../calculators.html">Calculators</a><a href="index.html">Blog</a><a href="../apply.html">Apply Online</a></div></div></div><div class="footer-fsra"><strong style="color:rgba(255,255,255,.8);">Licensing:</strong> Leo Falkovsky, FSRA Licensed Mortgage Broker #M09000003.</div><div class="footer-divider"></div><div class="footer-bottom"><span>© 2026 Leo Falkovsky · leofalkovsky.ca</span><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div></div></footer>
+<button id="scrollTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg></button>
+<script src="../js/main.js"></script>
+<script>
+// Sidebar mini calculator
+function updateSb() {
+  const bal = parseFloat(document.getElementById('sb-balance').value)||500000;
+  const rate = parseFloat(document.getElementById('sb-rate').value)||5.49;
+  const r = Math.pow(1+rate/200,1/3)-1;
+  const n=300; const pmt=bal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  const tradInt=pmt*n-bal;
+  // Estimate M1 saves ~28% of interest with average $1500/mo surplus
+  const saved=tradInt*0.28; const yrs=saved/(bal*rate/100/12)/12;
+  document.getElementById('sb-saved')?.setText ? null : (document.getElementById('sb-saved').textContent='$'+Math.round(saved).toLocaleString('en-CA'));
+  document.getElementById('sb-years').textContent='~'+yrs.toFixed(1)+' yrs';
+}
+['sb-balance','sb-rate'].forEach(id=>document.getElementById(id)?.addEventListener('input',updateSb));
+updateSb();
+</script>
+</body>
+</html>

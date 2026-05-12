@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Calculators Barrie | Leo Falkovsky | Manulife One, Smith Manoeuvre & More</title>
+  <meta name="description" content="Free interactive mortgage calculators: Manulife One savings, refinance break-even, debt consolidation, HELOC equity, mortgage qualifier, and Smith Manoeuvre wealth projections. Barrie, Ontario." />
+  <link rel="canonical" href="https://leofalkovsky.ca/calculators.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    #hero { background:linear-gradient(135deg,rgba(20,81,126,.78) 0%,rgba(19,86,123,.86) 100%); }
+    /* TABS */
+    .calc-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
+    .calc-tab {
+      padding:10px 20px; border-radius:100px; font-size:.84rem; font-weight:600;
+      background:var(--white); border:2px solid var(--cream-dark); color:var(--navy);
+      cursor:pointer; transition:var(--transition);
+    }
+    .calc-tab:hover { border-color:var(--gold); }
+    .calc-tab.active { background:var(--navy); color:var(--white); border-color:var(--navy); }
+    .calc-tab-panel { display:none; }
+    /* CALC LAYOUT */
+    .calc-wrap { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; background:var(--white); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-md); border:1px solid var(--cream-dark); }
+    .calc-inputs {}
+    .calc-title { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--navy-dark); margin-bottom:6px; }
+    .calc-desc { font-size:.85rem; color:var(--text-mid); margin-bottom:24px; line-height:1.6; }
+    .ci-group { margin-bottom:16px; }
+    .ci-label { display:flex; justify-content:space-between; align-items:center; font-size:.78rem; font-weight:600; color:var(--navy); margin-bottom:5px; }
+    .ci-hint { font-size:.72rem; color:var(--text-light); font-weight:400; }
+    .calc-results { background:var(--navy-dark); border-radius:var(--radius-md); padding:28px; }
+    .cr-title { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+    .cr-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.07); }
+    .cr-row:last-child { border-bottom:none; }
+    .cr-lbl { font-size:.82rem; color:rgba(255,255,255,.6); }
+    .cr-val { font-size:.92rem; font-weight:600; color:var(--white); }
+    .cr-val.gold { color:var(--gold); }
+    .cr-highlight { background:linear-gradient(135deg,rgba(68,187,164,.14),rgba(68,187,164,.04)); border:1px solid rgba(68,187,164,.28); border-radius:var(--radius-md); padding:18px; text-align:center; margin-top:16px; }
+    .cr-highlight-lbl { font-size:.72rem; color:rgba(68,187,164,.8); margin-bottom:4px; }
+    .cr-highlight-val { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--gold); }
+    .calc-cta { margin-top:20px; display:none; }
+    .calc-cta p { font-size:.82rem; color:rgba(255,255,255,.55); margin-bottom:12px; line-height:1.5; }
+    .debt-debt-section { background:var(--cream); border-radius:var(--radius-md); padding:16px; margin-bottom:16px; }
+    .debt-debt-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .debt-label { font-size:.73rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
+    @media(max-width:768px){.calc-wrap{grid-template-columns:1fr;}.calc-tabs{gap:6px;}.calc-tab{font-size:.78rem;padding:8px 14px;}}
+  </style>
+</head>
+<body>
+<nav id="nav"><div class="container nav-inner"><a href="index.html" class="nav-logo"><span class="nav-logo-name">Leo Falkovsky</span><span class="nav-logo-tag">Mortgage Broker &amp; Realtor · Barrie</span></a><ul class="nav-links"><li><a href="manulife-one.html">Manulife One</a></li><li><a href="refinance.html">Refinance</a></li><li><a href="calculators.html" class="active">Calculators</a></li><li><a href="blog/index.html">Blog</a></li><li><a href="about.html">About</a></li></ul><a href="contact.html" class="btn btn-primary nav-cta">Free Mortgage Review</a><button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-drawer" id="navDrawer"><button class="drawer-close" id="drawerClose">×</button><a href="manulife-one.html">Manulife One</a><a href="refinance.html">Refinance</a><a href="calculators.html">Calculators</a><a href="blog/index.html">Blog</a><a href="about.html">About</a><a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Free Mortgage Review</a></div>
+
+<section class="hero hero-inner" id="hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Calculators</span></nav>
+    <div class="hero-content">
+      <div class="hero-badge">8 Free Interactive Tools</div>
+      <h1 class="hero-title">Mortgage Calculators<br /><span>Built for Barrie</span><br />Homeowners</h1>
+      <p class="hero-sub">Run the real numbers on affordability, payment schedules, Manulife One, Smith Manoeuvre, refinancing, debt consolidation, home equity, and mortgage qualification — all in one place, instantly.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-light);" id="smith">
+  <div class="container">
+    <!-- TAB STRIP -->
+    <div class="calc-tabs">
+      <button class="calc-tab" data-panel="panel-afford">🏡 Affordability</button>
+      <button class="calc-tab" data-panel="panel-payment">📅 Payment Schedule</button>
+      <button class="calc-tab" data-panel="panel-m1">💰 Manulife One</button>
+      <button class="calc-tab" data-panel="panel-refi">🔄 Refinance</button>
+      <button class="calc-tab" data-panel="panel-debt">💳 Debt Consolidation</button>
+      <button class="calc-tab" data-panel="panel-heloc">🏠 HELOC / Equity</button>
+      <button class="calc-tab" data-panel="panel-qualify">✅ Qualify</button>
+      <button class="calc-tab" data-panel="panel-smith">📈 Smith Manoeuvre</button>
+    </div>
+
+    <!-- ── AFFORDABILITY ── -->
+    <div class="calc-tab-panel" id="panel-afford">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">Affordability Calculator</h2>
+          <p class="calc-desc">See the maximum home price you qualify for based on your income, debts, and down payment using the Canadian stress test (GDS ≤ 39%, TDS ≤ 44%).</p>
+          <form id="calc-afford">
+            <div class="ci-group"><div class="ci-label">Annual Gross Income — Applicant 1<span class="ci-hint">Before tax</span></div><input type="number" name="af-inc1" value="95000" min="0" step="1000" /></div>
+            <div class="ci-group"><div class="ci-label">Annual Gross Income — Applicant 2<span class="ci-hint">Leave 0 if single applicant</span></div><input type="number" name="af-inc2" value="0" min="0" step="1000" /></div>
+            <div class="ci-group"><div class="ci-label">Down Payment<span class="ci-hint">Minimum 5% of purchase price</span></div><input type="number" name="af-down" value="80000" min="5000" step="5000" /></div>
+            <div class="ci-group"><div class="ci-label">Monthly Debt Payments<span class="ci-hint">Car loans, credit cards, student loans</span></div><input type="number" name="af-debts" value="400" min="0" step="50" /></div>
+            <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="af-rate" value="4.99" min="1" max="12" step="0.01" /></div>
+            <div class="ci-group"><div class="ci-label">Amortization</div><select name="af-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+            <div class="ci-group"><div class="ci-label">Property Tax / Year<span class="ci-hint">Estimate if unknown</span></div><input type="number" name="af-tax" value="4800" min="0" step="100" /></div>
+            <div class="ci-group"><div class="ci-label">Condo Fees / Month<span class="ci-hint">0 if detached</span></div><input type="number" name="af-condo" value="0" min="0" step="50" /></div>
+            <div class="ci-group"><div class="ci-label">Heating Cost / Month<span class="ci-hint">Lender estimate ~$150</span></div><input type="number" name="af-heat" value="150" min="0" step="10" /></div>
+            <button type="button" onclick="calcAfford()" class="btn btn-primary" style="width:100%;margin-top:8px;">Calculate Affordability →</button>
+          </form>
+        </div>
+        <div>
+          <div class="calc-results" id="afford-results" style="display:none;">
+            <div class="cr-title">Your Affordability Estimate</div>
+            <div class="cr-row"><span class="cr-lbl">Qualifying rate (stress test)</span><span class="cr-val gold" id="af-stress">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Max monthly mortgage payment</span><span class="cr-val" id="af-max-pmt">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Max mortgage amount</span><span class="cr-val gold" id="af-max-mort">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">Maximum Purchase Price</div>
+              <div class="cr-highlight-val" id="af-max-price">—</div>
+            </div>
+            <div class="cr-row" style="margin-top:12px;"><span class="cr-lbl">GDS ratio (max 39%)</span><span class="cr-val" id="af-gds">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">TDS ratio (max 44%)</span><span class="cr-val" id="af-tds">—</span></div>
+            <div id="af-warning" style="display:none;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:12px;margin-top:12px;font-size:.8rem;color:#fca5a5;line-height:1.6;"></div>
+            <div class="calc-cta" id="afford-cta">
+              <p>These are estimates based on standard lender guidelines. A personalized pre-approval gives you a firm number.</p>
+              <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Get My Free Pre-Approval →</a>
+            </div>
+          </div>
+          <div style="background:var(--cream);border-radius:var(--radius-md);padding:20px;margin-top:16px;" id="afford-placeholder">
+            <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;margin-bottom:12px;">💡 <strong>How the stress test works:</strong> Your qualifying rate is the higher of your contract rate + 2%, or 5.25%. Lenders use this to ensure you can still afford payments if rates rise.</p>
+            <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;">Fill in your details and click Calculate to see your maximum purchase price.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAYMENT SCHEDULE ── -->
+    <div class="calc-tab-panel" id="panel-payment">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">Mortgage Payment Calculator</h2>
+          <p class="calc-desc">See your exact monthly, bi-weekly, weekly, and accelerated payment amounts — and how each one affects your total interest and payoff date.</p>
+          <form id="calc-payment">
+            <div class="ci-group"><div class="ci-label">Mortgage Amount</div><input type="number" name="pmt-amount" value="500000" min="50000" max="5000000" step="10000" /></div>
+            <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="pmt-rate" value="4.99" min="0.5" max="15" step="0.01" /></div>
+            <div class="ci-group"><div class="ci-label">Amortization Period</div><select name="pmt-amort">
+              <option value="10">10 years</option><option value="15">15 years</option><option value="20">20 years</option>
+              <option value="25" selected>25 years</option><option value="30">30 years</option>
+            </select></div>
+            <div class="ci-group"><div class="ci-label">Payment Frequency</div><select name="pmt-freq">
+              <option value="monthly">Monthly</option>
+              <option value="biweekly">Bi-Weekly (every 2 weeks)</option>
+              <option value="biweekly-accel" selected>Bi-Weekly Accelerated ★</option>
+              <option value="weekly">Weekly</option>
+              <option value="weekly-accel">Weekly Accelerated ★</option>
+            </select></div>
+            <button type="button" onclick="calcPayment()" class="btn btn-primary" style="width:100%;margin-top:8px;">Calculate Payments →</button>
+          </form>
+          <div style="background:rgba(46,191,165,.08);border:1px solid rgba(46,191,165,.2);border-radius:var(--radius-sm);padding:14px;margin-top:16px;font-size:.8rem;color:var(--text-mid);line-height:1.6;">
+            ★ <strong>Accelerated</strong> payments divide the monthly amount by 2 (or 4 for weekly) — effectively making one extra full payment per year. This alone can cut 2–3 years off a 25-year mortgage.
+          </div>
+        </div>
+        <div>
+          <div class="calc-results" id="payment-results" style="display:none;">
+            <div class="cr-title">Payment Schedule Comparison</div>
+
+            <!-- Selected payment highlight -->
+            <div class="cr-highlight" style="margin-bottom:16px;">
+              <div class="cr-highlight-lbl" id="pmt-selected-lbl">Your Payment</div>
+              <div class="cr-highlight-val" id="pmt-selected-val">—</div>
+              <div style="font-size:.78rem;color:var(--gold-light);margin-top:4px;" id="pmt-selected-freq">—</div>
+            </div>
+
+            <!-- All frequencies side by side -->
+            <div style="margin-bottom:12px;">
+              <div class="cr-row" style="background:rgba(255,255,255,.04);padding:8px 10px;border-radius:6px;margin-bottom:4px;">
+                <span class="cr-lbl" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;">Frequency</span>
+                <span class="cr-lbl" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;">Payment</span>
+              </div>
+              <div class="cr-row"><span class="cr-lbl">Monthly</span><span class="cr-val" id="pmt-monthly">—</span></div>
+              <div class="cr-row"><span class="cr-lbl">Bi-Weekly</span><span class="cr-val" id="pmt-biweekly">—</span></div>
+              <div class="cr-row"><span class="cr-lbl" style="color:var(--gold);">Bi-Weekly Accelerated ★</span><span class="cr-val gold" id="pmt-biweekly-accel">—</span></div>
+              <div class="cr-row"><span class="cr-lbl">Weekly</span><span class="cr-val" id="pmt-weekly">—</span></div>
+              <div class="cr-row"><span class="cr-lbl" style="color:var(--gold);">Weekly Accelerated ★</span><span class="cr-val gold" id="pmt-weekly-accel">—</span></div>
+            </div>
+
+            <!-- Savings from accelerated -->
+            <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:14px;">
+              <div class="cr-row"><span class="cr-lbl">Total interest (monthly)</span><span class="cr-val" id="pmt-int-monthly">—</span></div>
+              <div class="cr-row"><span class="cr-lbl">Total interest (bi-wkly accel)</span><span class="cr-val gold" id="pmt-int-bwa">—</span></div>
+              <div class="cr-row"><span class="cr-lbl">Interest saved (accel vs monthly)</span><span class="cr-val gold" id="pmt-int-saved">—</span></div>
+              <div class="cr-row"><span class="cr-lbl">Time saved (accel vs monthly)</span><span class="cr-val gold" id="pmt-time-saved">—</span></div>
+            </div>
+
+            <div class="calc-cta" id="payment-cta">
+              <p>Accelerated bi-weekly payments are one of the easiest ways to save thousands with no budget change. Ask Leo how to combine this with Manulife One for even bigger savings.</p>
+              <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Book a Free Strategy Call →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 1. MANULIFE ONE ── -->
+    <div class="calc-tab-panel" id="panel-m1">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">Manulife One Calculator</h2>
+          <p class="calc-desc">See how much faster you pay off your mortgage and how much interest you save by depositing your income directly into Manulife One.</p>
+          <form id="calc-m1">
+            <div class="ci-group"><div class="ci-label">Mortgage Balance<span class="ci-hint">Current amount owed</span></div><input type="number" name="m1-balance" value="500000" min="50000" max="3000000" step="10000" /></div>
+            <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="m1-rate" value="5.49" min="1" max="12" step="0.01" /></div>
+            <div class="ci-group"><div class="ci-label">Monthly Net Income<span class="ci-hint">What deposits into the account</span></div><input type="number" name="m1-income" value="7000" min="2000" max="50000" step="100" /></div>
+            <div class="ci-group"><div class="ci-label">Monthly Spending<span class="ci-hint">Bills, groceries, expenses</span></div><input type="number" name="m1-spending" value="5500" min="1000" max="49000" step="100" /></div>
+            <div class="ci-group"><div class="ci-label">Original Amortization (years)</div><select name="m1-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+          </form>
+        </div>
+        <div>
+          <div class="calc-results" id="m1-results" style="display:none;">
+            <div class="cr-title">Your Manulife One Analysis</div>
+            <div class="cr-row" style="background:rgba(255,255,255,.04);padding:10px 12px;border-radius:6px;margin-bottom:8px;"><span class="cr-lbl">📊 Traditional Mortgage</span></div>
+            <div class="cr-row"><span class="cr-lbl">Amortization</span><span class="cr-val" id="m1-trad-yrs">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Total interest paid</span><span class="cr-val" id="m1-trad-int">—</span></div>
+            <div class="cr-row" style="background:rgba(68,187,164,.06);padding:10px 12px;border-radius:6px;margin:8px 0;"><span class="cr-lbl">✨ With Manulife One</span></div>
+            <div class="cr-row"><span class="cr-lbl">Projected payoff</span><span class="cr-val gold" id="m1-new-yrs">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Total interest paid</span><span class="cr-val gold" id="m1-new-int">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">Total Interest Savings</div>
+              <div class="cr-highlight-val" id="m1-int-saved">—</div>
+              <div style="font-size:.78rem;color:var(--gold-light);margin-top:4px;" id="m1-yrs-saved">—</div>
+            </div>
+          </div>
+          <div class="calc-cta" id="m1-cta">
+            <p>Want a personalized Manulife One scenario with your exact numbers?</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book My Free Manulife One Review →</a>
+          </div>
+          <p style="font-size:.72rem;color:var(--text-light);margin-top:12px;line-height:1.5;">Illustrative only. Results depend on income timing, spending patterns, and rate. Contact Leo for a precise model.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 2. REFINANCE ── -->
+    <div class="calc-tab-panel" id="panel-refi">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">Refinance Calculator</h2>
+          <p class="calc-desc">Calculate your monthly savings, total interest reduction, break-even on the penalty, and whether breaking your mortgage makes financial sense.</p>
+          <form id="calc-refi">
+            <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px;">Current Mortgage</p>
+            <div class="ci-group"><div class="ci-label">Remaining Balance</div><input type="number" name="refi-balance" value="400000" min="50000" max="3000000" step="10000" /></div>
+            <div class="ci-group"><div class="ci-label">Current Rate (%)</div><input type="number" name="refi-cur-rate" value="6.50" min="1" max="12" step="0.01" /></div>
+            <div class="ci-group"><div class="ci-label">Remaining Amortization (years)</div><select name="refi-cur-amort"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option><option value="25">25</option></select></div>
+            <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">New Mortgage</p>
+            <div class="ci-group"><div class="ci-label">New Rate (%)</div><input type="number" name="refi-new-rate" value="5.00" min="1" max="12" step="0.01" /></div>
+            <div class="ci-group"><div class="ci-label">New Amortization (years)</div><select name="refi-new-amort"><option value="15">15</option><option value="20">20</option><option value="25" selected>25</option></select></div>
+            <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Costs</p>
+            <div class="ci-group"><div class="ci-label">Break Penalty ($)<span class="ci-hint">Ask your lender</span></div><input type="number" name="refi-penalty" value="4000" min="0" max="50000" step="100" /></div>
+            <div class="ci-group"><div class="ci-label">Legal + Appraisal Costs ($)</div><input type="number" name="refi-costs" value="1500" min="0" max="10000" step="100" /></div>
+          </form>
+        </div>
+        <div>
+          <div class="calc-results" id="refi-results" style="display:none;">
+            <div class="cr-title">Refinance Analysis</div>
+            <div class="cr-row"><span class="cr-lbl">Current payment</span><span class="cr-val" id="refi-cur-pmt">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">New payment</span><span class="cr-val gold" id="refi-new-pmt">—</span></div>
+            <div class="cr-row"><span class="cr-lbl" id="refi-monthly-lbl">Monthly Cash Flow Gain</span><span class="cr-val gold" id="refi-monthly">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Total costs (penalty + fees)</span><span class="cr-val" id="refi-total-costs">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Break-even point</span><span class="cr-val" id="refi-breakeven">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">Lifetime Interest Savings</div>
+              <div class="cr-highlight-val" id="refi-int-saved">—</div>
+            </div>
+          </div>
+          <div class="calc-cta" id="refi-cta">
+            <p>Want my exact penalty quote and a full refinance analysis?</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get My Free Refinance Analysis →</a>
+          </div>
+          <p style="font-size:.72rem;color:var(--text-light);margin-top:12px;line-height:1.5;">Illustrative only. Your actual penalty may differ. Contact Leo for a precise break-even analysis.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. DEBT CONSOLIDATION ── -->
+    <div class="calc-tab-panel" id="panel-debt">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">Debt Consolidation Calculator</h2>
+          <p class="calc-desc">See how much cash flow you free up by rolling high-interest debts into your mortgage — and how much total interest you save over 5 years.</p>
+          <form id="calc-debt">
+            <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px;">Your Mortgage</p>
+            <div class="debt-debt-row" style="gap:10px;margin-bottom:14px;">
+              <div class="ci-group"><div class="ci-label">Balance ($)</div><input type="number" name="debt-mort-bal" value="350000" min="50000" step="10000" /></div>
+              <div class="ci-group"><div class="ci-label">Rate (%)</div><input type="number" name="debt-mort-rate" value="5.49" min="1" max="12" step="0.01" /></div>
+            </div>
+            <div class="ci-group"><div class="ci-label">Remaining Amortization (years)</div><select name="debt-amort"><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option><option value="25">25</option></select></div>
+            <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Debts to Consolidate</p>
+            <div class="debt-debt-section">
+              <div class="debt-label">Credit Card 1</div>
+              <div class="debt-debt-row"><div class="ci-group"><div class="ci-label">Balance ($)</div><input type="number" name="debt-cc1-bal" value="8000" min="0" step="100" /></div><div class="ci-group"><div class="ci-label">Rate (%)</div><input type="number" name="debt-cc1-rate" value="19.99" min="0" max="30" step="0.01" /></div></div>
+            </div>
+            <div class="debt-debt-section">
+              <div class="debt-label">Credit Card 2</div>
+              <div class="debt-debt-row"><div class="ci-group"><div class="ci-label">Balance ($)</div><input type="number" name="debt-cc2-bal" value="0" min="0" step="100" /></div><div class="ci-group"><div class="ci-label">Rate (%)</div><input type="number" name="debt-cc2-rate" value="19.99" min="0" max="30" step="0.01" /></div></div>
+            </div>
+            <div class="debt-debt-section">
+              <div class="debt-label">Car Loan</div>
+              <div class="debt-debt-row"><div class="ci-group"><div class="ci-label">Balance ($)</div><input type="number" name="debt-car-bal" value="15000" min="0" step="100" /></div><div class="ci-group"><div class="ci-label">Rate (%)</div><input type="number" name="debt-car-rate" value="6.99" min="0" max="20" step="0.01" /></div></div>
+            </div>
+            <div class="debt-debt-section">
+              <div class="debt-label">Other Debt (LOC, personal loan)</div>
+              <div class="debt-debt-row"><div class="ci-group"><div class="ci-label">Balance ($)</div><input type="number" name="debt-other-bal" value="0" min="0" step="100" /></div><div class="ci-group"><div class="ci-label">Rate (%)</div><input type="number" name="debt-other-rate" value="12.0" min="0" max="30" step="0.01" /></div></div>
+            </div>
+          </form>
+        </div>
+        <div>
+          <div class="calc-results" id="debt-results" style="display:none;">
+            <div class="cr-title">Consolidation Analysis</div>
+            <div class="cr-row"><span class="cr-lbl">Total debt to consolidate</span><span class="cr-val" id="debt-total">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Current combined payment</span><span class="cr-val" id="debt-cur-pmt">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">New consolidated payment</span><span class="cr-val gold" id="debt-new-pmt">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Monthly cash flow saved</span><span class="cr-val gold" id="debt-monthly">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">5-Year Interest Savings</div>
+              <div class="cr-highlight-val" id="debt-int-5yr">—</div>
+            </div>
+          </div>
+          <div class="calc-cta" id="debt-cta">
+            <p>Want to explore whether consolidation makes sense for your specific situation?</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get My Free Consultation →</a>
+          </div>
+          <p style="font-size:.72rem;color:var(--text-light);margin-top:12px;line-height:1.5;">Illustrative only. Consolidating debt into a mortgage extends the repayment period — a full analysis is recommended.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4. HELOC ── -->
+    <div class="calc-tab-panel" id="panel-heloc">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">HELOC &amp; Home Equity Calculator</h2>
+          <p class="calc-desc">Calculate your available home equity and maximum HELOC limit based on OSFI's 65% rule and 80% combined LTV cap.</p>
+          <form id="calc-heloc">
+            <div class="ci-group"><div class="ci-label">Estimated Home Value ($)<span class="ci-hint">Get a free estimate from Leo</span></div><input type="number" name="heloc-value" value="700000" min="100000" max="5000000" step="10000" /></div>
+            <div class="ci-group"><div class="ci-label">Current Mortgage Balance ($)</div><input type="number" name="heloc-bal" value="400000" min="0" max="4000000" step="10000" /></div>
+            <div class="ci-group"><div class="ci-label">HELOC Rate (%)<span class="ci-hint">Typically prime + 0.5%</span></div><input type="number" name="heloc-rate" value="7.20" min="2" max="15" step="0.01" /></div>
+          </form>
+          <div class="highlight-box" style="margin-top:20px;"><strong>OSFI Rules:</strong> Max HELOC = 65% of home value. Total mortgage + HELOC ≤ 80% of home value.</div>
+        </div>
+        <div>
+          <div class="calc-results" id="heloc-results" style="display:none;">
+            <div class="cr-title">Your Home Equity Analysis</div>
+            <div class="cr-row"><span class="cr-lbl">Estimated equity</span><span class="cr-val gold" id="heloc-equity">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Current LTV ratio</span><span class="cr-val" id="heloc-ltv">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Max HELOC available</span><span class="cr-val gold" id="heloc-max">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Interest-only payment</span><span class="cr-val" id="heloc-int-only">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">HELOC Status</div>
+              <div style="font-size:1rem;font-weight:600;color:var(--gold);padding:4px 0;" id="heloc-status">—</div>
+            </div>
+          </div>
+          <div class="calc-cta" id="heloc-cta">
+            <p>Interested in setting up a HELOC or using equity for Smith Manoeuvre?</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book My Free Equity Review →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 5. QUALIFY ── -->
+    <div class="calc-tab-panel" id="panel-qualify">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">Mortgage Qualifier Calculator</h2>
+          <p class="calc-desc">Estimate your maximum mortgage and purchase price using Canada's stress test (contract rate + 2% or 5.25%, whichever is higher).</p>
+          <form id="calc-qualify">
+            <div class="ci-group"><div class="ci-label">Your Gross Annual Income ($)</div><input type="number" name="qual-income" value="100000" min="20000" max="1000000" step="1000" /></div>
+            <div class="ci-group"><div class="ci-label">Co-Applicant Gross Income ($)<span class="ci-hint">Enter 0 if solo</span></div><input type="number" name="qual-coincome" value="0" min="0" max="1000000" step="1000" /></div>
+            <div class="ci-group"><div class="ci-label">Monthly Debt Payments ($)<span class="ci-hint">Car loans, LOC minimums, etc.</span></div><input type="number" name="qual-debts" value="0" min="0" max="10000" step="50" /></div>
+            <div class="ci-group"><div class="ci-label">Down Payment ($)</div><input type="number" name="qual-down" value="100000" min="10000" max="3000000" step="5000" /></div>
+            <div class="ci-group"><div class="ci-label">Contract Interest Rate (%)<span class="ci-hint">Quoted rate from lender</span></div><input type="number" name="qual-rate" value="5.49" min="1" max="12" step="0.01" /></div>
+            <div class="ci-group"><div class="ci-label">Amortization (years)</div><select name="qual-amort"><option value="20">20 years</option><option value="25" selected>25 years</option></select></div>
+          </form>
+        </div>
+        <div>
+          <div class="calc-results" id="qual-results" style="display:none;">
+            <div class="cr-title">Qualification Estimate</div>
+            <div class="cr-row"><span class="cr-lbl">Stress test rate applied</span><span class="cr-val" id="qual-stress">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Max mortgage payment</span><span class="cr-val" id="qual-max-pmt">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">GDS ratio used</span><span class="cr-val" id="qual-gds">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">TDS ratio used</span><span class="cr-val" id="qual-tds">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">Maximum Mortgage</div>
+              <div class="cr-highlight-val" id="qual-max-mort">—</div>
+            </div>
+            <div style="background:rgba(68,187,164,.08);border-radius:var(--radius-sm);padding:14px;margin-top:12px;text-align:center;">
+              <div style="font-size:.72rem;color:rgba(68,187,164,.8);margin-bottom:4px;">Max Purchase Price</div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);" id="qual-max-purchase">—</div>
+            </div>
+          </div>
+          <div class="calc-cta" id="qual-cta">
+            <p>Want a pre-approval letter with your exact qualifying amount?</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Start My Pre-Approval →</a>
+          </div>
+          <p style="font-size:.72rem;color:var(--text-light);margin-top:12px;line-height:1.5;">Estimate only. Actual qualification depends on full credit bureau review, property type, and lender guidelines.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 6. SMITH MANOEUVRE ── -->
+    <div class="calc-tab-panel" id="panel-smith">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">Smith Manoeuvre Calculator</h2>
+          <p class="calc-desc">Project the long-term wealth impact of the Smith Manoeuvre — converting your mortgage into a tax-deductible investment loan while building a portfolio.</p>
+          <form id="calc-smith">
+            <div class="ci-group"><div class="ci-label">Current Mortgage Balance ($)</div><input type="number" name="sm-balance" value="500000" min="50000" max="3000000" step="10000" /></div>
+            <div class="ci-group"><div class="ci-label">Mortgage Rate (%)</div><input type="number" name="sm-mort-rate" value="5.49" min="1" max="12" step="0.01" /></div>
+            <div class="ci-group"><div class="ci-label">Expected Investment Return (%/yr)<span class="ci-hint">Historical TSX avg ~7%</span></div><input type="number" name="sm-return" value="7.0" min="1" max="15" step="0.1" /></div>
+            <div class="ci-group"><div class="ci-label">Marginal Tax Bracket (%)<span class="ci-hint">Your top tax rate</span></div><input type="number" name="sm-tax" value="40" min="20" max="55" step="1" /></div>
+            <div class="ci-group"><div class="ci-label">Projection Period (years)</div><select name="sm-years"><option value="10">10 years</option><option value="15">15 years</option><option value="20" selected>20 years</option><option value="25">25 years</option></select></div>
+          </form>
+          <div class="highlight-box" style="margin-top:20px;"><strong>How it works:</strong> Each year, as you pay down your mortgage, you re-borrow that same amount via HELOC and invest it. The HELOC interest is tax-deductible because the loan funds investments.</div>
+        </div>
+        <div>
+          <div class="calc-results" id="sm-results" style="display:none;">
+            <div class="cr-title">Smith Manoeuvre Projection</div>
+            <div class="cr-row"><span class="cr-lbl">Investment portfolio value</span><span class="cr-val gold" id="sm-invest-val">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Outstanding HELOC balance</span><span class="cr-val" id="sm-heloc-bal">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Total tax refunds earned</span><span class="cr-val gold" id="sm-tax-refunds">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Total deductible interest</span><span class="cr-val" id="sm-deduct-int">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">Net Wealth Created</div>
+              <div class="cr-highlight-val" id="sm-net-gain">—</div>
+              <div style="font-size:.74rem;color:rgba(68,187,164,.7);margin-top:4px;">(Portfolio minus HELOC)</div>
+            </div>
+          </div>
+          <div class="calc-cta" id="sm-cta">
+            <p>Ready to implement the Smith Manoeuvre for your Barrie home? Let's build the plan.</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book My Smith Manoeuvre Consultation →</a>
+          </div>
+          <p style="font-size:.72rem;color:var(--text-light);margin-top:12px;line-height:1.5;">Projections only. Investment returns are not guaranteed. The Smith Manoeuvre is a complex strategy — professional advice is essential. Consult a tax advisor regarding deductibility.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-content" style="position:relative;z-index:1;">
+    <span class="section-label">Next Step</span>
+    <h2 class="section-title">Numbers Look Good?<br />Let's Make It Real.</h2>
+    <p class="cta-sub">These calculators give you the picture. I give you the plan. Book a free consultation and I'll build a precise, personalized mortgage strategy for your exact situation.</p>
+    <div class="cta-actions"><a href="contact.html" class="btn btn-primary btn-lg">Book My Free Mortgage Review</a><a href="apply.html" class="btn btn-outline">Start My Application</a></div>
+  </div>
+</section>
+
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand-name">Leo Falkovsky</div><div class="footer-brand-tag">Mortgage Broker &amp; Real Estate Agent</div><p class="footer-brand-desc">Barrie's specialist in Manulife One, Smith Manoeuvre, Cash Damming and mortgage acceleration.</p></div><div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="manulife-one.html">Manulife One</a><a href="refinance.html">Refinancing</a><a href="contact.html">Home Purchase</a><a href="contact.html">Renewals</a></div></div><div class="footer-col"><h4>Locations</h4><div class="footer-links"><a href="barrie.html">Barrie</a><a href="innisfil.html">Innisfil</a><a href="springwater.html">Springwater</a><a href="oro-medonte.html">Oro-Medonte</a></div></div><div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="calculators.html">Calculators</a><a href="blog/index.html">Blog</a><a href="apply.html">Apply Online</a><a href="contact.html">Contact</a></div></div></div><div class="footer-fsra"><strong style="color:rgba(255,255,255,.8);">Licensing:</strong> Leo Falkovsky, FSRA Licensed Mortgage Broker #M09000003. 8Twelve Mortgage FSRA #13230. Calculator results are illustrative only and do not constitute financial advice.</div><div class="footer-divider"></div><div class="footer-bottom"><span>© 2026 Leo Falkovsky · leofalkovsky.ca</span><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">FSRA Disclosure</a></div></div></div></footer>
+<button id="scrollTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg></button>
+<script src="js/main.js"></script>
+</body>
+</html>

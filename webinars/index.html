@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Mortgage Webinars | Leo Falkovsky | Barrie, ON</title>
+  <meta name="description" content="Free live mortgage education webinars from Leo Falkovsky — Barrie's Manulife One and Smith Manoeuvre specialist. Register for upcoming sessions or watch replays." />
+  <link rel="canonical" href="https://leofalkovsky.ca/webinars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    #hero { background: linear-gradient(135deg,rgba(20,81,126,.82) 0%,rgba(34,120,176,.72) 100%); }
+    .webinar-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; }
+    .webinar-card { background:var(--white); border-radius:var(--radius-md); overflow:hidden; box-shadow:0 2px 16px rgba(0,0,0,.07); border:1px solid var(--cream-dark); transition:var(--transition); display:flex; flex-direction:column; }
+    .webinar-card:hover { transform:translateY(-4px); box-shadow:0 8px 32px rgba(0,0,0,.12); }
+    .wc-header { padding:28px 28px 20px; border-bottom:3px solid var(--gold); }
+    .wc-badge { display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:20px; margin-bottom:12px; }
+    .badge-upcoming { background:rgba(68,187,164,.15); color:var(--gold-dark); border:1px solid rgba(68,187,164,.3); }
+    .badge-replay { background:rgba(19,86,123,.08); color:var(--navy); border:1px solid rgba(19,86,123,.2); }
+    .wc-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--navy-dark); line-height:1.35; margin-bottom:10px; }
+    .wc-meta { font-size:.8rem; color:var(--text-light); display:flex; gap:14px; flex-wrap:wrap; }
+    .wc-meta span { display:flex; align-items:center; gap:4px; }
+    .wc-body { padding:20px 28px; flex:1; }
+    .wc-desc { font-size:.87rem; color:var(--text-mid); line-height:1.7; margin-bottom:16px; }
+    .wc-learns { list-style:none; padding:0; margin:0 0 20px; }
+    .wc-learns li { font-size:.82rem; color:var(--text-mid); padding:5px 0; padding-left:18px; position:relative; }
+    .wc-learns li::before { content:'✓'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+    .wc-footer { padding:16px 28px 24px; }
+    .wc-countdown { display:flex; gap:10px; margin-bottom:16px; }
+    .wc-count-seg { text-align:center; background:var(--navy); color:var(--white); border-radius:6px; padding:8px 10px; flex:1; min-width:44px; }
+    .wc-count-num { font-size:1.4rem; font-weight:700; line-height:1; display:block; }
+    .wc-count-lbl { font-size:.6rem; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:.05em; margin-top:3px; display:block; }
+    .replay-gate { background:var(--cream-light); border:2px dashed var(--cream-dark); border-radius:var(--radius-md); padding:40px; text-align:center; }
+    .replay-gate-icon { font-size:2.5rem; margin-bottom:12px; }
+    .replay-gate h3 { font-family:'Playfair Display',serif; color:var(--navy-dark); margin-bottom:8px; }
+    .replay-gate p { font-size:.9rem; color:var(--text-mid); margin-bottom:24px; max-width:420px; margin-left:auto; margin-right:auto; }
+    .replay-form { display:flex; gap:10px; max-width:420px; margin:0 auto; }
+    .replay-form input { flex:1; padding:12px 16px; border:2px solid var(--cream-dark); border-radius:var(--radius-sm); font-size:.9rem; }
+    .replay-form input:focus { outline:none; border-color:var(--gold); }
+    .replay-success { display:none; }
+    .host-mini { display:flex; align-items:center; gap:16px; background:var(--cream); border-radius:var(--radius-sm); padding:16px 20px; margin-top:0; }
+    .host-mini-av { width:52px; height:52px; background:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; color:var(--gold); font-size:1rem; flex-shrink:0; }
+    .host-mini-name { font-weight:600; color:var(--navy-dark); font-size:.9rem; }
+    .host-mini-cred { font-size:.78rem; color:var(--text-light); }
+    @media(max-width:640px){ .replay-form { flex-direction:column; } .wc-countdown { gap:6px; } }
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="nav-logo-name">Leo Falkovsky</span><span class="nav-logo-tag">Mortgage Broker &amp; Realtor · Barrie</span></a>
+    <ul class="nav-links">
+      <li><a href="../manulife-one.html">Manulife One</a></li><li><a href="../refinance.html">Refinance</a></li>
+      <li><a href="../calculators.html">Calculators</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../about.html">About</a></li>
+    </ul>
+    <a href="../contact.html" class="btn btn-primary nav-cta">Free Mortgage Review</a>
+    <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer"><button class="drawer-close" id="drawerClose">×</button>
+  <a href="../manulife-one.html">Manulife One</a><a href="../refinance.html">Refinance</a>
+  <a href="../calculators.html">Calculators</a><a href="../blog/index.html">Blog</a>
+  <a href="../about.html">About</a><a href="../contact.html" class="btn btn-primary" style="margin-top:8px;">Free Mortgage Review</a>
+</div>
+
+<section class="hero hero-inner" id="hero">
+  <div class="container">
+    <nav class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Webinars</span></nav>
+    <div class="hero-content">
+      <div class="hero-badge">Free · Live · No Sales Pitch</div>
+      <h1 class="hero-title">Free Mortgage<br /><span>Education Webinars</span></h1>
+      <p class="hero-sub">Plain-language workshops on advanced mortgage strategies. Live Q&amp;A with Leo. Register for upcoming sessions or watch past replays — always free.</p>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-lbl">Upcoming Sessions</div></div>
+        <div class="stat-item"><div class="stat-num">60</div><div class="stat-lbl">Min of Content</div></div>
+        <div class="stat-item"><div class="stat-num">Live</div><div class="stat-lbl">Q&amp;A Included</div></div>
+        <div class="stat-item"><div class="stat-num">Free</div><div class="stat-lbl">No Obligation</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING WEBINARS -->
+<section style="background:var(--cream-light);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="section-label">Live Sessions</span>
+      <h2 class="section-title">Upcoming Webinars</h2>
+      <div class="gold-rule center"></div>
+      <p style="color:var(--text-mid);max-width:560px;margin:0 auto;font-size:.95rem;line-height:1.7;">Each session runs 45 minutes with a 15-minute live Q&amp;A. Recordings are available to registered attendees.</p>
+    </div>
+    <div class="webinar-grid">
+
+      <!-- Manulife One -->
+      <div class="webinar-card">
+        <div class="wc-header">
+          <span class="wc-badge badge-upcoming">Upcoming · May 22</span>
+          <div class="wc-title">How Manulife One Can Pay Off Your Mortgage in Half the Time</div>
+          <div class="wc-meta">
+            <span>📅 May 22, 2026</span>
+            <span>🕖 7:00 PM EDT</span>
+            <span>⏱ 60 min</span>
+          </div>
+        </div>
+        <div class="wc-body">
+          <p class="wc-desc">A deep-dive into how the Manulife One all-in-one account uses your paycheque to chip away at your mortgage daily — and how real Barrie homeowners are cutting 7–10 years off their amortization.</p>
+          <ul class="wc-learns">
+            <li>How daily interest works (and why it beats monthly)</li>
+            <li>The exact math behind a $500K Manulife One account</li>
+            <li>Who qualifies and who shouldn't switch</li>
+            <li>Live calculator walkthrough with your numbers</li>
+            <li>Common mistakes and how to avoid them</li>
+          </ul>
+        </div>
+        <div class="wc-footer">
+          <div class="wc-countdown" data-target="2026-05-22T19:00:00-04:00">
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="d">--</span><span class="wc-count-lbl">Days</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="h">--</span><span class="wc-count-lbl">Hrs</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="m">--</span><span class="wc-count-lbl">Min</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="s">--</span><span class="wc-count-lbl">Sec</span></div>
+          </div>
+          <a href="manulife-one-webinar.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Register Free →</a>
+        </div>
+      </div>
+
+      <!-- Smith Manoeuvre -->
+      <div class="webinar-card">
+        <div class="wc-header">
+          <span class="wc-badge badge-upcoming">Upcoming · Jun 5</span>
+          <div class="wc-title">The Smith Manoeuvre — Turn Your Mortgage Into a Tax Deduction</div>
+          <div class="wc-meta">
+            <span>📅 June 5, 2026</span>
+            <span>🕖 7:00 PM EDT</span>
+            <span>⏱ 60 min</span>
+          </div>
+        </div>
+        <div class="wc-body">
+          <p class="wc-desc">The Smith Manoeuvre lets Canadian homeowners convert their mortgage interest into a tax deduction while building an investment portfolio — using equity they already have. This webinar breaks it all down.</p>
+          <ul class="wc-learns">
+            <li>What the Smith Manoeuvre is (and isn't)</li>
+            <li>Step-by-step setup with a real Barrie example</li>
+            <li>CRA rules on investment interest deductibility</li>
+            <li>Expected tax refunds and investment growth projections</li>
+            <li>How to combine it with Manulife One for maximum effect</li>
+          </ul>
+        </div>
+        <div class="wc-footer">
+          <div class="wc-countdown" data-target="2026-06-05T19:00:00-04:00">
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="d">--</span><span class="wc-count-lbl">Days</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="h">--</span><span class="wc-count-lbl">Hrs</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="m">--</span><span class="wc-count-lbl">Min</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="s">--</span><span class="wc-count-lbl">Sec</span></div>
+          </div>
+          <a href="smith-manoeuvre-webinar.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Register Free →</a>
+        </div>
+      </div>
+
+      <!-- Barrie Market -->
+      <div class="webinar-card">
+        <div class="wc-header">
+          <span class="wc-badge badge-upcoming">Upcoming · Jun 19</span>
+          <div class="wc-title">Barrie Real Estate Market Update — Summer 2026</div>
+          <div class="wc-meta">
+            <span>📅 June 19, 2026</span>
+            <span>🕗 12:00 PM EDT</span>
+            <span>⏱ 45 min</span>
+          </div>
+        </div>
+        <div class="wc-body">
+          <p class="wc-desc">What's actually happening in the Barrie housing market right now. Current prices, days-on-market, rate forecast, and what it means for buyers, sellers, and renewers in Simcoe County.</p>
+          <ul class="wc-learns">
+            <li>Barrie & Simcoe County market stats — June 2026</li>
+            <li>Rate forecast: where fixed and variable are heading</li>
+            <li>Best neighbourhoods for buyers right now</li>
+            <li>How to time your purchase or renewal for maximum savings</li>
+            <li>Live Q&amp;A on your specific situation</li>
+          </ul>
+        </div>
+        <div class="wc-footer">
+          <div class="wc-countdown" data-target="2026-06-19T12:00:00-04:00">
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="d">--</span><span class="wc-count-lbl">Days</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="h">--</span><span class="wc-count-lbl">Hrs</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="m">--</span><span class="wc-count-lbl">Min</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="s">--</span><span class="wc-count-lbl">Sec</span></div>
+          </div>
+          <a href="barrie-market-webinar.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Register Free →</a>
+        </div>
+      </div>
+
+      <!-- First Time Buyer -->
+      <div class="webinar-card">
+        <div class="wc-header">
+          <span class="wc-badge badge-upcoming">Upcoming · Jul 10</span>
+          <div class="wc-title">First Time Home Buyer Workshop — From Pre-Approval to Keys</div>
+          <div class="wc-meta">
+            <span>📅 July 10, 2026</span>
+            <span>🕖 7:00 PM EDT</span>
+            <span>⏱ 60 min</span>
+          </div>
+        </div>
+        <div class="wc-body">
+          <p class="wc-desc">Everything first-time buyers in Barrie need to know — from qualifying to closing. Learn about the stress test, FHSA, down payment strategies, and how to avoid the 5 most expensive first-time buyer mistakes.</p>
+          <ul class="wc-learns">
+            <li>How much you actually need for a down payment</li>
+            <li>The First Home Savings Account (FHSA) — maximize it</li>
+            <li>Stress test explained: what you qualify for vs. what you can afford</li>
+            <li>Hidden closing costs first-time buyers miss</li>
+            <li>Timeline: Pre-approval → offer → closing in Barrie</li>
+          </ul>
+        </div>
+        <div class="wc-footer">
+          <div class="wc-countdown" data-target="2026-07-10T19:00:00-04:00">
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="d">--</span><span class="wc-count-lbl">Days</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="h">--</span><span class="wc-count-lbl">Hrs</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="m">--</span><span class="wc-count-lbl">Min</span></div>
+            <div class="wc-count-seg"><span class="wc-count-num" data-unit="s">--</span><span class="wc-count-lbl">Sec</span></div>
+          </div>
+          <a href="first-time-buyer-webinar.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Register Free →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOST BIO -->
+<section style="background:var(--white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:center;">
+      <div style="text-align:center;">
+        <div style="width:160px;height:160px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:4px solid var(--gold);">
+          <span style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold);">LF</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+          <span class="cred-chip">AMP Designated</span>
+          <span class="cred-chip">FSRA Licensed</span>
+          <span class="cred-chip">Manulife One Certified</span>
+          <span class="cred-chip">Smith Manoeuvre Trained</span>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Your Host</span>
+        <h2 class="section-title">Leo Falkovsky</h2>
+        <div class="gold-rule"></div>
+        <p style="font-size:.95rem;color:var(--text-mid);line-height:1.8;margin-bottom:16px;">Leo is a Barrie-based mortgage broker and licensed real estate agent specializing in advanced mortgage strategies — including Manulife One, the Smith Manoeuvre, Cash Damming, and mortgage acceleration.</p>
+        <p style="font-size:.95rem;color:var(--text-mid);line-height:1.8;margin-bottom:24px;">These webinars grew out of the same conversations Leo has with clients every week. The goal isn't to sell — it's to educate so you can make better financial decisions, whether you work with Leo or not.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+          <div style="background:var(--cream);border-radius:var(--radius-sm);padding:16px;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--navy);font-family:'Playfair Display',serif;">500+</div>
+            <div style="font-size:.78rem;color:var(--text-light);">Clients Helped</div>
+          </div>
+          <div style="background:var(--cream);border-radius:var(--radius-sm);padding:16px;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--navy);font-family:'Playfair Display',serif;">15 yrs</div>
+            <div style="font-size:.78rem;color:var(--text-light);">In Barrie Real Estate</div>
+          </div>
+        </div>
+        <a href="../about.html" class="btn btn-outline">About Leo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPLAY LIBRARY -->
+<section id="replays" style="background:var(--cream-light);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">Past Sessions</span>
+      <h2 class="section-title">Webinar Replay Library</h2>
+      <div class="gold-rule center"></div>
+      <p style="color:var(--text-mid);max-width:520px;margin:0 auto;font-size:.95rem;line-height:1.7;">Missed a live session? All past webinars are available on-demand. Enter your email below to get instant access.</p>
+    </div>
+    <div class="replay-gate" id="replayGate">
+      <div class="replay-gate-icon">🎓</div>
+      <h3>Free Replay Access</h3>
+      <p>Get instant access to all past webinar recordings — no credit card, no sales calls. Just your email.</p>
+      <form class="replay-form" id="replayForm">
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit" class="btn btn-primary">Watch Replays →</button>
+      </form>
+    </div>
+    <div class="replay-success" id="replaySuccess">
+      <div style="text-align:center;padding:48px 24px;">
+        <div style="font-size:3rem;margin-bottom:16px;">🎬</div>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--navy-dark);margin-bottom:12px;">You're In!</h3>
+        <p style="color:var(--text-mid);margin-bottom:32px;">Check your email for the replay links. All 4 recordings are yours to keep.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:800px;margin:0 auto;">
+          <div style="background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--cream-dark);text-align:left;">
+            <span class="wc-badge badge-replay" style="margin-bottom:10px;">Replay</span>
+            <div style="font-weight:600;color:var(--navy-dark);font-size:.9rem;line-height:1.4;margin-bottom:8px;">Manulife One Deep Dive</div>
+            <div style="font-size:.78rem;color:var(--text-light);">March 2026 · 58 min</div>
+          </div>
+          <div style="background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--cream-dark);text-align:left;">
+            <span class="wc-badge badge-replay" style="margin-bottom:10px;">Replay</span>
+            <div style="font-weight:600;color:var(--navy-dark);font-size:.9rem;line-height:1.4;margin-bottom:8px;">Smith Manoeuvre Masterclass</div>
+            <div style="font-size:.78rem;color:var(--text-light);">February 2026 · 62 min</div>
+          </div>
+          <div style="background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--cream-dark);text-align:left;">
+            <span class="wc-badge badge-replay" style="margin-bottom:10px;">Replay</span>
+            <div style="font-weight:600;color:var(--navy-dark);font-size:.9rem;line-height:1.4;margin-bottom:8px;">Mortgage Acceleration Strategies</div>
+            <div style="font-size:.78rem;color:var(--text-light);">January 2026 · 55 min</div>
+          </div>
+          <div style="background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--cream-dark);text-align:left;">
+            <span class="wc-badge badge-replay" style="margin-bottom:10px;">Replay</span>
+            <div style="font-weight:600;color:var(--navy-dark);font-size:.9rem;line-height:1.4;margin-bottom:8px;">2026 Barrie Market Forecast</div>
+            <div style="font-size:.78rem;color:var(--text-light);">December 2025 · 48 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <h2 class="cta-title">Want a Personalized Strategy?</h2>
+    <p class="cta-sub">Webinars are great for education. A one-on-one review puts it all in the context of your specific mortgage, income, and goals.</p>
+    <a href="../contact.html" class="btn btn-gold">Book Your Free Mortgage Review →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Leo Falkovsky</div><div class="footer-brand-tag">Mortgage Broker &amp; Real Estate Agent</div><p class="footer-brand-desc">Barrie's specialist in Manulife One, Smith Manoeuvre, Cash Damming and mortgage acceleration.</p></div>
+      <div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="../manulife-one.html">Manulife One</a><a href="../refinance.html">Refinancing</a><a href="../contact.html">Home Purchase</a><a href="../contact.html">Renewals</a></div></div>
+      <div class="footer-col"><h4>Locations</h4><div class="footer-links"><a href="../barrie.html">Barrie</a><a href="../innisfil.html">Innisfil</a><a href="../springwater.html">Springwater</a><a href="../oro-medonte.html">Oro-Medonte</a></div></div>
+      <div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="../calculators.html">Calculators</a><a href="../blog/index.html">Blog</a><a href="index.html">Webinars</a><a href="../contact.html">Contact</a></div></div>
+    </div>
+    <div class="footer-fsra"><strong style="color:rgba(255,255,255,.8);">Licensing:</strong> Leo Falkovsky, FSRA Licensed Mortgage Broker #M09000003. 8Twelve Mortgage FSRA #13230. Licensed Real Estate Salesperson, Ontario.</div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom"><span>© 2026 Leo Falkovsky · leofalkovsky.ca</span><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">FSRA Disclosure</a></div></div>
+  </div>
+</footer>
+<button id="scrollTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg></button>
+<script src="../js/main.js"></script>
+<script>
+// Countdown timers
+function updateCountdowns() {
+  document.querySelectorAll('[data-target]').forEach(function(wrap) {
+    var target = new Date(wrap.dataset.target).getTime();
+    var now = Date.now();
+    var diff = target - now;
+    if (diff <= 0) {
+      wrap.innerHTML = '<div style="font-size:.85rem;color:var(--text-mid);padding:8px 0;">Session is live now or has ended</div>';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    wrap.querySelector('[data-unit="d"]').textContent = d;
+    wrap.querySelector('[data-unit="h"]').textContent = String(h).padStart(2,'0');
+    wrap.querySelector('[data-unit="m"]').textContent = String(m).padStart(2,'0');
+    wrap.querySelector('[data-unit="s"]').textContent = String(s).padStart(2,'0');
+  });
+}
+updateCountdowns();
+setInterval(updateCountdowns, 1000);
+
+// Replay gate
+document.getElementById('replayForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.getElementById('replayGate').style.display = 'none';
+  document.getElementById('replaySuccess').style.display = 'block';
+});
+</script>
+</body>
+</html>
