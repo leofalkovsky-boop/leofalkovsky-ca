@@ -27,16 +27,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <script src="/js/main.js" defer />
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer />
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
         <script dangerouslySetInnerHTML={{ __html: `
-          if (window.netlifyIdentity) {
-            window.netlifyIdentity.on('init', function(user) {
-              if (!user) {
-                window.netlifyIdentity.on('login', function() {
-                  document.location.href = '/admin/';
-                });
-              }
-            });
+          var hash = window.location.hash;
+          if (hash && (hash.indexOf('invite_token') > -1 || hash.indexOf('recovery_token') > -1)) {
+            window.location.href = '/admin/' + hash;
           }
         `}} />
       </body>
