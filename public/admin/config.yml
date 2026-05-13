@@ -1,0 +1,67 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: posts
+    label: Blog Posts
+    folder: content/posts
+    create: true
+    extension: mdoc
+    format: frontmatter
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Meta Description, name: description, widget: text, hint: "Keep under 160 characters for SEO" }
+      - { label: Publish Date, name: publishDate, widget: date }
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - { label: Mortgage Tips, value: mortgage-tips }
+          - { label: Market Update, value: market-update }
+          - { label: First-Time Buyers, value: first-time-buyers }
+          - { label: Refinancing, value: refinancing }
+          - { label: Investment, value: investment }
+          - { label: Wealth Building, value: wealth-building }
+          - { label: Cash Damming, value: cash-damming }
+          - { label: Smith Manoeuvre, value: smith-manoeuvre }
+      - { label: Read Time (minutes), name: readTime, widget: number, default: 5 }
+      - { label: Content, name: body, widget: markdown }
+
+  - name: settings
+    label: Site Settings
+    files:
+      - name: homepage
+        label: Home Page
+        file: content/homepage.json
+        format: json
+        fields:
+          - { label: Hero Headline (line 1), name: heroTitle, widget: string }
+          - { label: Hero Headline (line 2 — gold text), name: heroTitleHighlight, widget: string }
+          - { label: Hero Subtitle, name: heroSubtitle, widget: text }
+          - { label: CTA Button Text, name: heroCta, widget: string }
+          - { label: Phone CTA Button Text, name: heroCtaPhone, widget: string }
+
+      - name: siteSettings
+        label: Contact & Business Info
+        file: content/site-settings.json
+        format: json
+        fields:
+          - { label: Phone Number, name: phone, widget: string }
+          - { label: Email Address, name: email, widget: string }
+          - { label: Office Address, name: address, widget: string }
+          - { label: FSRA Licence Number, name: fsraNumber, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+
+      - name: aboutPage
+        label: About Page
+        file: content/about-page.json
+        format: json
+        fields:
+          - { label: Bio / Introduction, name: bio, widget: text }
+          - { label: Credentials, name: credentials, widget: string }
+          - { label: Why Work With Me, name: whyWorkWithMe, widget: text }
