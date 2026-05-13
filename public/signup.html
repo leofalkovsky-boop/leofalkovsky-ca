@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Create Your CMS Account</title>
+  <style>
+    body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0a1e3c; color: white; text-align: center; }
+    h1 { font-size: 1.4rem; margin-bottom: 8px; }
+    p { color: rgba(255,255,255,.7); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>CMS Account Setup</h1>
+    <p>The sign-up window should appear automatically.<br/>If not, refresh the page.</p>
+  </div>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    window.netlifyIdentity.on('init', function(user) {
+      if (!user) {
+        window.netlifyIdentity.open('signup');
+      } else {
+        window.location.href = '/admin/';
+      }
+    });
+    window.netlifyIdentity.on('signup', function() {
+      window.location.href = '/admin/';
+    });
+  </script>
+</body>
+</html>
