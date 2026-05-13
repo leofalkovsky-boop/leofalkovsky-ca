@@ -27,7 +27,7 @@ export default function HomePage() {
             name: 'Leo Falkovsky – Mortgage Broker & Real Estate Agent',
             description: "Barrie's specialist in Manulife One, Smith Manoeuvre, Cash Damming, and mortgage acceleration strategies.",
             url: 'https://leofalkovsky.ca',
-            telephone: '+17051234567',
+            telephone: '+14163566968',
             email: 'leo@leofalkovsky.ca',
             image: 'https://leofalkovsky.ca/images/leo-falkovsky.jpg',
             priceRange: 'Free consultation',
@@ -367,7 +367,7 @@ export default function HomePage() {
             <a href="/apply/" className="btn btn-outline btn-lg">Start My Application</a>
           </div>
           <div className="cta-contact-row">
-            <div className="cta-contact-item"><span>📞</span><a href="tel:+17051234567">(705) 123-4567</a></div>
+            <div className="cta-contact-item"><span>📞</span><a href="tel:+14163566968">(416) 356-6968</a></div>
             <div className="cta-contact-item"><span>✉</span><a href="mailto:leo@leofalkovsky.ca">leo@leofalkovsky.ca</a></div>
             <div className="cta-contact-item"><span>📍</span><span>Barrie &amp; Simcoe County</span></div>
           </div>
