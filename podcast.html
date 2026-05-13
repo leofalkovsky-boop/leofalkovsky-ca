@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Podcast | Leo Falkovsky · Mortgage Broker Barrie</title>
+  <meta name="description" content="The Community Podcast by Leo Falkovsky — real mortgage and real estate conversations for Barrie and Simcoe County homeowners." />
+  <link rel="canonical" href="https://leofalkovsky.ca/podcast/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .podcast-hero{background:linear-gradient(105deg,rgba(10,30,60,.95) 0%,rgba(19,86,123,.85) 100%);padding:100px 0 64px;}
+    .podcast-hero-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
+    @media(max-width:768px){.podcast-hero-inner{grid-template-columns:1fr;}}
+    .podcast-badge{display:inline-block;background:rgba(212,175,55,.18);color:var(--gold-light);border:1px solid rgba(212,175,55,.35);border-radius:20px;padding:5px 16px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;}
+    .podcast-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--white);line-height:1.15;margin-bottom:18px;}
+    .podcast-title span{color:var(--gold);}
+    .podcast-desc{font-size:1.05rem;color:rgba(255,255,255,.78);line-height:1.75;margin-bottom:32px;max-width:560px;}
+    .subscribe-row{display:flex;gap:12px;flex-wrap:wrap;}
+    .subscribe-btn{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:.88rem;text-decoration:none;transition:var(--transition);}
+    .subscribe-btn-spotify{background:#1DB954;color:#fff;}
+    .subscribe-btn-spotify:hover{background:#17a349;}
+    .subscribe-btn-apple{background:#FC3C44;color:#fff;}
+    .subscribe-btn-apple:hover{background:#e03039;}
+    .subscribe-btn-riverside{background:var(--gold);color:var(--navy-dark);}
+    .subscribe-btn-riverside:hover{background:var(--gold-light);}
+    .subscribe-btn svg{width:20px;height:20px;flex-shrink:0;}
+    .podcast-cover{width:220px;height:220px;border-radius:20px;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy-mid) 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.4);flex-shrink:0;}
+    .podcast-cover-inner{text-align:center;color:var(--white);}
+    .podcast-cover-icon{font-size:3.5rem;margin-bottom:8px;}
+    .podcast-cover-name{font-family:'Playfair Display',serif;font-size:.9rem;line-height:1.3;}
+    .podcast-cover-name span{color:var(--gold);}
+    @media(max-width:768px){.podcast-cover{width:160px;height:160px;}}
+
+    .episodes-section{background:var(--cream);padding:80px 0;}
+    .section-intro{max-width:640px;margin:0 auto 48px;text-align:center;}
+    .embed-placeholder{background:var(--white);border:2px dashed var(--cream-dark);border-radius:var(--radius-md);padding:48px 32px;text-align:center;margin-bottom:40px;}
+    .embed-placeholder p{color:var(--text-mid);font-size:.9rem;margin-top:8px;}
+    .episode-grid{display:flex;flex-direction:column;gap:20px;}
+    .episode-card{background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius-md);padding:24px 28px;display:flex;gap:20px;align-items:flex-start;box-shadow:var(--shadow-sm);transition:var(--transition);}
+    .episode-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+    .episode-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);font-weight:700;line-height:1;flex-shrink:0;min-width:40px;}
+    .episode-body{flex:1;}
+    .episode-cat{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-mid);margin-bottom:6px;}
+    .episode-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy-dark);margin-bottom:6px;line-height:1.35;}
+    .episode-desc{font-size:.87rem;color:var(--text-mid);line-height:1.6;margin-bottom:10px;}
+    .episode-meta{display:flex;gap:12px;font-size:.78rem;color:var(--text-light);}
+    .episode-play{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--white);text-decoration:none;transition:var(--transition);}
+    .episode-play:hover{background:var(--navy-mid);}
+    .episode-play svg{width:18px;height:18px;margin-left:2px;}
+    .coming-soon{text-align:center;padding:40px;color:var(--text-mid);font-size:.9rem;}
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner container">
+    <a href="/" class="nav-logo">
+      <img src="images/8twelve-logo.png" alt="8Twelve Mortgage" class="brokerage-logo" onerror="this.style.display='none'" />
+      <div class="nav-logo-stack">
+        <span class="nav-logo-name">Leo Falkovsky</span>
+        <span class="nav-logo-tag">8Twelve Mortgage · FSRA #M09000003</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="manulife-one.html">Manulife One</a></li>
+      <li><a href="refinance.html">Refinance</a></li>
+      <li><a href="calculators.html">Calculators</a></li>
+      <li><a href="blog/index.html">Blog</a></li>
+      <li><a href="podcast.html" class="active">Podcast</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Free Mortgage Review</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <button class="drawer-close" id="drawerClose">×</button>
+  <a href="manulife-one.html">Manulife One</a>
+  <a href="refinance.html">Refinance</a>
+  <a href="calculators.html">Calculators</a>
+  <a href="blog/index.html">Blog</a>
+  <a href="podcast.html">Podcast</a>
+  <a href="about.html">About</a>
+  <a href="contact.html" class="btn btn-primary" style="margin-top:8px">Free Mortgage Review</a>
+</div>
+
+<!-- HERO -->
+<section class="podcast-hero">
+  <div class="container">
+    <div class="podcast-hero-inner">
+      <div>
+        <div class="podcast-badge">🎙️ New Episodes Weekly</div>
+        <h1 class="podcast-title">Community<br /><span>Podcast</span></h1>
+        <p class="podcast-desc">Real conversations about mortgages, real estate, and building wealth in Barrie and Simcoe County. No jargon — just honest advice from the field.</p>
+        <div class="subscribe-row">
+          <a href="https://open.spotify.com/show/YOUR_SHOW_ID" target="_blank" rel="noopener" class="subscribe-btn subscribe-btn-spotify">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            Listen on Spotify
+          </a>
+          <a href="https://podcasts.apple.com/podcast/YOUR_PODCAST_ID" target="_blank" rel="noopener" class="subscribe-btn subscribe-btn-apple">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c2.071 0 3.757.67 5.094 1.965C18.43 7.76 19.125 9.417 19.125 11.4c0 1.055-.21 2.078-.627 3.07-.418.99-1.021 1.857-1.811 2.6a8.124 8.124 0 01-2.666 1.718c-1.01.408-2.086.612-3.228.612-1.142 0-2.218-.204-3.229-.612a8.124 8.124 0 01-2.666-1.718c-.79-.743-1.393-1.61-1.81-2.6C2.671 13.478 2.46 12.455 2.46 11.4c0-1.983.696-3.64 2.031-4.935C5.828 5.17 7.576 4.5 9.647 4.5H12zm.047 3.422c-1.014 0-1.828.348-2.441 1.045-.613.697-.92 1.616-.92 2.758 0 .748.147 1.395.44 1.94.293.544.712.963 1.256 1.256a3.628 3.628 0 001.756.44c.633 0 1.209-.147 1.727-.44.518-.293.925-.712 1.221-1.256.296-.545.444-1.192.444-1.94 0-1.142-.31-2.061-.928-2.758-.617-.697-1.44-1.045-2.465-1.045h-.09zm-.047 1.875c.563 0 .998.195 1.305.586.307.39.46.937.46 1.64 0 .696-.153 1.24-.46 1.634-.307.394-.742.59-1.305.59-.563 0-.998-.196-1.305-.59-.307-.394-.46-.938-.46-1.634 0-.703.153-1.25.46-1.64.307-.39.742-.586 1.305-.586zm-.047 6.953c1.758 0 3.24.457 4.448 1.372.163.12.244.28.244.48 0 .2-.078.366-.234.5a.63.63 0 01-.45.201.638.638 0 01-.38-.127c-.99-.73-2.188-1.094-3.596-1.094-1.408 0-2.611.363-3.609 1.09a.634.634 0 01-.382.131.638.638 0 01-.45-.2.674.674 0 01-.234-.501c0-.2.08-.36.24-.48 1.212-.915 2.695-1.372 4.45-1.372h-.047z"/></svg>
+            Apple Podcasts
+          </a>
+          <a href="https://riverside.fm/studio/YOUR_STUDIO" target="_blank" rel="noopener" class="subscribe-btn subscribe-btn-riverside">
+            🎙️ Watch on Riverside
+          </a>
+        </div>
+      </div>
+      <div class="podcast-cover">
+        <div class="podcast-cover-inner">
+          <div class="podcast-cover-icon">🎙️</div>
+          <div class="podcast-cover-name">Community<br /><span>Podcast</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EPISODES -->
+<section class="episodes-section">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">Latest Episodes</span>
+      <h2 class="section-title">Watch &amp; Listen</h2>
+      <p class="section-sub">Short, practical episodes on mortgages, market updates, and wealth-building strategies for Barrie homeowners.</p>
+    </div>
+
+    <!-- PASTE YOUR RIVERSIDE.FM EMBED CODE BELOW -->
+    <div class="embed-placeholder" id="riverside-embed">
+      <div style="font-size:2rem;margin-bottom:12px;">🎙️</div>
+      <strong style="color:var(--navy-dark);">Riverside.fm Player Coming Soon</strong>
+      <p>Paste your Riverside.fm embed code here to display the latest episode player.</p>
+    </div>
+
+    <div class="episode-grid">
+      <!-- Episodes will be added here — duplicate this card for each episode -->
+      <div class="coming-soon">
+        <div style="font-size:2rem;margin-bottom:12px;">🎧</div>
+        <strong>Episodes launching soon.</strong><br />
+        Subscribe on Spotify or Apple Podcasts to get notified when new episodes drop.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-content" style="position:relative;z-index:1">
+    <span class="section-label">Work With Leo</span>
+    <h2 class="section-title">Have a Mortgage Question?</h2>
+    <p class="cta-sub">Every episode leads to the same place — a strategy built around your specific numbers. Book a free call and let's build yours.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-primary btn-lg">Book Free Consultation</a>
+      <a href="calculators.html" class="btn btn-outline btn-lg">Run the Numbers</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Leo Falkovsky</div>
+        <div class="footer-tagline">Mortgage Broker &amp; Real Estate Agent<br />8Twelve Mortgage · FSRA #M09000003</div>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/leofalkovsky" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          <a href="https://www.facebook.com/leofalkovsky" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Services</div>
+        <a href="manulife-one.html">Manulife One</a>
+        <a href="refinance.html">Refinancing</a>
+        <a href="calculators.html">Calculators</a>
+        <a href="apply.html">Apply Now</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Learn</div>
+        <a href="blog/index.html">Mortgage Blog</a>
+        <a href="podcast.html">Community Podcast</a>
+        <a href="webinars/index.html">Free Webinars</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Contact</div>
+        <a href="tel:+17051234567">(705) 123-4567</a>
+        <a href="mailto:leo@leofalkovsky.ca">leo@leofalkovsky.ca</a>
+        <a href="contact.html">Book a Call</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Leo Falkovsky. All rights reserved. FSRA Mortgage Broker Licence #M09000003.</p>
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+</button>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
