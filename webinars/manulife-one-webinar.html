@@ -149,7 +149,7 @@
           <div>
             <div style="font-weight:700;color:var(--navy-dark);font-size:1rem;margin-bottom:2px;">Leo Falkovsky, AMP</div>
             <div style="font-size:.78rem;color:var(--text-light);margin-bottom:10px;">FSRA Licensed Mortgage Broker · Manulife One Certified · Barrie, ON</div>
-            <p style="font-size:.85rem;color:var(--text-mid);line-height:1.7;margin:0;">Leo has helped 500+ Barrie-area homeowners optimize their mortgages, with a speciality in Manulife One and advanced Canadian mortgage strategies. He's one of a small number of brokers in Simcoe County with formal Manulife One certification.</p>
+            <p style="font-size:.85rem;color:var(--text-mid);line-height:1.7;margin:0;">Leo has helped 500+ GTA and Simcoe County homeowners optimize their mortgages, with a speciality in Manulife One and advanced Canadian mortgage strategies. He's one of a small number of brokers in Simcoe County with formal Manulife One certification.</p>
           </div>
         </div>
       </div>
@@ -235,10 +235,33 @@ function tick() {
   wrap.querySelector('[data-unit="s"]').textContent = String(s).padStart(2,'0');
 }
 tick(); setInterval(tick, 1000);
-document.getElementById('regForm').addEventListener('submit', function(e) {
+document.getElementById('regForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('regSuccess').style.display = 'block';
+  const btn = this.querySelector('button[type="submit"]');
+  const webinar = this.dataset.webinar || 'webinar';
+  btn.textContent = 'Registering…';
+  btn.disabled = true;
+  const data = new FormData(this);
+  data.append('webinar', webinar);
+  try {
+    const res = await fetch('https://formspree.io/f/mwvyjqyv', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.getElementById('regSuccess').style.display = 'block';
+    } else {
+      btn.textContent = 'Try Again';
+      btn.disabled = false;
+      alert('Something went wrong. Please email leo@leofalkovsky.ca directly.');
+    }
+  } catch {
+    btn.textContent = 'Try Again';
+    btn.disabled = false;
+    alert('Connection error. Please email leo@leofalkovsky.ca directly.');
+  }
 });
 </script>
 </body>
