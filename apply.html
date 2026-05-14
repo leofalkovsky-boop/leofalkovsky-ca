@@ -184,9 +184,14 @@
               <div class="form-group"><label>Employment Type</label><select name="co_employment_type"><option>Employed Full-Time</option><option>Self-Employed</option><option>Part-Time</option></select></div>
             </div>
           </div>
-          <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin:20px 0;font-size:.85rem;color:var(--text-mid);line-height:1.65;">
-            📎 <strong>Documents:</strong> After reviewing your application Leo will email you directly to request T4s, pay stubs, Notice of Assessment, and bank statements. No upload needed now.
+          <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Upload Documents (Optional — speeds up approval)</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+            <label class="doc-upload-box"><input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple><div class="doc-icon">📄</div><div class="doc-label">T4 Slips</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
+            <label class="doc-upload-box"><input type="file" accept=".pdf,.jpg,.jpeg,.png"><div class="doc-icon">📋</div><div class="doc-label">Notice of Assessment</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
+            <label class="doc-upload-box"><input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple><div class="doc-icon">💰</div><div class="doc-label">Pay Stubs (last 2)</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
+            <label class="doc-upload-box"><input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple><div class="doc-icon">🏦</div><div class="doc-label">Bank Statements (90 days)</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
           </div>
+          <p style="font-size:.78rem;color:var(--text-light);margin-bottom:20px;">📎 Select files to have them ready. After reviewing your application Leo will send a secure link to collect them.</p>
           <div class="form-group"><label>Anything else Leo should know?</label><textarea name="notes" placeholder="Special circumstances, timeline concerns, questions about Manulife One or Smith Manoeuvre..."></textarea></div>
           <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;font-size:.82rem;color:var(--text-mid);line-height:1.65;">🔒 <strong>Your privacy is protected.</strong> All information is encrypted and used solely to process your mortgage application. I will never sell or share your data.</div>
           <button type="submit" class="btn btn-primary form-submit">Submit My Application →</button>
@@ -213,6 +218,21 @@
 // Co-applicant toggle
 document.getElementById('co-app-select').addEventListener('change', function() {
   document.getElementById('co-app-fields').style.display = this.value === 'yes' ? 'block' : 'none';
+});
+
+// Document upload feedback
+document.querySelectorAll('.doc-upload-box input[type="file"]').forEach(function(input) {
+  input.addEventListener('change', function() {
+    var box = this.closest('.doc-upload-box');
+    var label = box.querySelector('.doc-filename');
+    if (this.files && this.files.length > 0) {
+      label.textContent = '✓ ' + Array.from(this.files).map(function(f){ return f.name; }).join(', ');
+      box.classList.add('has-file');
+    } else {
+      label.textContent = '';
+      box.classList.remove('has-file');
+    }
+  });
 });
 
 // Submit via JSON so Formspree never sees multipart/file content
