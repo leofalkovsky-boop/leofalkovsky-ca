@@ -1,0 +1,14 @@
+{
+  "name": "Leo Falkovsky — Mortgage Broker Barrie",
+  "short_name": "Leo Falkovsky",
+  "description": "Barrie's Manulife One and Smith Manoeuvre specialist. Save thousands and pay off your mortgage years sooner.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#001a3f",
+  "theme_color": "#001a3f",
+  "icons": [
+    { "src": "/favicon-16x16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
