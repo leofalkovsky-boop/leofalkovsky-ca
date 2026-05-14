@@ -140,7 +140,7 @@
           <div style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:var(--radius-md);padding:28px;margin:32px 0;">
             <h3 style="font-family:'Playfair Display',serif;color:var(--white);margin-bottom:6px;margin-top:0;">Free Mortgage Savings Guide</h3>
             <p style="font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:18px;">Download Leo's full guide including acceleration calculators and Manulife One scenario models.</p>
-            <form class="optin-form" style="display:flex;gap:10px;flex-wrap:wrap;"><input type="email" placeholder="Your email" style="flex:1;min-width:180px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--white);" /><button type="submit" class="btn btn-primary">Get Guide →</button></form>
+            <form class="optin-form" onsubmit="submitOptin(event)" style="display:flex;gap:10px;flex-wrap:wrap;"><input type="email" placeholder="Your email" style="flex:1;min-width:180px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--white);" /><button type="submit" class="btn btn-primary">Get Guide →</button></form>
           </div>
 
                 <div class="guide-callout">
@@ -208,8 +208,34 @@ function closeGate() {
   document.getElementById('gateOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-function submitGate(e) {
+async function submitOptin(e) {
   e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const emailEl = form.querySelector('input[type=email]');
+  if (!emailEl || !emailEl.value) return;
+  if (btn) { btn.disabled = true; btn.textContent = '✓ Done'; }
+  const fd = new FormData();
+  fd.append('email', emailEl.value);
+  fd.append('_type', 'optin');
+  try {
+    await fetch('https://formspree.io/f/mwvyjqyv', {
+      method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
+    });
+  } catch(err) {}
+}
+async function submitGate(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  try {
+    await fetch('https://formspree.io/f/mwvyjqyv', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+  } catch(err) {}
   document.getElementById('gateForm').style.display = 'none';
   document.getElementById('gateSuccess').style.display = 'block';
   setTimeout(() => { window.open('https://breakingbank.media/signup/', '_blank'); }, 2000);

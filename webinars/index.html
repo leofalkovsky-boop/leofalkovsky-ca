@@ -383,8 +383,17 @@ updateCountdowns();
 setInterval(updateCountdowns, 1000);
 
 // Replay gate
-document.getElementById('replayForm').addEventListener('submit', function(e) {
+document.getElementById('replayForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+  const btn = this.querySelector('button[type=submit]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  try {
+    await fetch('https://formspree.io/f/mwvyjqyv', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+  } catch(err) {}
   document.getElementById('replayGate').style.display = 'none';
   document.getElementById('replaySuccess').style.display = 'block';
 });

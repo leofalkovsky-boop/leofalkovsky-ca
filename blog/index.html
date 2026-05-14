@@ -182,7 +182,7 @@
             <h3 style="font-family:'Playfair Display',serif;color:var(--navy-dark);margin-bottom:6px;">Get the Free Mortgage Savings Guide</h3>
             <p style="font-size:.83rem;color:var(--navy);opacity:.8;">Strategies to save $40K+ on your mortgage — delivered to your inbox.</p>
           </div>
-          <form class="optin-form" style="display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;">
+          <form class="optin-form" onsubmit="submitOptin(event)" style="display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;">
             <input type="email" placeholder="Your email address" style="background:var(--white);border-color:var(--white);color:var(--text-dark);min-width:200px;" />
             <button type="submit" class="btn btn-navy btn-sm">Download Free →</button>
           </form>
@@ -268,7 +268,7 @@
         <div class="optin-box">
           <h3 class="optin-title">Free Mortgage Savings Guide</h3>
           <p class="optin-sub">Download Leo's guide: "How to Save $40,000+ on Your Mortgage" — free.</p>
-          <form class="optin-form">
+          <form class="optin-form" onsubmit="submitOptin(event)">
             <input type="text" placeholder="Your first name" />
             <input type="email" placeholder="Your email address" />
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Me the Free Guide →</button>

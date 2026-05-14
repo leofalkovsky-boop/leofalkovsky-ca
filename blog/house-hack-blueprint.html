@@ -201,8 +201,18 @@ function closeGate() {
   document.getElementById('gateOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-function submitGate(e) {
+async function submitGate(e) {
   e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  try {
+    await fetch('https://formspree.io/f/mwvyjqyv', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+  } catch(err) {}
   document.getElementById('gateForm').style.display = 'none';
   document.getElementById('gateSuccess').style.display = 'block';
   setTimeout(() => { window.open('https://breakingbank.media/signup/', '_blank'); }, 2000);
