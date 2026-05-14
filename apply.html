@@ -60,7 +60,7 @@
   <div class="container" style="max-width:800px;">
 
     <!-- FORM — wraps all 5 steps so every field is captured on submit -->
-    <form id="application-form" action="https://formspree.io/f/mwvyjqyv" method="POST" enctype="multipart/form-data" novalidate>
+    <form id="application-form" action="https://formspree.io/f/mwvyjqyv" method="POST" novalidate>
       <input type="hidden" name="_next" value="https://leofalkovsky.ca/apply.html?submitted=1" />
 
       <!-- PROGRESS -->
@@ -185,12 +185,8 @@
               <div class="form-group"><label>Employment Type</label><select name="co_employment_type"><option>Employed Full-Time</option><option>Self-Employed</option><option>Part-Time</option></select></div>
             </div>
           </div>
-          <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Upload Documents (Optional — speeds up approval)</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
-            <label class="doc-upload-box"><input type="file" name="t4" accept=".pdf,.jpg,.jpeg,.png" multiple><div class="doc-icon">📄</div><div class="doc-label">T4 Slips</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
-            <label class="doc-upload-box"><input type="file" name="noa" accept=".pdf,.jpg,.jpeg,.png"><div class="doc-icon">📋</div><div class="doc-label">Notice of Assessment</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
-            <label class="doc-upload-box"><input type="file" name="paystubs" accept=".pdf,.jpg,.jpeg,.png" multiple><div class="doc-icon">💰</div><div class="doc-label">Pay Stubs (last 2)</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
-            <label class="doc-upload-box"><input type="file" name="bank_statements" accept=".pdf,.jpg,.jpeg,.png" multiple><div class="doc-icon">🏦</div><div class="doc-label">Bank Statements (90 days)</div><div class="doc-types">PDF, JPG, PNG</div><div class="doc-filename"></div></label>
+          <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin:20px 0;font-size:.85rem;color:var(--text-mid);line-height:1.65;">
+            📎 <strong>Documents:</strong> After reviewing your application Leo will email you directly to request T4s, pay stubs, Notice of Assessment, and bank statements. No upload needed now.
           </div>
           <div class="form-group"><label>Anything else Leo should know?</label><textarea name="notes" placeholder="Special circumstances, timeline concerns, questions about Manulife One or Smith Manoeuvre..."></textarea></div>
           <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;font-size:.82rem;color:var(--text-mid);line-height:1.65;">🔒 <strong>Your privacy is protected.</strong> All information is encrypted and used solely to process your mortgage application. I will never sell or share your data.</div>
@@ -218,22 +214,6 @@
 // Co-applicant toggle
 document.getElementById('co-app-select').addEventListener('change', function() {
   document.getElementById('co-app-fields').style.display = this.value === 'yes' ? 'block' : 'none';
-});
-
-// Document upload feedback
-document.querySelectorAll('.doc-upload-box input[type="file"]').forEach(function(input) {
-  input.addEventListener('change', function() {
-    var box = this.closest('.doc-upload-box');
-    var label = box.querySelector('.doc-filename');
-    if (this.files && this.files.length > 0) {
-      var names = Array.from(this.files).map(function(f){ return f.name; }).join(', ');
-      label.textContent = '✓ ' + names;
-      box.classList.add('has-file');
-    } else {
-      label.textContent = '';
-      box.classList.remove('has-file');
-    }
-  });
 });
 
 // Show success screen if Formspree redirected back with ?submitted=1
