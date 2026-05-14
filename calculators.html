@@ -9,7 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    #hero { background:linear-gradient(135deg,rgba(20,81,126,.78) 0%,rgba(19,86,123,.86) 100%); }
+    #hero { background: #000 !important; }
+    #hero::before { content:''; position:absolute; inset:-6%; z-index:0;
+      background: linear-gradient(135deg,rgba(30,63,111,.90) 0%,rgba(30,63,111,.72) 100%),
+        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80') center/cover no-repeat;
+      animation: kenBurnsB 22s ease-in-out infinite alternate; }
     /* TABS */
     .calc-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
     .calc-tab {

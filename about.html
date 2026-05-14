@@ -10,7 +10,11 @@
   <link rel="stylesheet" href="css/style.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Leo Falkovsky","jobTitle":"Mortgage Broker & Real Estate Agent","url":"https://leofalkovsky.ca/about.html","worksFor":{"@type":"LocalBusiness","name":"Leo Falkovsky Mortgage & Real Estate","address":{"@type":"PostalAddress","addressLocality":"Barrie","addressRegion":"ON","addressCountry":"CA"}},"hasCredential":["FSRA Licensed Mortgage Broker","AMP Designation","Licensed Real Estate Agent","Manulife One Certified"],"areaServed":["Barrie","Innisfil","Springwater","Oro-Medonte","Simcoe County"]}</script>
   <style>
-    #hero { background: linear-gradient(135deg,rgba(20,81,126,.78) 0%,rgba(19,86,123,.86) 100%); }
+    #hero { background: #000 !important; }
+    #hero::before { content:''; position:absolute; inset:-6%; z-index:0;
+      background: linear-gradient(135deg,rgba(30,63,111,.88) 0%,rgba(30,63,111,.68) 100%),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80') center/cover no-repeat;
+      animation: kenBurns 22s ease-in-out infinite alternate; }
     .val-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; }
     .val-card { background:var(--white); border-radius:var(--radius-md); padding:32px 24px; box-shadow:var(--shadow-sm); border-top:3px solid var(--gold); text-align:center; }
     .val-icon { font-size:2rem; margin-bottom:12px; }

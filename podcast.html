@@ -11,7 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .podcast-hero{background:linear-gradient(105deg,rgba(10,30,60,.95) 0%,rgba(19,86,123,.85) 100%);padding:100px 0 64px;}
+    .podcast-hero{background:#000;padding:100px 0 64px;position:relative;overflow:hidden;}
+    .podcast-hero::before{content:'';position:absolute;inset:-6%;z-index:0;
+      background:linear-gradient(105deg,rgba(30,63,111,.92) 0%,rgba(30,63,111,.75) 100%),
+        url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1600&q=80') center/cover no-repeat;
+      animation:kenBurns 22s ease-in-out infinite alternate;}
+    .podcast-hero .container{position:relative;z-index:2;}
     .podcast-hero-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
     @media(max-width:768px){.podcast-hero-inner{grid-template-columns:1fr;}}
     .podcast-badge{display:inline-block;background:rgba(212,175,55,.18);color:var(--gold-light);border:1px solid rgba(212,175,55,.35);border-radius:20px;padding:5px 16px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;}

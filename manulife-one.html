@@ -11,7 +11,11 @@
   <link rel="stylesheet" href="css/style.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":["FAQPage"],"mainEntity":[{"@type":"Question","name":"What is Manulife One?","acceptedAnswer":{"@type":"Answer","text":"Manulife One is an all-in-one banking product from Manulife Bank that combines your mortgage, home equity line of credit, and daily banking into a single account. Every dollar deposited reduces your effective mortgage balance, cutting the interest you owe."}},{"@type":"Question","name":"How much can Manulife One save me?","acceptedAnswer":{"@type":"Answer","text":"Results vary based on your balance, rate, income, and spending habits. Most clients save between $50,000 and $120,000 in interest and pay off their mortgage 5–10 years sooner than a traditional mortgage."}},{"@type":"Question","name":"Who qualifies for Manulife One?","acceptedAnswer":{"@type":"Answer","text":"Manulife One is available to Canadians with a minimum 20% equity in their home (no CMHC insurance eligible). It works best for people with steady income who run their daily banking through the account."}}]}</script>
   <style>
-    #hero { background: linear-gradient(135deg,rgba(20,81,126,.80) 0%,rgba(34,120,176,.70) 60%,rgba(0,26,63,.8) 100%), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80') center/cover no-repeat; }
+    #hero { background: #000 !important; }
+    #hero::before { content:''; position:absolute; inset:-6%; z-index:0;
+      background: linear-gradient(135deg,rgba(30,63,111,.90) 0%,rgba(30,63,111,.72) 60%,rgba(0,26,63,.85) 100%),
+        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80') center/cover no-repeat;
+      animation: kenBurnsB 24s ease-in-out infinite alternate; }
     .compare-table { width:100%; border-collapse:collapse; border-radius:var(--radius-md); overflow:hidden; }
     .compare-table th { padding:16px 20px; font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
     .compare-table td { padding:14px 20px; font-size:.9rem; border-top:1px solid var(--cream-dark); }
