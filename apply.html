@@ -35,7 +35,6 @@
     .doc-filename{font-size:.72rem;color:var(--navy-dark);font-weight:600;margin-top:6px;word-break:break-all;display:none;}
     .doc-upload-box.has-file .doc-filename{display:block;}
     .doc-upload-box.has-file .doc-types{display:none;}
-    .form-error-msg{background:#fff0f0;border:1px solid #e55;border-radius:8px;padding:14px 18px;color:#c00;font-size:.88rem;margin-bottom:16px;display:none;}
   </style>
 </head>
 <body>
@@ -61,7 +60,8 @@
   <div class="container" style="max-width:800px;">
 
     <!-- FORM — wraps all 5 steps so every field is captured on submit -->
-    <form id="application-form" enctype="multipart/form-data">
+    <form id="application-form" action="https://formspree.io/f/mwvyjqyv" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_next" value="https://leofalkovsky.ca/apply.html?submitted=1" />
 
       <!-- PROGRESS -->
       <div class="progress-bar-track"><div class="progress-bar-fill" id="app-progress-bar" style="width:20%;"></div></div>
@@ -194,7 +194,6 @@
           </div>
           <div class="form-group"><label>Anything else Leo should know?</label><textarea name="notes" placeholder="Special circumstances, timeline concerns, questions about Manulife One or Smith Manoeuvre..."></textarea></div>
           <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;font-size:.82rem;color:var(--text-mid);line-height:1.65;">🔒 <strong>Your privacy is protected.</strong> All information is encrypted and used solely to process your mortgage application. I will never sell or share your data.</div>
-          <div class="form-error-msg" id="form-error"></div>
           <button type="submit" class="btn btn-primary form-submit">Submit My Application →</button>
           <div class="step-actions" style="margin-top:12px;justify-content:flex-start;"><button type="button" class="btn btn-ghost btn-sm" data-prev>← Back</button></div>
         </div>
@@ -202,7 +201,7 @@
       </div><!-- end white box -->
     </form><!-- end application-form -->
 
-    <!-- SUCCESS -->
+    <!-- SUCCESS BANNER (shown after Formspree redirect back with ?submitted=1) -->
     <div id="app-success" style="display:none;text-align:center;padding:60px 20px;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);">
       <div style="font-size:4rem;color:var(--gold);margin-bottom:16px;">✓</div>
       <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--navy-dark);margin-bottom:12px;">Application Received!</h2>
@@ -237,38 +236,11 @@ document.querySelectorAll('.doc-upload-box input[type="file"]').forEach(function
   });
 });
 
-// Formspree AJAX submission
-document.getElementById('application-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('[type="submit"]');
-  const errorDiv = document.getElementById('form-error');
-  errorDiv.style.display = 'none';
-  if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
-
-  try {
-    const resp = await fetch('https://formspree.io/f/mwvyjqyv', {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (resp.ok) {
-      form.style.display = 'none';
-      document.getElementById('app-success').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const data = await resp.json();
-      const msg = (data.errors || []).map(function(e){ return e.message; }).join('. ') || 'Submission failed — please try again or call (416) 356-6968.';
-      errorDiv.textContent = msg;
-      errorDiv.style.display = 'block';
-      if (btn) { btn.disabled = false; btn.textContent = 'Submit My Application →'; }
-    }
-  } catch(err) {
-    errorDiv.textContent = 'Network error — please check your connection and try again.';
-    errorDiv.style.display = 'block';
-    if (btn) { btn.disabled = false; btn.textContent = 'Submit My Application →'; }
-  }
-});
+// Show success screen if Formspree redirected back with ?submitted=1
+if (new URLSearchParams(window.location.search).get('submitted') === '1') {
+  document.getElementById('application-form').style.display = 'none';
+  document.getElementById('app-success').style.display = 'block';
+}
 </script>
 
 <footer><div class="container"><div class="footer-grid"><div><div class="footer-brand-name">Leo Falkovsky</div><div class="footer-brand-tag">Mortgage Broker &amp; Real Estate Agent</div><p class="footer-brand-desc">Barrie's specialist in Manulife One, Smith Manoeuvre, Cash Damming and mortgage acceleration.</p></div><div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="manulife-one.html">Manulife One</a><a href="refinance.html">Refinancing</a><a href="contact.html">Home Purchase</a><a href="contact.html">Renewals</a></div></div><div class="footer-col"><h4>Locations</h4><div class="footer-links"><a href="barrie.html">Barrie</a><a href="innisfil.html">Innisfil</a><a href="springwater.html">Springwater</a><a href="oro-medonte.html">Oro-Medonte</a></div></div><div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="calculators.html">Calculators</a><a href="blog/index.html">Blog</a><a href="apply.html">Apply Online</a><a href="contact.html">Contact</a></div></div></div><div class="footer-fsra"><strong style="color:rgba(255,255,255,.8);">Licensing:</strong> Leo Falkovsky, FSRA Licensed Mortgage Broker #M09000003. 8Twelve Mortgage FSRA #13230. All applications are processed securely.</div><div class="footer-divider"></div><div class="footer-bottom"><span>© 2026 Leo Falkovsky · leofalkovsky.ca</span><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">FSRA Disclosure</a></div></div></div></footer>
