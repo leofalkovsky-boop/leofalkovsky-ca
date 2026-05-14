@@ -66,15 +66,28 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
 // ── AJAX FORMS ────────────────────────────────────────────────────
 document.querySelectorAll('form[data-ajax]').forEach(form => {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const btn = form.querySelector('[type=submit]');
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-    setTimeout(() => {
-      form.style.display = 'none';
-      const success = form.closest('.form-container, .form-wrap')?.querySelector('.form-success');
-      if (success) success.style.display = 'block';
-    }, 600);
+    try {
+      const res = await fetch('https://formspree.io/f/mwvyjqyv', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        const success = form.closest('.form-container, .form-wrap')?.querySelector('.form-success');
+        if (success) success.style.display = 'block';
+      } else {
+        if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }
+        alert('Something went wrong. Please email leo@leofalkovsky.ca directly.');
+      }
+    } catch {
+      if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }
+      alert('Connection error. Please email leo@leofalkovsky.ca directly.');
+    }
   });
 });
 
@@ -626,11 +639,28 @@ document.querySelectorAll('[data-share]').forEach(btn => {
 
   const finalForm = wrapper.querySelector('form');
   if (finalForm) {
-    finalForm.addEventListener('submit', e => {
+    finalForm.addEventListener('submit', async e => {
       e.preventDefault();
-      wrapper.style.display = 'none';
-      const success = document.getElementById('app-success');
-      if (success) success.style.display = 'block';
+      const btn = finalForm.querySelector('[type=submit]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+      try {
+        const res = await fetch('https://formspree.io/f/mwvyjqyv', {
+          method: 'POST',
+          body: new FormData(finalForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          wrapper.style.display = 'none';
+          const success = document.getElementById('app-success');
+          if (success) success.style.display = 'block';
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = 'Submit Application'; }
+          alert('Something went wrong. Please email leo@leofalkovsky.ca directly.');
+        }
+      } catch {
+        if (btn) { btn.disabled = false; btn.textContent = 'Submit Application'; }
+        alert('Connection error. Please email leo@leofalkovsky.ca directly.');
+      }
     });
   }
 
