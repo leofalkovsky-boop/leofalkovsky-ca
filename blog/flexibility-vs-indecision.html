@@ -71,10 +71,35 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://leofalkovsky.ca/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://leofalkovsky.ca/blog/"},{"@type":"ListItem","position":3,"name":"Flexibility vs Indecision","item":"https://leofalkovsky.ca/blog/flexibility-vs-indecision.html"}]}</script>
 </head>
 <body>
-<nav id="nav"><div class="container nav-inner">
+<nav id="nav">
+  <div class="container nav-inner">
     <a href="/" class="nav-logo"><span class="nav-logo-name">Home</span></a>
-    </div>
-      <div class="sidebar-box">
+    <ul class="nav-links">
+      <li><a href="/manulife-one.html">Manulife One</a></li>
+      <li><a href="/refinance.html">Refinance</a></li>
+      <li><a href="/calculators.html">Calculators</a></li>
+      <li><a href="/blog/index.html" class="active">Blog</a></li>
+      <li><a href="/podcast.html">Podcast</a></li>
+      <li><a href="/wealth-equity.html">Wealth Equity</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+    <a href="/contact.html" class="btn btn-primary nav-cta">Free Mortgage Review</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <button class="drawer-close" id="drawerClose">×</button>
+  <a href="/manulife-one.html">Manulife One</a>
+  <a href="/refinance.html">Refinance</a>
+  <a href="/calculators.html">Calculators</a>
+  <a href="/blog/index.html" class="active">Blog</a>
+  <a href="/podcast.html">Podcast</a>
+  <a href="/wealth-equity.html">Wealth Equity</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html" class="btn btn-primary" style="margin-top:8px;">Free Mortgage Review</a>
+</div>
+
+<div class="sidebar-box">
         <div class="sidebar-title">More Articles</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div><div style="font-size:.72rem;color:var(--text-light);">Oct 21, 2025</div><a href="payment-shock-2026.html" style="font-size:.84rem;font-weight:600;color:var(--navy);">Payment Shock 2026</a></div>
