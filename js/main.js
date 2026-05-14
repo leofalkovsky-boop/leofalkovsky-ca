@@ -688,3 +688,36 @@ document.querySelectorAll('.optin-form').forEach(form => {
     form.innerHTML = '<p style="text-align:center;color:var(--gold);font-weight:600;padding:12px 0">✓ You\'re on the list! Check your inbox.</p>';
   });
 });
+
+// ── MOBILE BOTTOM NAV ────────────────────────────────────────────
+(function() {
+  const path = window.location.pathname.replace(/\/index\.html$/, '/');
+  const ICON_HOME = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>';
+  const ICON_DOLLAR = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>';
+  const ICON_REFRESH = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>';
+  const ICON_CALC = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="8" y="6" width="8" height="4" rx="1"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="19" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>';
+  const ICON_PHONE = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>';
+
+  const pages = [
+    { href: '/',                  label: 'Home',       icon: ICON_HOME    },
+    { href: '/manulife-one.html', label: 'Manulife',   icon: ICON_DOLLAR  },
+    { href: '/refinance.html',    label: 'Refinance',  icon: ICON_REFRESH },
+    { href: '/calculators.html',  label: 'Calculators',icon: ICON_CALC    },
+    { href: '/contact.html',      label: 'Contact',    icon: ICON_PHONE   },
+  ];
+
+  function isActive(href) {
+    if (href === '/') return path === '/' || path === '';
+    return path.startsWith(href.replace('.html', ''));
+  }
+
+  const bnav = document.createElement('nav');
+  bnav.id = 'bottom-nav';
+  bnav.setAttribute('aria-label', 'Mobile navigation');
+  bnav.innerHTML = '<div id="bottom-nav-inner">' +
+    pages.map(p =>
+      `<a href="${p.href}"${isActive(p.href) ? ' class="active"' : ''}>${p.icon}<span>${p.label}</span></a>`
+    ).join('') +
+  '</div>';
+  document.body.appendChild(bnav);
+}());
