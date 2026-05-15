@@ -390,15 +390,15 @@ footer { background: var(--navy-dark); color: rgba(255,255,255,.82); padding: 60
 .num-row { display: flex; gap: 16px; align-items: flex-start; }
 .num-circle {
   width: 34px; height: 34px; border-radius: 50%;
-  background: rgba(67,116,187,.18); border: 1px solid rgba(67,116,187,.35);
-  color: var(--gold); font-size: .78rem; font-weight: 700;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.35);
+  color: var(--white); font-size: .78rem; font-weight: 700;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
 }
-.num-circle.navy { background: var(--navy); border-color: var(--navy); color: var(--gold); }
+.num-circle.navy { background: var(--navy); border-color: var(--navy); color: var(--white); }
 .num-text strong { display: block; color: var(--navy-dark); font-size: .93rem; margin-bottom: 3px; }
 .num-text span { font-size: .85rem; color: var(--text-mid); line-height: 1.55; }
-.num-text.light strong { color: var(--white); }
-.num-text.light span { color: rgba(255,255,255,.88); }
+.num-text.light strong { color: var(--white); font-size: .97rem; }
+.num-text.light span { color: rgba(255,255,255,.92); }
 
 /* === RESPONSIVE === */
 @media (max-width: 1100px) {
