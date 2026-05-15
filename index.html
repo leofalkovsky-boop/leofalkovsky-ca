@@ -309,6 +309,81 @@
   </div>
 </section>
 
+<!-- ── LIFESTYLE CAROUSEL ─────────────────────────────────────────── -->
+<section id="lc-section">
+<style>
+#lc-section { position:relative; height:520px; overflow:hidden; background:#0a1a3c; padding:0; }
+.lc-slide {
+  position:absolute; inset:0;
+  background-size:cover; background-position:center;
+  opacity:0; transition:opacity 1.4s ease;
+  will-change:opacity;
+}
+.lc-slide.active { opacity:1; animation:lcKenBurns 12s ease-in-out both; }
+@keyframes lcKenBurns { from{transform:scale(1);} to{transform:scale(1.09);} }
+.lc-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(10,25,60,.18) 0%, rgba(10,25,60,.55) 100%); }
+.lc-caption {
+  position:absolute; bottom:56px; left:0; right:0;
+  text-align:center; color:#fff;
+  font-family:'Playfair Display',serif; font-size:1.45rem; font-weight:400;
+  letter-spacing:.01em; text-shadow:0 2px 12px rgba(0,0,0,.5);
+  padding:0 24px;
+}
+.lc-caption span { display:block; font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.lc-dots { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:10; }
+.lc-dot { width:8px; height:8px; border-radius:50%; border:2px solid rgba(255,255,255,.6); background:transparent; cursor:pointer; transition:all .3s; padding:0; }
+.lc-dot.active { background:var(--gold); border-color:var(--gold); transform:scale(1.3); }
+.lc-arrow {
+  position:absolute; top:50%; transform:translateY(-50%); z-index:10;
+  background:rgba(255,255,255,.15); backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.25); color:#fff;
+  width:44px; height:44px; border-radius:50%; cursor:pointer;
+  font-size:1.3rem; display:flex; align-items:center; justify-content:center;
+  transition:background .2s;
+}
+.lc-arrow:hover { background:rgba(255,255,255,.28); }
+#lcPrev { left:20px; }
+#lcNext { right:20px; }
+@media(max-width:768px){ #lc-section{height:340px;} .lc-caption{font-size:1.1rem;bottom:44px;} .lc-arrow{display:none;} }
+</style>
+
+<div class="lc-slide active" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&auto=format&fit=crop&q=80')">
+  <div class="lc-overlay"></div>
+  <div class="lc-caption"><span>GTA &amp; Simcoe County</span>Your dream home — within reach.</div>
+</div>
+<div class="lc-slide" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&auto=format&fit=crop&q=80')">
+  <div class="lc-overlay"></div>
+  <div class="lc-caption"><span>First-Time Buyers</span>The keys you've been working toward.</div>
+</div>
+<div class="lc-slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&auto=format&fit=crop&q=80')">
+  <div class="lc-overlay"></div>
+  <div class="lc-caption"><span>Manulife One</span>Paid off 8 years early — same monthly payment.</div>
+</div>
+<div class="lc-slide" style="background-image:url('https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?w=1920&auto=format&fit=crop&q=80')">
+  <div class="lc-overlay"></div>
+  <div class="lc-caption"><span>Smith Manoeuvre</span>Building wealth while paying down your mortgage.</div>
+</div>
+<div class="lc-slide" style="background-image:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1920&auto=format&fit=crop&q=80')">
+  <div class="lc-overlay"></div>
+  <div class="lc-caption"><span>Refinancing &amp; Renewals</span>Don't let your bank auto-renew you. Shop it.</div>
+</div>
+<div class="lc-slide" style="background-image:url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=1920&auto=format&fit=crop&q=80')">
+  <div class="lc-overlay"></div>
+  <div class="lc-caption"><span>25+ Years Licensed in Ontario</span>Strategies the banks don't tell you about.</div>
+</div>
+
+<div class="lc-dots" id="lcDots">
+  <button class="lc-dot active" data-lc="0" aria-label="Slide 1"></button>
+  <button class="lc-dot" data-lc="1" aria-label="Slide 2"></button>
+  <button class="lc-dot" data-lc="2" aria-label="Slide 3"></button>
+  <button class="lc-dot" data-lc="3" aria-label="Slide 4"></button>
+  <button class="lc-dot" data-lc="4" aria-label="Slide 5"></button>
+  <button class="lc-dot" data-lc="5" aria-label="Slide 6"></button>
+</div>
+<button class="lc-arrow" id="lcPrev" aria-label="Previous">&#8249;</button>
+<button class="lc-arrow" id="lcNext" aria-label="Next">&#8250;</button>
+</section>
+
 <!-- ── TRUST BAR ─────────────────────────────────────────────────── -->
 <div class="trust-bar">
   <div class="container trust-bar-inner">
