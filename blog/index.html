@@ -32,18 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-    #hero{background:linear-gradient(135deg,rgba(20,81,126,.78) 0%,rgba(19,86,123,.86) 100%);}
-    .blog-layout{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;}
-    .blog-grid{display:grid;gap:28px;}
-    /* PLAYBOOK GATE */
-    .playbook-banner{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy-mid) 100%);border-radius:var(--radius-md);padding:32px 36px;display:flex;align-items:center;gap:28px;margin-bottom:32px;flex-wrap:wrap;}
-    .playbook-icon{font-size:2.4rem;flex-shrink:0;}
-    .playbook-text{flex:1;min-width:200px;}
-    .playbook-text h3{font-family:'Playfair Display',serif;color:var(--white);font-size:1.25rem;margin-bottom:4px;}
-    .playbook-text p{font-size:.85rem;color:rgba(255,255,255,.7);margin:0;line-height:1.5;}
-    .playbook-link{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy-dark);font-weight:700;font-size:.88rem;padding:12px 22px;border-radius:100px;border:none;cursor:pointer;transition:var(--transition);text-decoration:none;flex-shrink:0;}
-    .playbook-link:hover{background:var(--gold-light);transform:translateY(-1px);}
-    /* MODAL */
+    /* GATE MODAL */
     .gate-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;align-items:center;justify-content:center;padding:20px;}
     .gate-overlay.open{display:flex;}
     .gate-modal{background:var(--white);border-radius:var(--radius-lg);padding:44px 40px;max-width:480px;width:100%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.25);}
@@ -58,39 +47,28 @@
     .gate-success h3{font-family:'Playfair Display',serif;color:var(--navy-dark);margin-bottom:8px;}
     .gate-success p{font-size:.88rem;color:var(--text-mid);line-height:1.6;margin-bottom:20px;}
     .gate-fine{font-size:.74rem;color:var(--text-light);text-align:center;margin-top:14px;}
-    .blog-card{display:flex;flex-direction:column;background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--cream-dark);transition:var(--transition);text-decoration:none;color:inherit;cursor:pointer;}
-    .blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
-    .blog-card-img{height:200px;display:flex;align-items:center;justify-content:center;padding:24px;flex-shrink:0;}
-    .blog-card-body{padding:24px;}
-    .blog-cat{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-    .blog-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--navy-dark);margin-bottom:10px;line-height:1.3;}
+    /* BLOG CARDS */
+    .blog-grid{display:flex;flex-direction:column;gap:0;}
+    .blog-card{display:flex;flex-direction:column;background:var(--white);overflow:hidden;border-bottom:1px solid var(--cream-dark);transition:background .18s;text-decoration:none;color:inherit;}
+    .blog-card:first-child{border-radius:var(--radius-md) var(--radius-md) 0 0;}
+    .blog-card:last-child{border-radius:0 0 var(--radius-md) var(--radius-md);border-bottom:none;}
+    .blog-card:hover{background:var(--cream);}
+    .blog-card-img{height:300px;background-size:cover;background-position:center;background-color:var(--navy);flex-shrink:0;}
+    .blog-card-body{padding:28px 32px 32px;}
+    .blog-cat{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:10px;}
+    .blog-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--navy-dark);margin-bottom:14px;line-height:1.3;}
     .blog-card:hover .blog-title{color:var(--gold-dark);}
-    .blog-excerpt{font-size:.86rem;color:var(--text-mid);line-height:1.7;margin-bottom:14px;}
-    .blog-meta{display:flex;align-items:center;gap:12px;font-size:.76rem;color:var(--text-light);}
-    .blog-read-more{margin-left:auto;font-weight:600;color:var(--navy);}
-    /* SIDEBAR */
-    .sidebar-box{background:var(--white);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-sm);border:1px solid var(--cream-dark);margin-bottom:24px;}
-    .sidebar-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--navy-dark);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--gold);}
-    .sidebar-post{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--cream-dark);}
-    .sidebar-post:last-child{border-bottom:none;}
-    .sp-date{font-size:.72rem;color:var(--text-light);margin-bottom:2px;}
-    .sp-title{font-size:.83rem;font-weight:600;color:var(--navy);line-height:1.35;}
-    .sp-title a{color:inherit;transition:var(--transition);}
-    .sp-title a:hover{color:var(--gold-dark);}
-    .cat-pill{display:inline-block;background:var(--cream);border:1px solid var(--cream-dark);border-radius:100px;padding:6px 14px;font-size:.78rem;font-weight:500;color:var(--navy);margin:0 4px 6px 0;cursor:pointer;transition:var(--transition);font-family:inherit;}
+    .blog-meta{display:flex;align-items:center;gap:10px;font-size:.76rem;color:var(--text-light);}
+    .blog-read-more{margin-left:auto;font-weight:600;color:var(--navy);font-size:.78rem;white-space:nowrap;}
+    /* FILTER PILLS */
+    .cat-pill{display:inline-block;background:transparent;border:1.5px solid var(--cream-dark);border-radius:100px;padding:7px 18px;font-size:.78rem;font-weight:500;color:var(--text-mid);margin:0 4px 8px 0;cursor:pointer;transition:var(--transition);font-family:inherit;}
     .cat-pill:hover{border-color:var(--gold);color:var(--gold-dark);}
-    .cat-pill.active{background:var(--navy);border-color:var(--navy);color:var(--white);}
-    /* OPTIN */
-    .optin-box{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:var(--radius-md);padding:28px;color:var(--white);margin-bottom:24px;}
-    .optin-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:6px;}
-    .optin-sub{font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:16px;line-height:1.6;}
-    .optin-form input{margin-bottom:8px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--white);}
-    .optin-form input::placeholder{color:rgba(255,255,255,.4);}
-    /* MINI CALC */
-    .mini-calc{background:var(--cream);border-radius:var(--radius-sm);padding:16px;}
-    .mc-row{display:flex;justify-content:space-between;align-items:center;font-size:.83rem;padding:6px 0;border-bottom:1px solid var(--cream-dark);}
-    .mc-row:last-child{border-bottom:none;}
-    @media(max-width:900px){.blog-layout{grid-template-columns:1fr;}}
+    .cat-pill.active{background:var(--navy-dark);border-color:var(--navy-dark);color:var(--white);}
+    /* OPTIN STRIP */
+    .optin-strip{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy-mid) 100%);border-radius:var(--radius-md);padding:28px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:36px;}
+    .optin-strip h3{font-family:'Playfair Display',serif;color:var(--white);font-size:1.1rem;margin-bottom:4px;}
+    .optin-strip p{font-size:.82rem;color:rgba(255,255,255,.65);margin:0;flex:1;min-width:180px;}
+    @media(max-width:680px){.blog-card-img{height:220px;}.blog-card-body{padding:20px 20px 24px;}.blog-title{font-size:1.2rem;}}
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://leofalkovsky.ca/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://leofalkovsky.ca/blog/"}]}</script>
 </head>
@@ -124,175 +102,152 @@
   <a href="/contact.html" class="btn btn-primary" style="margin-top:8px;">Free Mortgage Review</a>
 </div>
 
-<div class="blog-card-body">
-            <div class="blog-cat">Mortgage Tips</div>
-            <h2 class="blog-title">The Difference Between Flexibility and Indecision in Mortgage Design</h2>
-            <p class="blog-excerpt">Keeping your options open is not a strategy. Here's how to tell genuine flexibility from financial avoidance — and why the difference costs real money.</p>
-            <div class="blog-meta"><span>Jan 8, 2026</span><span>·</span><span>4 min read</span><span class="blog-read-more">Read More →</span></div>
+<!-- BLOG HEADER -->
+<section style="background:var(--white);border-bottom:1px solid var(--cream-dark);padding:60px 0 40px;">
+  <div class="container" style="max-width:820px;text-align:center;">
+    <p style="font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;">Mortgage Intelligence · Barrie &amp; GTA</p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--navy-dark);line-height:1.12;margin-bottom:16px;">The Mortgage Blog</h1>
+    <p style="font-size:.97rem;color:var(--text-mid);max-width:540px;margin:0 auto 32px;line-height:1.8;">Advanced strategies for Canadian homeowners — Manulife One, Smith Manoeuvre, cash damming, and building wealth through real estate.</p>
+    <div>
+      <button class="cat-pill active" onclick="filterCat('all',this)">All Posts</button>
+      <button class="cat-pill" onclick="filterCat('Manulife One',this)">Manulife One</button>
+      <button class="cat-pill" onclick="filterCat('Refinance',this)">Refinance</button>
+      <button class="cat-pill" onclick="filterCat('Market Update',this)">Market</button>
+      <button class="cat-pill" onclick="filterCat('Investment',this)">Investment</button>
+      <button class="cat-pill" onclick="filterCat('Strategy',this)">Strategy</button>
+      <button class="cat-pill" onclick="filterCat('Cash Damming',this)">Cash Damming</button>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-light);padding:52px 0 80px;">
+  <div class="container" style="max-width:820px;">
+
+    <!-- OPTIN STRIP -->
+    <div class="optin-strip">
+      <div style="flex:1;min-width:200px;">
+        <h3>The Smart Buy Playbook — 2026 Edition</h3>
+        <p>Leo's complete guide to saving $40,000+ on your mortgage. Free for readers.</p>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openGate()" style="flex-shrink:0;">Get Free Playbook →</button>
+    </div>
+
+    <div class="blog-grid" id="blogGrid">
+
+        <a href="stop-asking-good-time-to-buy.html" class="blog-card">
+          <div class="blog-card-img" style="background:linear-gradient(135deg,#2e80aa 0%,var(--navy-mid) 100%);">
+            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">Stop Asking If It's a Good Time to Buy</p>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Market Update</div>
+            <h2 class="blog-title">Stop Asking If It's a Good Time to Buy — Ask This Instead</h2>
+            <p class="blog-excerpt">The question isn't whether the market is "good." It's whether your financial position supports ownership right now. Here's how to answer it honestly.</p>
+            <div class="blog-meta"><span>Jan 22, 2026</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read More →</span></div>
+          </div>
+        </a>
+
+        <a href="flexibility-vs-indecision.html" class="blog-card">
+          <div class="blog-card-img" style="background:linear-gradient(135deg,var(--navy-dark) 0%,#1d516b 100%);">
+            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">Flexibility vs. Indecision in Mortgage Design</p>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Strategy</div>
+            <h2 class="blog-title">Flexibility vs. Indecision: Why Your Mortgage Structure Matters More Than Your Rate</h2>
+            <p class="blog-excerpt">A mortgage that "keeps options open" can cost you just as much as picking the wrong rate. Here's how to tell the difference between strategic flexibility and paralysis by analysis.</p>
+            <div class="blog-meta"><span>Jan 8, 2026</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read More →</span></div>
           </div>
         </a>
 
         <a href="manulife-one-explained.html" class="blog-card">
-          <div class="blog-card-img" style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);">
-            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">Manulife One Explained: How It Really Works</p>
-          </div>
+          <div class="blog-card-img" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&auto=format&fit=crop&q=80');"></div>
           <div class="blog-card-body">
             <div class="blog-cat">Manulife One</div>
             <h2 class="blog-title">Manulife One Explained: How It Really Works (And Why Most Brokers Don't Offer It)</h2>
-            <p class="blog-excerpt">The all-in-one account is more powerful than most people realize. Here's exactly how daily banking reduces your mortgage balance — with real numbers and a side-by-side comparison against a traditional mortgage.</p>
-            <div class="blog-meta"><span>May 2, 2026</span><span>·</span><span>8 min read</span><span class="blog-read-more">Read More →</span></div>
-          </div>
-        </a>
-
-        <!-- EMAIL OPT-IN BANNER (mid-feed) -->
-        <div style="background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 100%);border-radius:var(--radius-md);padding:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-          <div style="flex:1;min-width:200px;">
-            <h3 style="font-family:'Playfair Display',serif;color:var(--navy-dark);margin-bottom:6px;">Get the Free Mortgage Savings Guide</h3>
-            <p style="font-size:.83rem;color:var(--navy);opacity:.8;">Strategies to save $40K+ on your mortgage — delivered to your inbox.</p>
-          </div>
-          <form class="optin-form" onsubmit="submitOptin(event)" style="display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;">
-            <input type="email" placeholder="Your email address" style="background:var(--white);border-color:var(--white);color:var(--text-dark);min-width:200px;" />
-            <button type="submit" class="btn btn-navy btn-sm">Download Free →</button>
-          </form>
-        </div>
-
-        <a href="rental-cash-damming-2026.html" class="blog-card">
-          <div class="blog-card-img" style="background:linear-gradient(rgba(10,30,60,.55),rgba(10,30,60,.65)),url('https://storage.ghost.io/c/39/98/3998f269-a223-4502-abdb-127e6025fa2c/content/images/size/w1000/2026/05/bd41bbd8-022a-45b1-ae43-15e7f89bb510.png') center/cover;">
-            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">Rental Cash Damming in 2026: Why Debt Structure Matters</p>
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-cat">Cash Damming</div>
-            <h2 class="blog-title">Rental Cash Damming in 2026: Why Debt Structure Matters More Than Ever</h2>
-            <p class="blog-excerpt">Higher carrying costs have shifted investor focus from rapid expansion to debt efficiency. Here's why rental cash damming deserves a second look.</p>
-            <div class="blog-meta"><span>Dec 2, 2025</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read More →</span></div>
-          </div>
-        </a>
-
-        <a href="brrrr-strategy.html" class="blog-card">
-          <div class="blog-card-img" style="background:linear-gradient(135deg,#1d516b 0%,var(--navy) 100%);">
-            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">BRRRR: The Real Estate Strategy That Works</p>
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-cat">Investment</div>
-            <h2 class="blog-title">BRRRR: The Real Estate Growth Strategy That Works — When You Do It Right</h2>
-            <p class="blog-excerpt">Buy, Rehab, Rent, Refinance, Repeat. Done right it's a flywheel for portfolio growth. Done wrong, an expensive education. Here's how to avoid the mistakes.</p>
-            <div class="blog-meta"><span>Nov 18, 2025</span><span>·</span><span>6 min read</span><span class="blog-read-more">Read More →</span></div>
-          </div>
-        </a>
-
-        <a href="house-hack-blueprint.html" class="blog-card">
-          <div class="blog-card-img" style="background:linear-gradient(135deg,var(--navy-mid) 0%,#1d516b 100%);">
-            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">The House Hack Blueprint</p>
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-cat">Investment</div>
-            <h2 class="blog-title">The House Hack Blueprint: Live for Less and Grow Wealth Faster</h2>
-            <p class="blog-excerpt">What if your biggest expense could become your first investment? House hacking lets you offset housing costs while building equity faster — even in today's market.</p>
-            <div class="blog-meta"><span>Nov 4, 2025</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read More →</span></div>
-          </div>
-        </a>
-
-        <a href="payment-shock-2026.html" class="blog-card">
-          <div class="blog-card-img" style="background:linear-gradient(rgba(10,30,60,.55),rgba(10,30,60,.65)),url('https://storage.ghost.io/c/39/98/3998f269-a223-4502-abdb-127e6025fa2c/content/images/size/w1000/2025/10/ChatGPT-Image-Oct-21--2025--09_58_20-AM.png') center/cover;">
-            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">Payment Shock 2026: Why Renewals May Jump 20%</p>
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-cat">Market Update</div>
-            <h2 class="blog-title">Payment Shock 2026: Why Many Renewals May Jump 20%</h2>
-            <p class="blog-excerpt">60% of Canadian mortgages renew in 2025–2026. Five-year fixed borrowers face 15–20% payment increases. Here's how to prepare before your renewal arrives.</p>
-            <div class="blog-meta"><span>Oct 21, 2025</span><span>·</span><span>4 min read</span><span class="blog-read-more">Read More →</span></div>
+            <div class="blog-meta"><span>May 2, 2026</span><span>·</span><span>8 min read</span><span class="blog-read-more">Read →</span></div>
           </div>
         </a>
 
         <a href="refinancing-guide.html" class="blog-card">
-          <div class="blog-card-img" style="background:linear-gradient(135deg,var(--gold-dark) 0%,#44BBA4 100%);">
-            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy-dark);text-align:center;line-height:1.3;">Should You Refinance Your Mortgage in 2026?</p>
-          </div>
+          <div class="blog-card-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&auto=format&fit=crop&q=80');"></div>
           <div class="blog-card-body">
             <div class="blog-cat">Refinance</div>
             <h2 class="blog-title">Should You Refinance Your Mortgage in 2026? Here's How to Know.</h2>
-            <p class="blog-excerpt">Rates have shifted significantly. Here's how to calculate your penalty, model your break-even, and know with confidence whether breaking your mortgage early makes financial sense.</p>
-            <div class="blog-meta"><span>April 18, 2026</span><span>·</span><span>7 min read</span><span class="blog-read-more">Read More →</span></div>
+            <div class="blog-meta"><span>April 18, 2026</span><span>·</span><span>7 min read</span><span class="blog-read-more">Read →</span></div>
           </div>
         </a>
 
         <a href="mortgage-acceleration.html" class="blog-card">
-          <div class="blog-card-img" style="background:linear-gradient(135deg,#2e80aa 0%,var(--navy) 100%);">
-            <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-align:center;line-height:1.3;">5 Ways to Pay Off Your Mortgage Years Faster</p>
-          </div>
+          <div class="blog-card-img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&auto=format&fit=crop&q=80');"></div>
           <div class="blog-card-body">
             <div class="blog-cat">Acceleration</div>
             <h2 class="blog-title">5 Ways to Pay Off Your Mortgage Years Faster (Without Earning More)</h2>
-            <p class="blog-excerpt">From bi-weekly payments to lump-sum strategies and Manulife One, these five proven approaches shave years off your amortization — without increasing your monthly outflow.</p>
-            <div class="blog-meta"><span>April 5, 2026</span><span>·</span><span>6 min read</span><span class="blog-read-more">Read More →</span></div>
+            <div class="blog-meta"><span>April 5, 2026</span><span>·</span><span>6 min read</span><span class="blog-read-more">Read →</span></div>
+          </div>
+        </a>
+
+        <a href="stop-asking-good-time-to-buy.html" class="blog-card">
+          <div class="blog-card-img" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&auto=format&fit=crop&q=80');"></div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Market Update</div>
+            <h2 class="blog-title">Stop Asking If It's a Good Time to Buy — Ask This Instead</h2>
+            <div class="blog-meta"><span>Jan 22, 2026</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read →</span></div>
+          </div>
+        </a>
+
+        <a href="flexibility-vs-indecision.html" class="blog-card">
+          <div class="blog-card-img" style="background-image:url('https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?w=900&auto=format&fit=crop&q=80');"></div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Strategy</div>
+            <h2 class="blog-title">Flexibility vs. Indecision: Why Your Mortgage Structure Matters More Than Your Rate</h2>
+            <div class="blog-meta"><span>Jan 8, 2026</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read →</span></div>
+          </div>
+        </a>
+
+        <a href="rental-cash-damming-2026.html" class="blog-card">
+          <div class="blog-card-img" style="background-image:url('https://storage.ghost.io/c/39/98/3998f269-a223-4502-abdb-127e6025fa2c/content/images/size/w1000/2026/05/bd41bbd8-022a-45b1-ae43-15e7f89bb510.png');"></div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Cash Damming</div>
+            <h2 class="blog-title">Rental Cash Damming in 2026: Why Debt Structure Matters More Than Ever</h2>
+            <div class="blog-meta"><span>Dec 2, 2025</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read →</span></div>
+          </div>
+        </a>
+
+        <a href="brrrr-strategy.html" class="blog-card">
+          <div class="blog-card-img" style="background-image:url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=900&auto=format&fit=crop&q=80');background-color:var(--navy-dark);"></div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Investment</div>
+            <h2 class="blog-title">BRRRR: The Real Estate Growth Strategy That Works — When You Do It Right</h2>
+            <div class="blog-meta"><span>Nov 18, 2025</span><span>·</span><span>6 min read</span><span class="blog-read-more">Read →</span></div>
+          </div>
+        </a>
+
+        <a href="house-hack-blueprint.html" class="blog-card">
+          <div class="blog-card-img" style="background-image:url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=900&auto=format&fit=crop&q=80');background-color:var(--navy-dark);"></div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Investment</div>
+            <h2 class="blog-title">The House Hack Blueprint: Live for Less and Grow Wealth Faster</h2>
+            <div class="blog-meta"><span>Nov 4, 2025</span><span>·</span><span>5 min read</span><span class="blog-read-more">Read →</span></div>
+          </div>
+        </a>
+
+        <a href="payment-shock-2026.html" class="blog-card">
+          <div class="blog-card-img" style="background-image:url('https://storage.ghost.io/c/39/98/3998f269-a223-4502-abdb-127e6025fa2c/content/images/size/w1000/2025/10/ChatGPT-Image-Oct-21--2025--09_58_20-AM.png');"></div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Market Update</div>
+            <h2 class="blog-title">Payment Shock 2026: Why Many Renewals May Jump 20%</h2>
+            <div class="blog-meta"><span>Oct 21, 2025</span><span>·</span><span>4 min read</span><span class="blog-read-more">Read →</span></div>
           </div>
         </a>
 
       </div>
 
-      <!-- SIDEBAR -->
-      <aside>
-        <!-- OPT-IN -->
-        <div class="optin-box">
-          <h3 class="optin-title">Free Mortgage Savings Guide</h3>
-          <p class="optin-sub">Download Leo's guide: "How to Save $40,000+ on Your Mortgage" — free.</p>
-          <form class="optin-form" onsubmit="submitOptin(event)">
-            <input type="text" placeholder="Your first name" />
-            <input type="email" placeholder="Your email address" />
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Me the Free Guide →</button>
-          </form>
-        </div>
+      <!-- BOTTOM CTA -->
+      <div style="text-align:center;margin-top:48px;padding:40px 32px;background:var(--white);border-radius:var(--radius-md);border:1px solid var(--cream-dark);">
+        <p style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--navy-dark);margin-bottom:8px;">Ready to talk strategy?</p>
+        <p style="font-size:.88rem;color:var(--text-mid);margin-bottom:20px;">Book a free 30-min mortgage review with Leo and get a personalized plan.</p>
+        <a href="../contact.html" class="btn btn-primary">Book Free Review →</a>
+      </div>
 
-        <!-- RECENT POSTS -->
-        <div class="sidebar-box">
-          <div class="sidebar-title">Recent Posts</div>
-          <div class="sidebar-post"><div><div class="sp-date">Jan 22, 2026</div><div class="sp-title"><a href="stop-asking-good-time-to-buy.html">Stop Asking If It's a Good Time to Buy</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">Jan 8, 2026</div><div class="sp-title"><a href="flexibility-vs-indecision.html">Flexibility vs. Indecision in Mortgage Design</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">Dec 2, 2025</div><div class="sp-title"><a href="rental-cash-damming-2026.html">Rental Cash Damming in 2026</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">Nov 18, 2025</div><div class="sp-title"><a href="brrrr-strategy.html">BRRRR: The Real Estate Growth Strategy</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">Nov 4, 2025</div><div class="sp-title"><a href="house-hack-blueprint.html">The House Hack Blueprint</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">Oct 21, 2025</div><div class="sp-title"><a href="payment-shock-2026.html">Payment Shock 2026</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">May 2, 2026</div><div class="sp-title"><a href="manulife-one-explained.html">Manulife One Explained: How It Really Works</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">Apr 18, 2026</div><div class="sp-title"><a href="refinancing-guide.html">Should You Refinance in 2026?</a></div></div></div>
-          <div class="sidebar-post"><div><div class="sp-date">Apr 5, 2026</div><div class="sp-title"><a href="mortgage-acceleration.html">5 Ways to Pay Off Your Mortgage Faster</a></div></div></div>
-        </div>
-
-        <!-- CATEGORIES -->
-        <div class="sidebar-box">
-          <div class="sidebar-title">Categories</div>
-          <div style="margin-top:4px;">
-            <span class="cat-pill">Manulife One</span>
-            <span class="cat-pill">Refinance</span>
-            <span class="cat-pill">First-Time Buyers</span>
-            <span class="cat-pill">Market Updates</span>
-            <span class="cat-pill">Smith Manoeuvre</span>
-            <span class="cat-pill">Cash Damming</span>
-            <span class="cat-pill">Investment</span>
-            <span class="cat-pill">Acceleration</span>
-          </div>
-        </div>
-
-        <!-- MINI CALCULATOR -->
-        <div class="sidebar-box">
-          <div class="sidebar-title">Quick Manulife One Estimate</div>
-          <p style="font-size:.78rem;color:var(--text-mid);margin-bottom:12px;">Enter your balance to see approximate interest savings:</p>
-          <div class="form-group"><label style="font-size:.76rem;">Mortgage Balance ($)</label><input type="number" id="sb-balance" value="500000" step="10000" /></div>
-          <div class="form-group"><label style="font-size:.76rem;">Rate (%)</label><input type="number" id="sb-rate" value="5.49" step="0.01" /></div>
-          <div class="mini-calc">
-            <div class="mc-row"><span style="color:var(--text-mid);">Est. interest saved</span><span style="font-weight:700;color:var(--gold-dark);" id="sb-saved">$87,400</span></div>
-            <div class="mc-row"><span style="color:var(--text-mid);">Years saved</span><span style="font-weight:700;color:var(--navy);" id="sb-years">~7.5 yrs</span></div>
-          </div>
-          <a href="../calculators.html" class="btn btn-navy btn-sm" style="width:100%;justify-content:center;margin-top:12px;">Full Calculator →</a>
-        </div>
-
-        <!-- CTA BOX -->
-        <div style="background:var(--navy-dark);border-radius:var(--radius-md);padding:24px;text-align:center;">
-          <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:8px;">Ready to Take Action?</p>
-          <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.6;">Book a free 30-min consultation with Leo and get a personalized mortgage plan.</p>
-          <a href="../contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Free Review →</a>
-        </div>
-      </aside>
-    </div>
   </div>
 </section>
 
@@ -342,28 +297,23 @@ function submitGate(e) {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGate(); });
 // Category filter
-function filterCat(cat) {
+function filterCat(cat, btn) {
   document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  document.querySelectorAll('.blog-card').forEach(card => {
+  if (btn) btn.classList.add('active');
+  const cards = document.querySelectorAll('.blog-card');
+  cards.forEach(card => {
     const cardCat = card.querySelector('.blog-cat')?.textContent?.trim() || '';
     card.style.display = (cat === 'all' || cardCat === cat) ? 'flex' : 'none';
   });
+  // fix border-radius on first/last visible card
+  const visible = [...cards].filter(c => c.style.display !== 'none');
+  cards.forEach(c => { c.style.borderRadius = ''; });
+  if (visible.length) {
+    visible[0].style.borderRadius = 'var(--radius-md) var(--radius-md) 0 0';
+    visible[visible.length-1].style.borderRadius = '0 0 var(--radius-md) var(--radius-md)';
+    if (visible.length === 1) visible[0].style.borderRadius = 'var(--radius-md)';
+  }
 }
-// Sidebar mini calculator
-function updateSb() {
-  const bal = parseFloat(document.getElementById('sb-balance').value)||500000;
-  const rate = parseFloat(document.getElementById('sb-rate').value)||5.49;
-  const r = Math.pow(1+rate/200,1/3)-1;
-  const n=300; const pmt=bal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
-  const tradInt=pmt*n-bal;
-  // Estimate M1 saves ~28% of interest with average $1500/mo surplus
-  const saved=tradInt*0.28; const yrs=saved/(bal*rate/100/12)/12;
-  document.getElementById('sb-saved')?.setText ? null : (document.getElementById('sb-saved').textContent='$'+Math.round(saved).toLocaleString('en-CA'));
-  document.getElementById('sb-years').textContent='~'+yrs.toFixed(1)+' yrs';
-}
-['sb-balance','sb-rate'].forEach(id=>document.getElementById(id)?.addEventListener('input',updateSb));
-updateSb();
 </script>
 </body>
 </html>

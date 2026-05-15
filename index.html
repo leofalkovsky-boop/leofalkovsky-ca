@@ -162,7 +162,7 @@
       cursor: pointer; transition: all .3s; padding: 0;
     }
     .hero-slide-dot.active { background: var(--gold); border-color: var(--gold); transform: scale(1.35); }
-    .hero-split { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+    .hero-split { display: flex; flex-direction: column; align-items: flex-start; max-width: 720px; }
     @keyframes slideUp   { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
     @keyframes slideRight{ from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
     @keyframes floatY    { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
@@ -268,7 +268,7 @@
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero" id="hero">
   <!-- Slide 1: Happy couple receiving keys outside their new home, sunny day -->
-  <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&auto=format&fit=crop&q=85')"></div>
+  <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&auto=format&fit=crop&q=85'),url('/images/41-redmond.jpg');background-size:cover,cover;background-position:center,center;background-blend-mode:soft-light,normal;"></div>
   <!-- Slide 2: Diverse young family with kids laughing outdoors -->
   <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&auto=format&fit=crop&q=85')"></div>
   <!-- Slide 3: Family with dog playing in bright sunny backyard -->
