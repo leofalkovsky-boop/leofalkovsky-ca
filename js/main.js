@@ -15,7 +15,7 @@
     slides[cur].classList.add('active');
     if (dots[cur]) dots[cur].classList.add('active');
   }
-  function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 6000); }
+  function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 7000); }
 
   dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.hsd); startTimer(); }));
   startTimer();
