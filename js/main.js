@@ -1,25 +1,23 @@
 /* main.js — leofalkovsky.ca */
 'use strict';
 
-// ── LIFESTYLE CAROUSEL ───────────────────────────────────────────
+// ── HERO BACKGROUND CAROUSEL ─────────────────────────────────────
 (function() {
-  const slides = document.querySelectorAll('.lc-slide');
-  const dots   = document.querySelectorAll('.lc-dot');
+  const slides = document.querySelectorAll('.hero-bg-slide');
+  const dots   = document.querySelectorAll('.hero-slide-dot');
   if (!slides.length) return;
   let cur = 0, timer;
 
   function goTo(idx) {
     slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
+    if (dots[cur]) dots[cur].classList.remove('active');
     cur = (idx + slides.length) % slides.length;
     slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
+    if (dots[cur]) dots[cur].classList.add('active');
   }
   function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 6000); }
 
-  document.getElementById('lcNext')?.addEventListener('click', () => { goTo(cur + 1); startTimer(); });
-  document.getElementById('lcPrev')?.addEventListener('click', () => { goTo(cur - 1); startTimer(); });
-  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.lc); startTimer(); }));
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.hsd); startTimer(); }));
   startTimer();
 }());
 
