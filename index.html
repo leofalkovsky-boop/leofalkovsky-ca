@@ -137,20 +137,20 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-bg-vid {
+    .hero-bg-slide {
       position: absolute; inset: 0; z-index: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      opacity: 0; transition: opacity 1.6s ease;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.8s ease;
       will-change: opacity;
     }
-    .hero-bg-vid.active { opacity: 1; }
-    .hero-bg-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(105deg, rgba(8,20,50,.74) 0%, rgba(8,20,50,.45) 55%, rgba(0,10,38,.30) 100%);
+    .hero-bg-slide.active { opacity: 1; animation: kenBurns 22s ease-in-out both; }
+    .hero-bg-slide::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(8,20,50,.72) 0%, rgba(8,20,50,.42) 55%, rgba(0,10,38,.28) 100%);
     }
-    #hero .container { position: relative; z-index: 2; }
-    .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+    #hero .container { position: relative; z-index: 1; }
+    .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.55); }
     .hero-sub    { text-shadow: 0 1px 10px rgba(0,0,0,.4); }
     .hero-slide-dots {
       position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
@@ -267,27 +267,16 @@
 
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero" id="hero">
-  <!-- Video 1: Happy family moving into new home (bright daylight) -->
-  <video class="hero-bg-vid active" muted loop playsinline preload="auto">
-    <source src="https://videos.pexels.com/video-files/7646496/7646496-hd_1920_1080_25fps.mp4" type="video/mp4">
-  </video>
-  <!-- Video 2: Happy couple receiving keys to new home -->
-  <video class="hero-bg-vid" muted loop playsinline preload="none">
-    <source src="https://videos.pexels.com/video-files/7646757/7646757-hd_1920_1080_25fps.mp4" type="video/mp4">
-  </video>
-  <!-- Video 3: Family with dog playing outside in sunny backyard -->
-  <video class="hero-bg-vid" muted loop playsinline preload="none">
-    <source src="https://videos.pexels.com/video-files/5500765/5500765-hd_1920_1080_25fps.mp4" type="video/mp4">
-  </video>
-  <!-- Video 4: Diverse family walking outdoors in summer sunshine -->
-  <video class="hero-bg-vid" muted loop playsinline preload="none">
-    <source src="https://videos.pexels.com/video-files/7981629/7981629-hd_1920_1080_25fps.mp4" type="video/mp4">
-  </video>
-  <!-- Video 5: Happy family having fun outdoors — kids, laughing -->
-  <video class="hero-bg-vid" muted loop playsinline preload="none">
-    <source src="https://videos.pexels.com/video-files/8153665/8153665-hd_1920_1080_25fps.mp4" type="video/mp4">
-  </video>
-  <div class="hero-bg-overlay"></div>
+  <!-- Slide 1: Happy couple receiving keys outside their new home, sunny day -->
+  <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&auto=format&fit=crop&q=85')"></div>
+  <!-- Slide 2: Diverse young family with kids laughing outdoors -->
+  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&auto=format&fit=crop&q=85')"></div>
+  <!-- Slide 3: Family with dog playing in bright sunny backyard -->
+  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?w=1920&auto=format&fit=crop&q=85')"></div>
+  <!-- Slide 4: Beautiful Canadian home exterior, bright summer day -->
+  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&auto=format&fit=crop&q=85')"></div>
+  <!-- Slide 5: Cheerful couple in front of new home, daylight -->
+  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&auto=format&fit=crop&q=85')"></div>
   <div class="hero-slide-dots">
     <button class="hero-slide-dot active" data-hsd="0" aria-label="Slide 1"></button>
     <button class="hero-slide-dot" data-hsd="1" aria-label="Slide 2"></button>
@@ -317,38 +306,6 @@
         </div>
       </div>
 
-      <!-- Right: floating card -->
-      <div class="hero-right">
-        <div class="hero-right-wrap">
-          <!-- Top floating badge -->
-          <div class="hero-badge-float top-right">
-            <div class="hbf-icon">✓</div>
-            <div><div style="font-size:.7rem;color:var(--gold-dark);">FSRA Licensed</div>Mortgage Broker</div>
-          </div>
-          <!-- Main card -->
-          <div class="hero-card">
-            <div class="hero-card-label">Live Client Savings Example</div>
-            <div class="hero-card-stat">
-              <div class="hero-card-num">$500K</div>
-              <div class="hero-card-desc">Manulife One client example, 5.49%</div>
-            </div>
-            <div class="hero-card-stat">
-              <div class="hero-card-num" style="color:#5dd4bf;">$74,200</div>
-              <div class="hero-card-desc">Interest saved vs. traditional mortgage</div>
-            </div>
-            <div class="hero-card-stat">
-              <div class="hero-card-num" style="color:#5dd4bf;">8.5 yrs</div>
-              <div class="hero-card-desc">Paid off years earlier — same income</div>
-            </div>
-            <a href="contact.html" class="btn btn-primary hero-card-cta" style="padding:13px 24px;font-size:.9rem;">Run My Numbers Free →</a>
-          </div>
-          <!-- Bottom floating badge -->
-          <div class="hero-badge-float bot-left">
-            <div class="hbf-icon">🏆</div>
-            <div><div style="font-size:.7rem;color:var(--text-light);">Ontario's Top Rated</div>5.0 ★ Google Reviews</div>
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
