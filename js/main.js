@@ -1,22 +1,27 @@
 /* main.js — leofalkovsky.ca */
 'use strict';
 
-// ── HERO BACKGROUND CAROUSEL ─────────────────────────────────────
+// ── HERO VIDEO CAROUSEL ──────────────────────────────────────────
 (function() {
-  const slides = document.querySelectorAll('.hero-bg-slide');
-  const dots   = document.querySelectorAll('.hero-slide-dot');
-  if (!slides.length) return;
+  const vids = document.querySelectorAll('.hero-bg-vid');
+  const dots = document.querySelectorAll('.hero-slide-dot');
+  if (!vids.length) return;
   let cur = 0, timer;
 
   function goTo(idx) {
-    slides[cur].classList.remove('active');
+    vids[cur].classList.remove('active');
+    vids[cur].pause();
     if (dots[cur]) dots[cur].classList.remove('active');
-    cur = (idx + slides.length) % slides.length;
-    slides[cur].classList.add('active');
+    cur = (idx + vids.length) % vids.length;
+    vids[cur].classList.add('active');
+    vids[cur].currentTime = 0;
+    vids[cur].load();
+    vids[cur].play().catch(() => {});
     if (dots[cur]) dots[cur].classList.add('active');
   }
-  function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 7000); }
+  function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 12000); }
 
+  vids[0].play().catch(() => {});
   dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.hsd); startTimer(); }));
   startTimer();
 }());

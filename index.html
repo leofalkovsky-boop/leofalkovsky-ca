@@ -137,26 +137,28 @@
       position: relative;
       overflow: hidden;
     }
-    .hero-bg-slide {
+    .hero-bg-vid {
       position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1.8s ease;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0; transition: opacity 1.6s ease;
       will-change: opacity;
     }
-    .hero-bg-slide.active { opacity: 1; animation: kenBurns 20s ease-in-out both; }
-    .hero-bg-slide::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(105deg, rgba(10,25,60,.86) 0%, rgba(10,25,60,.65) 55%, rgba(0,15,50,.76) 100%);
+    .hero-bg-vid.active { opacity: 1; }
+    .hero-bg-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(105deg, rgba(8,20,50,.74) 0%, rgba(8,20,50,.45) 55%, rgba(0,10,38,.30) 100%);
     }
-    #hero .container { position: relative; z-index: 1; }
+    #hero .container { position: relative; z-index: 2; }
+    .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+    .hero-sub    { text-shadow: 0 1px 10px rgba(0,0,0,.4); }
     .hero-slide-dots {
       position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 10px; z-index: 2;
+      display: flex; gap: 10px; z-index: 3;
     }
     .hero-slide-dot {
       width: 8px; height: 8px; border-radius: 50%;
-      border: 2px solid rgba(255,255,255,.55); background: transparent;
+      border: 2px solid rgba(255,255,255,.6); background: transparent;
       cursor: pointer; transition: all .3s; padding: 0;
     }
     .hero-slide-dot.active { background: var(--gold); border-color: var(--gold); transform: scale(1.35); }
@@ -265,11 +267,27 @@
 
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero" id="hero">
-  <div class="hero-bg-slide active" style="background-image:url('images/41-redmond.jpg')"></div>
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&auto=format&fit=crop&q=80')"></div>
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&auto=format&fit=crop&q=80')"></div>
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1920&auto=format&fit=crop&q=80')"></div>
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=1920&auto=format&fit=crop&q=80')"></div>
+  <!-- Video 1: Happy family moving into new home (bright daylight) -->
+  <video class="hero-bg-vid active" muted loop playsinline preload="auto">
+    <source src="https://videos.pexels.com/video-files/7646496/7646496-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <!-- Video 2: Happy couple receiving keys to new home -->
+  <video class="hero-bg-vid" muted loop playsinline preload="none">
+    <source src="https://videos.pexels.com/video-files/7646757/7646757-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <!-- Video 3: Family with dog playing outside in sunny backyard -->
+  <video class="hero-bg-vid" muted loop playsinline preload="none">
+    <source src="https://videos.pexels.com/video-files/5500765/5500765-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <!-- Video 4: Diverse family walking outdoors in summer sunshine -->
+  <video class="hero-bg-vid" muted loop playsinline preload="none">
+    <source src="https://videos.pexels.com/video-files/7981629/7981629-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <!-- Video 5: Happy family having fun outdoors — kids, laughing -->
+  <video class="hero-bg-vid" muted loop playsinline preload="none">
+    <source src="https://videos.pexels.com/video-files/8153665/8153665-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg-overlay"></div>
   <div class="hero-slide-dots">
     <button class="hero-slide-dot active" data-hsd="0" aria-label="Slide 1"></button>
     <button class="hero-slide-dot" data-hsd="1" aria-label="Slide 2"></button>
