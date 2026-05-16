@@ -102,11 +102,11 @@ document.querySelectorAll('form[data-ajax]').forEach(form => {
         if (success) success.style.display = 'block';
       } else {
         if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }
-        alert('Something went wrong. Please email leo@leofalkovsky.ca directly.');
+        alert('Something went wrong. Please email leo@leofalkovsky.com directly.');
       }
     } catch {
       if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }
-      alert('Connection error. Please email leo@leofalkovsky.ca directly.');
+      alert('Connection error. Please email leo@leofalkovsky.com directly.');
     }
   });
 });
@@ -705,11 +705,11 @@ document.querySelectorAll('[data-share]').forEach(btn => {
           if (success) success.style.display = 'block';
         } else {
           if (btn) { btn.disabled = false; btn.textContent = 'Submit Application'; }
-          alert('Something went wrong. Please email leo@leofalkovsky.ca directly.');
+          alert('Something went wrong. Please email leo@leofalkovsky.com directly.');
         }
       } catch {
         if (btn) { btn.disabled = false; btn.textContent = 'Submit Application'; }
-        alert('Connection error. Please email leo@leofalkovsky.ca directly.');
+        alert('Connection error. Please email leo@leofalkovsky.com directly.');
       }
     });
   }
