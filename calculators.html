@@ -109,7 +109,7 @@
   <div class="container">
     <nav class="breadcrumb"><a href="/">Home</a><span>/</span><span>Calculators</span></nav>
     <div class="hero-content">
-      <div class="hero-badge">8 Free Interactive Tools</div>
+      <div class="hero-badge">9 Free Interactive Tools</div>
       <h1 class="hero-title">Mortgage Calculators<br /><span>Built for homeowners</span><br />Homeowners</h1>
       <p class="hero-sub">Run the real numbers on affordability, payment schedules, Manulife One, Smith Manoeuvre, refinancing, debt consolidation, home equity, and mortgage qualification — all in one place, instantly.</p>
     </div>
@@ -128,6 +128,7 @@
       <button class="calc-tab" data-panel="panel-heloc">🏠 HELOC / Equity</button>
       <button class="calc-tab" data-panel="panel-qualify">✅ Qualify</button>
       <button class="calc-tab" data-panel="panel-smith">📈 Smith Manoeuvre</button>
+      <button class="calc-tab" data-panel="panel-ird">⚖️ IRD Penalty</button>
     </div>
 
     <!-- ── AFFORDABILITY ── -->
@@ -443,6 +444,91 @@
             <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Start My Pre-Approval →</a>
           </div>
           <p style="font-size:.72rem;color:var(--text-light);margin-top:12px;line-height:1.5;">Estimate only. Actual qualification depends on full credit bureau review, property type, and lender guidelines.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 7. IRD PENALTY ── -->
+    <div class="calc-tab-panel" id="panel-ird">
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <h2 class="calc-title">IRD Penalty Calculator</h2>
+          <p class="calc-desc">Estimate the penalty for breaking your mortgage early. Canada uses the greater of 3 months' interest or the Interest Rate Differential (IRD). The formula varies significantly by lender type.</p>
+          <form id="calc-ird">
+            <div class="ci-group">
+              <div class="ci-label">Mortgage Type</div>
+              <select name="ird-type">
+                <option value="fixed">Fixed Rate (IRD or 3-month interest)</option>
+                <option value="variable">Variable Rate (3-month interest only)</option>
+              </select>
+            </div>
+            <div id="ird-fixed-section">
+              <div class="ci-group">
+                <div class="ci-label">Lender Type<span class="ci-hint">Big banks penalize more — posted-rate formula</span></div>
+                <select name="ird-lender">
+                  <option value="bigbank">Big Bank (TD, RBC, CIBC, BMO, Scotia, NBC)</option>
+                  <option value="monoline">Monoline / Credit Union (MCAP, First National, Merix…)</option>
+                </select>
+              </div>
+            </div>
+            <div class="ci-group">
+              <div class="ci-label">Remaining Mortgage Balance ($)</div>
+              <input type="number" name="ird-balance" value="400000" min="10000" max="5000000" step="5000" />
+            </div>
+            <div class="ci-group">
+              <div class="ci-label">Your Contract Rate (%)<span class="ci-hint">Your current mortgage rate</span></div>
+              <input type="number" name="ird-contract" value="5.49" min="0.5" max="15" step="0.01" />
+            </div>
+            <div class="ci-group">
+              <div class="ci-label">Months Remaining in Term</div>
+              <input type="number" name="ird-months" value="24" min="1" max="120" step="1" />
+            </div>
+            <div id="ird-bigbank-inputs">
+              <div class="ci-group">
+                <div class="ci-label">Bank's Posted Rate When You Signed (%)<span class="ci-hint">The bank's advertised rate — not your discounted rate</span></div>
+                <input type="number" name="ird-orig-posted" value="7.14" min="1" max="15" step="0.01" />
+              </div>
+              <div class="ci-group">
+                <div class="ci-label">Bank's Current Posted Rate for Nearest Term (%)<span class="ci-hint">Call your bank — for a 2 or 3-year term today</span></div>
+                <input type="number" name="ird-cur-posted" value="5.74" min="1" max="15" step="0.01" />
+              </div>
+            </div>
+            <div id="ird-monoline-inputs" style="display:none;">
+              <div class="ci-group">
+                <div class="ci-label">Lender's Current Rate for Similar Remaining Term (%)<span class="ci-hint">Their current offered rate for a term ≈ months remaining</span></div>
+                <input type="number" name="ird-cur-mono" value="4.89" min="0.5" max="15" step="0.01" />
+              </div>
+            </div>
+            <div class="ci-group">
+              <div class="ci-label">Prepayment Privilege Used (%)<span class="ci-hint">Pay this % of balance first to shrink the penalty base</span></div>
+              <input type="number" name="ird-prepay" value="0" min="0" max="20" step="5" />
+            </div>
+          </form>
+        </div>
+        <div>
+          <div class="calc-results" id="ird-results" style="display:none;">
+            <div class="cr-title">IRD Penalty Estimate</div>
+            <div class="cr-row"><span class="cr-lbl">Penalized balance</span><span class="cr-val" id="ird-eff-bal">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Rate differential</span><span class="cr-val gold" id="ird-rate-diff">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">3-month interest penalty</span><span class="cr-val" id="ird-3mo">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">IRD penalty</span><span class="cr-val" id="ird-ird-amt">—</span></div>
+            <div class="cr-highlight">
+              <div class="cr-highlight-lbl">Estimated Break Penalty</div>
+              <div class="cr-highlight-val" id="ird-penalty">—</div>
+              <div style="font-size:.78rem;color:var(--gold-light);margin-top:4px;" id="ird-which">—</div>
+            </div>
+            <div id="ird-tip" style="background:rgba(255,255,255,.05);border-radius:var(--radius-sm);padding:14px;margin-top:14px;font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6;"></div>
+          </div>
+          <div class="calc-cta" id="ird-cta">
+            <p>Your penalty may be avoidable — or worth paying. Let's run the real numbers before you decide.</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get My Free Penalty Analysis →</a>
+          </div>
+          <div style="background:var(--cream);border-radius:var(--radius-md);padding:20px;margin-top:16px;" id="ird-placeholder">
+            <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;margin-bottom:10px;">💡 <strong>What is an IRD?</strong> When you break a fixed mortgage early, lenders charge the greater of: (1) 3 months' interest, or (2) the Interest Rate Differential — the revenue the lender "loses" by re-lending at today's lower rate.</p>
+            <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;margin-bottom:10px;"><strong>Big banks</strong> use posted-rate formulas that dramatically inflate penalties. <strong>Monolines</strong> use actual market rates — typically a far lower penalty.</p>
+            <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;">Fill in your details above to estimate your break cost.</p>
+          </div>
+          <p style="font-size:.72rem;color:var(--text-light);margin-top:12px;line-height:1.5;">Illustrative only. Your exact penalty depends on your lender's specific formula and current posted rates. Always get the precise figure directly from your lender before deciding.</p>
         </div>
       </div>
     </div>

@@ -619,6 +619,96 @@ function calcPayment() {
   run();
 })();
 
+// ── IRD PENALTY CALCULATOR ────────────────────────────────────────
+(function () {
+  const form = document.getElementById('calc-ird');
+  if (!form) return;
+
+  const typeSelect    = form.querySelector('[name="ird-type"]');
+  const lenderSelect  = form.querySelector('[name="ird-lender"]');
+  const fixedSection  = document.getElementById('ird-fixed-section');
+  const bigbankInputs = document.getElementById('ird-bigbank-inputs');
+  const monoInputs    = document.getElementById('ird-monoline-inputs');
+  const placeholder   = document.getElementById('ird-placeholder');
+
+  function toggleInputs() {
+    const isFixed = typeSelect.value === 'fixed';
+    if (fixedSection)  fixedSection.style.display  = isFixed ? '' : 'none';
+    if (bigbankInputs) bigbankInputs.style.display = (isFixed && lenderSelect.value === 'bigbank')   ? '' : 'none';
+    if (monoInputs)    monoInputs.style.display    = (isFixed && lenderSelect.value === 'monoline')  ? '' : 'none';
+  }
+
+  function run() {
+    const type       = typeSelect.value;
+    const lender     = lenderSelect.value;
+    const balance    = getVal(form, 'ird-balance')  || 400000;
+    const contract   = getVal(form, 'ird-contract') || 5.49;
+    const months     = getVal(form, 'ird-months')   || 24;
+    const prepayPct  = getVal(form, 'ird-prepay')   || 0;
+
+    const effBal = balance * (1 - prepayPct / 100);
+
+    const threeMonth = effBal * (contract / 100) / 4;
+
+    let irdAmt   = 0;
+    let rateDiff = 0;
+
+    if (type === 'fixed') {
+      if (lender === 'bigbank') {
+        const origPosted = getVal(form, 'ird-orig-posted') || 0;
+        const curPosted  = getVal(form, 'ird-cur-posted')  || 0;
+        rateDiff = origPosted - curPosted;
+      } else {
+        const curMono = getVal(form, 'ird-cur-mono') || 0;
+        rateDiff = contract - curMono;
+      }
+      irdAmt = Math.max(0, rateDiff / 100 * effBal * months / 12);
+    }
+
+    const penalty = Math.max(threeMonth, irdAmt);
+
+    let whichApplies;
+    if (type === 'variable') {
+      whichApplies = '3-month interest rule (variable mortgages only)';
+    } else if (rateDiff <= 0) {
+      whichApplies = '3-month interest applies — rates rose, no IRD';
+    } else if (irdAmt > threeMonth) {
+      whichApplies = 'IRD applies — greater than 3-month interest';
+    } else {
+      whichApplies = '3-month interest applies — greater than IRD';
+    }
+
+    let tip = '';
+    if (type === 'variable') {
+      tip = 'Variable-rate mortgages always use the 3-month interest penalty — no IRD. This is usually much cheaper than breaking a fixed mortgage.';
+    } else if (rateDiff <= 0) {
+      tip = 'Since current rates are equal to or higher than your rate, IRD is $0. Your penalty is just 3 months\' interest — a relatively low break cost.';
+    } else if (lender === 'bigbank') {
+      tip = 'Big bank IRD uses the original posted rate discount, which can make penalties 3–5× higher than a monoline. Use your full prepayment privilege before breaking.';
+    } else {
+      tip = 'Monoline penalties are based on actual market rates — typically much lower than big bank IRD. Use your prepayment privilege first to reduce the penalized balance.';
+    }
+
+    setEl('ird-eff-bal',  fmtC(effBal));
+    setEl('ird-rate-diff', type === 'variable' ? 'N/A' : (rateDiff > 0 ? rateDiff.toFixed(2) + '%' : '0.00% (rates rose)'));
+    setEl('ird-3mo',      fmtC(threeMonth));
+    setEl('ird-ird-amt',  type === 'variable' ? 'N/A' : fmtC(irdAmt));
+    setEl('ird-penalty',  fmtC(penalty));
+    setEl('ird-which',    whichApplies);
+    setEl('ird-tip',      tip);
+
+    if (placeholder) placeholder.style.display = 'none';
+    showEl('ird-results');
+    showEl('ird-cta');
+  }
+
+  typeSelect.addEventListener('change',   () => { toggleInputs(); run(); });
+  lenderSelect.addEventListener('change', () => { toggleInputs(); run(); });
+  form.querySelectorAll('input').forEach(el => el.addEventListener('input', run));
+  toggleInputs();
+  run();
+})();
+
 // ── COOKIE CONSENT BANNER ────────────────────────────────────────
 (function () {
   const KEY = 'lf_cookie_consent';
