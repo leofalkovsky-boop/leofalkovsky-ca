@@ -744,6 +744,41 @@ function calcPayment() {
   document.getElementById('cookie-decline').addEventListener('click', () => dismiss('declined'));
 }());
 
+// ── GA4 CTA CLICK TRACKING ───────────────────────────────────────
+(function () {
+  if (typeof gtag !== 'function') return;
+  const page = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
+
+  document.querySelectorAll(
+    'a.btn-primary, button.btn-primary, a[href*="contact"], a[href*="apply"]'
+  ).forEach(el => {
+    el.addEventListener('click', function () {
+      gtag('event', 'cta_click', {
+        cta_text:     (el.textContent || '').trim().slice(0, 60),
+        cta_href:     el.getAttribute('href') || '',
+        page_path:    page,
+      });
+    });
+  });
+
+  // Track calculator results shown (intent signal)
+  document.querySelectorAll('[id$="-results"]').forEach(panel => {
+    const obs = new MutationObserver(mutations => {
+      mutations.forEach(m => {
+        if (m.type === 'attributes' && m.attributeName === 'style' &&
+            panel.style.display !== 'none') {
+          gtag('event', 'calculator_used', {
+            calculator_id: panel.id,
+            page_path:     page,
+          });
+          obs.disconnect();
+        }
+      });
+    });
+    obs.observe(panel, { attributes: true });
+  });
+}());
+
 // ── SOCIAL SHARE ──────────────────────────────────────────────────
 document.querySelectorAll('[data-share]').forEach(btn => {
   btn.addEventListener('click', () => {
