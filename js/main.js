@@ -610,6 +610,36 @@ function calcPayment() {
   run();
 })();
 
+// ── COOKIE CONSENT BANNER ────────────────────────────────────────
+(function () {
+  const KEY = 'lf_cookie_consent';
+  if (localStorage.getItem(KEY)) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-label', 'Cookie consent');
+  banner.innerHTML =
+    '<div id="cookie-banner-inner">' +
+      '<p id="cookie-banner-text">We use Google Analytics to understand how visitors use this site. No personal information is collected. ' +
+        '<a href="/contact.html" style="color:var(--gold);font-weight:600;">Learn more</a>.</p>' +
+      '<div id="cookie-banner-btns">' +
+        '<button id="cookie-decline">Decline</button>' +
+        '<button id="cookie-accept">Accept</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(banner);
+
+  function dismiss(choice) {
+    localStorage.setItem(KEY, choice);
+    banner.classList.add('cookie-banner-hide');
+    setTimeout(() => banner.remove(), 400);
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', () => dismiss('accepted'));
+  document.getElementById('cookie-decline').addEventListener('click', () => dismiss('declined'));
+}());
+
 // ── SOCIAL SHARE ──────────────────────────────────────────────────
 document.querySelectorAll('[data-share]').forEach(btn => {
   btn.addEventListener('click', () => {
