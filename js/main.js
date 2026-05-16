@@ -1,6 +1,15 @@
 /* main.js — leofalkovsky.ca */
 'use strict';
 
+// ── NETLIFY IDENTITY (CMS login redirect) ────────────────────────
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on('init', user => {
+    if (!user) {
+      window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+    }
+  });
+}
+
 // ── HERO BACKGROUND CAROUSEL ─────────────────────────────────────
 (function() {
   const slides = document.querySelectorAll('.hero-bg-slide');
