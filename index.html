@@ -545,17 +545,106 @@
   </div>
 </section>
 
-<!-- ── LENDERS ───────────────────────────────────────────────────── -->
-<section style="background:var(--cream);padding:56px 0;">
-  <div class="container">
-    <p style="text-align:center;font-size:.73rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--text-light);margin-bottom:32px;">50+ Lending Partners Including</p>
-    <div class="lenders-row">
-      <span class="lender-chip">Manulife Bank</span><span class="lender-chip">TD Bank</span><span class="lender-chip">RBC</span>
-      <span class="lender-chip">BMO</span><span class="lender-chip">Scotiabank</span><span class="lender-chip">CIBC</span>
-      <span class="lender-chip">First National</span><span class="lender-chip">MCAP</span><span class="lender-chip">Meridian CU</span>
-      <span class="lender-chip">Street Capital</span><span class="lender-chip">Equitable Bank</span><span class="lender-chip">CMLS</span>
-    </div>
+<!-- ── LENDERS TICKER ─────────────────────────────────────────────── -->
+<section style="background:var(--navy-dark);padding:64px 0 60px;overflow:hidden;">
+  <style>
+    .lticker-wrap { text-align:center; margin-bottom:40px; padding:0 24px; }
+    .lticker-eyebrow { font-size:.7rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-light); margin-bottom:10px; }
+    .lticker-title { font-family:'Playfair Display',serif; font-size:clamp(1.3rem,3vw,1.9rem); color:var(--white); margin-bottom:14px; }
+    .lticker-rule { width:48px; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:2px; margin:0 auto; }
+    .lticker-mask {
+      -webkit-mask-image: linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%);
+      mask-image: linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%);
+      display:flex; flex-direction:column; gap:0;
+    }
+    .lticker-track { display:flex; overflow:hidden; padding:6px 0; }
+    .lticker-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.08) 20%,rgba(255,255,255,.08) 80%,transparent); margin:2px 0; }
+    .lticker-track:hover .lticker-inner { animation-play-state:paused; }
+    .lticker-inner { display:flex; align-items:center; width:max-content; white-space:nowrap; }
+    .lticker-fwd .lticker-inner { animation:lticker-fwd 50s linear infinite; }
+    .lticker-rev .lticker-inner { animation:lticker-rev 42s linear infinite; }
+    @keyframes lticker-fwd { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    @keyframes lticker-rev { 0%{transform:translateX(-50%);} 100%{transform:translateX(0);} }
+    .ln { display:inline-flex; align-items:center; padding:12px 28px; font-family:'Playfair Display',serif; font-size:1rem; color:rgba(255,255,255,.72); letter-spacing:.04em; white-space:nowrap; transition:color .25s, text-shadow .25s; cursor:default; }
+    .ln:hover { color:var(--gold-light); text-shadow:0 0 18px rgba(109,154,220,.35); }
+    .lnsep { display:inline-block; color:var(--gold); opacity:.35; font-size:.6rem; padding:0 2px; user-select:none; vertical-align:middle; }
+  </style>
+
+  <div class="lticker-wrap">
+    <div class="lticker-eyebrow">Lending Network</div>
+    <h2 class="lticker-title">50+ Lending Partners.<br />One Advocate.</h2>
+    <div class="lticker-rule"></div>
   </div>
+
+  <div class="lticker-mask">
+
+    <!-- Row 1 — scrolls left -->
+    <div class="lticker-track lticker-fwd">
+      <div class="lticker-inner">
+        <span class="ln">Manulife Bank</span><span class="lnsep">◆</span>
+        <span class="ln">TD Bank</span><span class="lnsep">◆</span>
+        <span class="ln">RBC Royal Bank</span><span class="lnsep">◆</span>
+        <span class="ln">BMO</span><span class="lnsep">◆</span>
+        <span class="ln">Scotiabank</span><span class="lnsep">◆</span>
+        <span class="ln">CIBC</span><span class="lnsep">◆</span>
+        <span class="ln">First National</span><span class="lnsep">◆</span>
+        <span class="ln">MCAP</span><span class="lnsep">◆</span>
+        <span class="ln">Merix Financial</span><span class="lnsep">◆</span>
+        <span class="ln">Equitable Bank</span><span class="lnsep">◆</span>
+        <span class="ln">National Bank</span><span class="lnsep">◆</span>
+        <span class="ln">B2B Bank</span><span class="lnsep">◆</span>
+        <!-- duplicate for seamless loop -->
+        <span class="ln">Manulife Bank</span><span class="lnsep">◆</span>
+        <span class="ln">TD Bank</span><span class="lnsep">◆</span>
+        <span class="ln">RBC Royal Bank</span><span class="lnsep">◆</span>
+        <span class="ln">BMO</span><span class="lnsep">◆</span>
+        <span class="ln">Scotiabank</span><span class="lnsep">◆</span>
+        <span class="ln">CIBC</span><span class="lnsep">◆</span>
+        <span class="ln">First National</span><span class="lnsep">◆</span>
+        <span class="ln">MCAP</span><span class="lnsep">◆</span>
+        <span class="ln">Merix Financial</span><span class="lnsep">◆</span>
+        <span class="ln">Equitable Bank</span><span class="lnsep">◆</span>
+        <span class="ln">National Bank</span><span class="lnsep">◆</span>
+        <span class="ln">B2B Bank</span><span class="lnsep">◆</span>
+      </div>
+    </div>
+
+    <div class="lticker-divider"></div>
+
+    <!-- Row 2 — scrolls right -->
+    <div class="lticker-track lticker-rev">
+      <div class="lticker-inner">
+        <span class="ln">CMLS Financial</span><span class="lnsep">◆</span>
+        <span class="ln">Street Capital</span><span class="lnsep">◆</span>
+        <span class="ln">Meridian Credit Union</span><span class="lnsep">◆</span>
+        <span class="ln">Home Trust</span><span class="lnsep">◆</span>
+        <span class="ln">Bridgewater Bank</span><span class="lnsep">◆</span>
+        <span class="ln">Haventree Bank</span><span class="lnsep">◆</span>
+        <span class="ln">IC Savings</span><span class="lnsep">◆</span>
+        <span class="ln">Effort Trust</span><span class="lnsep">◆</span>
+        <span class="ln">Marathon Mortgage</span><span class="lnsep">◆</span>
+        <span class="ln">Paradigm Quest</span><span class="lnsep">◆</span>
+        <span class="ln">Strive</span><span class="lnsep">◆</span>
+        <span class="ln">CMHC</span><span class="lnsep">◆</span>
+        <!-- duplicate for seamless loop -->
+        <span class="ln">CMLS Financial</span><span class="lnsep">◆</span>
+        <span class="ln">Street Capital</span><span class="lnsep">◆</span>
+        <span class="ln">Meridian Credit Union</span><span class="lnsep">◆</span>
+        <span class="ln">Home Trust</span><span class="lnsep">◆</span>
+        <span class="ln">Bridgewater Bank</span><span class="lnsep">◆</span>
+        <span class="ln">Haventree Bank</span><span class="lnsep">◆</span>
+        <span class="ln">IC Savings</span><span class="lnsep">◆</span>
+        <span class="ln">Effort Trust</span><span class="lnsep">◆</span>
+        <span class="ln">Marathon Mortgage</span><span class="lnsep">◆</span>
+        <span class="ln">Paradigm Quest</span><span class="lnsep">◆</span>
+        <span class="ln">Strive</span><span class="lnsep">◆</span>
+        <span class="ln">CMHC</span><span class="lnsep">◆</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align:center;font-size:.72rem;color:rgba(255,255,255,.28);margin-top:28px;letter-spacing:.07em;text-transform:uppercase;">Major banks · Credit unions · Monolines · Alternative lenders</p>
 </section>
 
 <!-- ── QUOTE STRIP ────────────────────────────────────────────────── -->

@@ -10,14 +10,14 @@
   <meta property="og:description" content="Unlock your home equity and invest it in TFSA, RRSP, or private lending at 8–12% returns. Leo Falkovsky's Wealth Equity strategy for Barrie homeowners." />
   <meta property="og:url" content="https://leofalkovsky.ca/wealth-equity.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://leofalkovsky.ca/images/41-redmond.jpg" />
+  <meta property="og:image" content="https://leofalkovsky.ca/images/pexels-owen-outdoors-409204690-36677719.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Wealth Equity Strategy | Leo Falkovsky · Barrie HELOC" />
   <meta name="twitter:description" content="Unlock your home equity and invest it in TFSA, RRSP, or private lending at 8–12% returns. Leo Falkovsky's Wealth Equity strategy for Barrie homeowners." />
-  <meta name="twitter:image" content="https://leofalkovsky.ca/images/41-redmond.jpg" />
+  <meta name="twitter:image" content="https://leofalkovsky.ca/images/pexels-owen-outdoors-409204690-36677719.jpg" />
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -32,12 +32,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
+    #hero .hero-title span { color: #c8251a; }
     #hero { background: #000 !important; }
-    #hero::before { content:''; position:absolute; inset:-6%; z-index:0;
-      background: linear-gradient(120deg, rgba(10,6,2,.62) 0%, rgba(180,120,30,.18) 45%, rgba(8,20,50,.55) 100%),
-        url('/images/pexels-owen-outdoors-409204690-36677719.jpg') center 60%/cover no-repeat;
-      animation: kenBurnsB 24s ease-in-out infinite alternate;
-      filter: contrast(1.12) saturate(1.25); }
+    #hero::before { content:''; position:absolute; inset:-8%; z-index:0;
+      background:
+        linear-gradient(180deg, rgba(2,4,18,.55) 0%, rgba(0,0,0,.1) 38%, rgba(0,0,0,.15) 62%, rgba(2,4,18,.72) 100%),
+        linear-gradient(105deg, rgba(180,130,20,.22) 0%, rgba(0,0,0,0) 50%, rgba(8,18,50,.4) 100%),
+        url('/images/pexels-owen-outdoors-409204690-36677719.jpg') center 55%/cover no-repeat;
+      animation: kenBurnsCorv 28s ease-in-out infinite alternate;
+      filter: contrast(1.22) saturate(1.1) brightness(0.95); }
+    @keyframes kenBurnsCorv {
+      0%   { transform: scale(1.08) translate(2%, 1%); }
+      50%  { transform: scale(1.13) translate(-1%, -0.5%); }
+      100% { transform: scale(1.06) translate(0%, 2%); }
+    }
     .flow-steps { display:flex; flex-direction:column; gap:0; }
     .flow-step { display:grid; grid-template-columns:64px 1fr; gap:24px; align-items:flex-start; padding:28px 0; border-bottom:1px solid var(--cream-dark); }
     .flow-step:last-child { border-bottom:none; }
