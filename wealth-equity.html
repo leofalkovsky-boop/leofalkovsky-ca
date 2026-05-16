@@ -34,9 +34,10 @@
   <style>
     #hero { background: #000 !important; }
     #hero::before { content:''; position:absolute; inset:-6%; z-index:0;
-      background: linear-gradient(135deg,rgba(30,63,111,0.35) 0%,rgba(30,63,111,0.29) 60%,rgba(0,26,63,0.33) 100%),
-        url('https://images.unsplash.com/photo-1654652602981-6a0cbf20f23f?w=1600&q=80') center/cover no-repeat;
-      animation: kenBurnsB 24s ease-in-out infinite alternate; }
+      background: linear-gradient(120deg, rgba(10,6,2,.62) 0%, rgba(180,120,30,.18) 45%, rgba(8,20,50,.55) 100%),
+        url('/images/pexels-owen-outdoors-409204690-36677719.jpg') center 60%/cover no-repeat;
+      animation: kenBurnsB 24s ease-in-out infinite alternate;
+      filter: contrast(1.12) saturate(1.25); }
     .flow-steps { display:flex; flex-direction:column; gap:0; }
     .flow-step { display:grid; grid-template-columns:64px 1fr; gap:24px; align-items:flex-start; padding:28px 0; border-bottom:1px solid var(--cream-dark); }
     .flow-step:last-child { border-bottom:none; }
