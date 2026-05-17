@@ -129,36 +129,28 @@
     /* ── Hero ── */
     #hero {
       min-height: 100vh;
-      background: #000;
+      background: #0a1628;
       padding: 100px 0 60px;
       position: relative;
       overflow: hidden;
     }
-    .hero-bg-slide {
-      position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1.8s ease;
-      will-change: opacity;
+    #hero::before {
+      content: ''; position: absolute; inset: -8%; z-index: 0;
+      background:
+        linear-gradient(115deg, rgba(5,14,40,.74) 0%, rgba(5,14,40,.28) 44%, rgba(5,14,40,.16) 64%, rgba(5,14,40,.44) 100%),
+        linear-gradient(to top, rgba(5,14,40,.60) 0%, transparent 52%),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&auto=format&fit=crop&q=90') center/cover no-repeat;
+      animation: kenBurnsHome 34s ease-in-out infinite alternate;
+      filter: brightness(1.06) contrast(1.09) saturate(1.14);
     }
-    .hero-bg-slide.active { opacity: 1; animation: kenBurns 22s ease-in-out both; }
-    .hero-bg-slide::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(105deg, rgba(8,20,50,.30) 0%, rgba(8,20,50,.14) 55%, rgba(0,10,38,.05) 100%);
+    @keyframes kenBurnsHome {
+      0%   { transform: scale(1.04) translate(0%,    0%); }
+      50%  { transform: scale(1.09) translate(-1%,  -0.6%); }
+      100% { transform: scale(1.06) translate(0.8%,  0.4%); }
     }
     #hero .container { position: relative; z-index: 1; }
     .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.55); }
     .hero-sub    { text-shadow: 0 1px 10px rgba(0,0,0,.4); }
-    .hero-slide-dots {
-      position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 10px; z-index: 3;
-    }
-    .hero-slide-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      border: 2px solid rgba(255,255,255,.6); background: transparent;
-      cursor: pointer; transition: all .3s; padding: 0;
-    }
-    .hero-slide-dot.active { background: var(--gold); border-color: var(--gold); transform: scale(1.35); }
     .hero-split { display: flex; flex-direction: column; align-items: flex-start; max-width: 720px; }
     @keyframes slideUp   { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
     @keyframes slideRight{ from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
@@ -264,25 +256,6 @@
 
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero" id="hero">
-  <!-- Slide 1: Happy couple receiving keys outside their new home, sunny day -->
-  <div class="hero-bg-slide active" style="background-image:url('/images/41-redmond.jpg');">
-    <img src="/images/family-nobg.png" alt="" style="position:absolute;bottom:0;right:6%;height:62%;z-index:2;pointer-events:none;object-fit:contain;" />
-  </div>
-  <!-- Slide 2: Diverse young family with kids laughing outdoors -->
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&auto=format&fit=crop&q=85')"></div>
-  <!-- Slide 3: Family with dog playing in bright sunny backyard -->
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?w=1920&auto=format&fit=crop&q=85')"></div>
-  <!-- Slide 4: Beautiful Canadian home exterior, bright summer day -->
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&auto=format&fit=crop&q=85')"></div>
-  <!-- Slide 5: Cheerful couple in front of new home, daylight -->
-  <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&auto=format&fit=crop&q=85')"></div>
-  <div class="hero-slide-dots">
-    <button class="hero-slide-dot active" data-hsd="0" aria-label="Slide 1"></button>
-    <button class="hero-slide-dot" data-hsd="1" aria-label="Slide 2"></button>
-    <button class="hero-slide-dot" data-hsd="2" aria-label="Slide 3"></button>
-    <button class="hero-slide-dot" data-hsd="3" aria-label="Slide 4"></button>
-    <button class="hero-slide-dot" data-hsd="4" aria-label="Slide 5"></button>
-  </div>
   <div class="container">
     <div class="hero-split">
 
