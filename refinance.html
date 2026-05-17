@@ -31,11 +31,19 @@
   <link rel="stylesheet" href="css/style.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When does it make sense to break my mortgage and refinance?","acceptedAnswer":{"@type":"Answer","text":"It makes sense when the interest savings over the remaining term exceed the penalty cost — typically when your rate is 0.75% or more above current market rates and you have 2+ years remaining on your term."}},{"@type":"Question","name":"How is the mortgage break penalty calculated in Canada?","acceptedAnswer":{"@type":"Answer","text":"For variable rate mortgages, the penalty is 3 months interest. For fixed rate mortgages, it's the greater of 3 months interest or the Interest Rate Differential (IRD), which can be substantial with major banks."}}]}</script>
   <style>
-    #hero { background: #000 !important; }
-    #hero::before { content:''; position:absolute; inset:-6%; z-index:0;
-      background: linear-gradient(135deg,rgba(30,63,111,0.33) 0%,rgba(30,63,111,0.26) 60%,rgba(0,26,63,0.31) 100%),
-        url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=1600&q=80') center/cover no-repeat;
-      animation: kenBurns 24s ease-in-out infinite alternate; }
+    #hero { background: #f5f0e8 !important; }
+    #hero::before { content:''; position:absolute; inset:-7%; z-index:0;
+      background:
+        linear-gradient(180deg, rgba(255,245,220,.18) 0%, rgba(255,255,255,0) 40%, rgba(10,20,50,.32) 100%),
+        linear-gradient(90deg, rgba(255,200,80,.10) 0%, rgba(255,255,255,0) 55%, rgba(30,60,110,.15) 100%),
+        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&auto=format&fit=crop&q=90') center 60%/cover no-repeat;
+      animation: kenBurnsRef 26s ease-in-out infinite alternate;
+      filter: brightness(1.12) contrast(1.06) saturate(1.18); }
+    @keyframes kenBurnsRef {
+      0%   { transform: scale(1.06) translate(0%, 1%); }
+      50%  { transform: scale(1.11) translate(-1.5%, -0.5%); }
+      100% { transform: scale(1.07) translate(1%, 0.5%); }
+    }
     .reason-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
     .reason-card { background:var(--white); border-radius:var(--radius-md); padding:28px; border-left:4px solid var(--gold); box-shadow:var(--shadow-sm); }
     .reason-num { font-family:'Playfair Display',serif; font-size:2rem; color:var(--gold); margin-bottom:6px; }
