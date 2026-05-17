@@ -137,16 +137,16 @@
     #hero::before {
       content: ''; position: absolute; inset: -8%; z-index: 0;
       background:
-        linear-gradient(115deg, rgba(5,14,40,.74) 0%, rgba(5,14,40,.28) 44%, rgba(5,14,40,.16) 64%, rgba(5,14,40,.44) 100%),
-        linear-gradient(to top, rgba(5,14,40,.60) 0%, transparent 52%),
-        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&auto=format&fit=crop&q=90') center/cover no-repeat;
-      animation: kenBurnsHome 34s ease-in-out infinite alternate;
-      filter: brightness(1.06) contrast(1.09) saturate(1.14);
+        linear-gradient(to right, rgba(5,12,35,.92) 0%, rgba(5,12,35,.65) 30%, rgba(5,12,35,.20) 56%, rgba(5,12,35,.35) 100%),
+        linear-gradient(to top, rgba(5,12,35,.68) 0%, transparent 50%),
+        url('/images/leo-falkovsky.jpg') center 25%/cover no-repeat;
+      animation: kenBurnsHome 38s ease-in-out infinite alternate;
+      filter: brightness(1.14) contrast(1.10) saturate(0.88);
     }
     @keyframes kenBurnsHome {
       0%   { transform: scale(1.04) translate(0%,    0%); }
-      50%  { transform: scale(1.09) translate(-1%,  -0.6%); }
-      100% { transform: scale(1.06) translate(0.8%,  0.4%); }
+      50%  { transform: scale(1.08) translate(-0.8%, -0.5%); }
+      100% { transform: scale(1.05) translate(0.6%,  0.3%); }
     }
     #hero .container { position: relative; z-index: 1; }
     .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.55); }
