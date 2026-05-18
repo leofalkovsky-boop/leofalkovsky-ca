@@ -154,7 +154,14 @@
       position: relative;
       overflow: hidden;
     }
-    #hero::after { display: none !important; }
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(to right, rgba(5,12,35,0.82) 0%, rgba(5,12,35,0.50) 28%, rgba(5,12,35,0.15) 48%, transparent 58%);
+    }
     #hero::before {
       content: '';
       position: absolute;
@@ -191,7 +198,7 @@
       width: 44%;
       object-fit: cover;
       object-position: top center;
-      z-index: 1;
+      z-index: 2;
       display: block;
       -webkit-mask-image: radial-gradient(ellipse 72% 88% at 50% 12%, black 30%, rgba(0,0,0,0.75) 52%, transparent 100%);
       mask-image: radial-gradient(ellipse 72% 88% at 50% 12%, black 30%, rgba(0,0,0,0.75) 52%, transparent 100%);
