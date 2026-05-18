@@ -227,30 +227,29 @@
     .hero-right-wrap { position:relative; }
 
     @media(max-width:900px){
-      #hero { grid-template-columns: 1fr !important; }
-      .hero-photo-col { display: none !important; }
       #hero {
-        min-height: 72vh;
-        position: relative;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 52vw auto;
+        min-height: unset !important;
       }
-      #hero::before {
+      .hero-photo-col {
         display: block !important;
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(to top, rgba(5,12,35,.95) 0%, rgba(5,12,35,.7) 30%, rgba(5,12,35,.15) 65%, rgba(5,12,35,.05) 100%),
-          url('/images/leo-falkovsky.jpg') center 20%/cover no-repeat;
-        z-index: 0;
+        position: relative;
+        height: 52vw;
+        min-height: 260px;
+        max-height: 420px;
+      }
+      .hero-photo-col::before {
+        background: linear-gradient(to bottom, rgba(5,12,35,0.15) 0%, rgba(5,12,35,0.55) 100%);
       }
       .hero-text-col {
-        padding: 100px 24px 40px;
-        align-items: flex-end;
-        min-height: 72vh;
+        padding: 32px 24px 48px;
+        align-items: flex-start;
+        background: #050c23;
       }
-      .hero-text-col .hero-sub { display: none; }
-      .hero-text-col .hero-stats { display: none; }
-      .hero-title { font-size: clamp(1.9rem, 8vw, 2.6rem) !important; margin-bottom: 16px; }
+      .hero-title { font-size: clamp(1.7rem, 7vw, 2.4rem) !important; margin-bottom: 14px; }
+      .hero-sub { display: none; }
+      .hero-stats { gap: 20px !important; flex-wrap: wrap; }
     }
 
     /* ── Specialties ── */
