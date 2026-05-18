@@ -148,15 +148,17 @@
     #hero {
       min-height: 100vh;
       background: #0a1628;
-      padding: 100px 0 60px;
+      padding: 0;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: flex-end;
     }
     #hero::before {
       content: ''; position: absolute; inset: -8%; z-index: 0;
       background:
-        linear-gradient(to right, rgba(5,12,35,.92) 0%, rgba(5,12,35,.65) 30%, rgba(5,12,35,.20) 56%, rgba(5,12,35,.35) 100%),
-        linear-gradient(to top, rgba(5,12,35,.68) 0%, transparent 50%),
+        linear-gradient(to right, rgba(5,12,35,.88) 0%, rgba(5,12,35,.60) 35%, rgba(5,12,35,.15) 60%, rgba(5,12,35,.25) 100%),
+        linear-gradient(to top, rgba(5,12,35,.90) 0%, rgba(5,12,35,.55) 35%, transparent 65%),
         url('/images/leo-falkovsky.jpg') 62% 25%/cover no-repeat;
       animation: kenBurnsHome 38s ease-in-out infinite alternate;
       filter: brightness(1.14) contrast(1.10) saturate(0.88);
@@ -166,7 +168,7 @@
       50%  { transform: scale(1.08) translate(-0.8%, -0.5%); }
       100% { transform: scale(1.05) translate(0.6%,  0.3%); }
     }
-    #hero .container { position: relative; z-index: 1; }
+    #hero .container { position: relative; z-index: 1; padding-top: 100px; padding-bottom: 72px; width: 100%; }
     .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.55); }
     .hero-sub    { text-shadow: 0 1px 10px rgba(0,0,0,.4); }
     .hero-split { display: flex; flex-direction: column; align-items: flex-start; max-width: 720px; }
