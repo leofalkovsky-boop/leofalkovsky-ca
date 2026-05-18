@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=8" />
+  <link rel="stylesheet" href="css/style.css?v=9" />
 
   <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
@@ -192,21 +192,25 @@
     @media(max-width:900px){ .hero-split{grid-template-columns:1fr;} .hero-right{display:none;} }
     @media(max-width:768px){
       #hero {
-        min-height: auto !important;
-        padding: 72px 0 0 !important;
-        background-color: #0a1628 !important;
-        display: block !important;
+        min-height: 88vh !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: flex-end !important;
       }
-      #hero::before { display: none !important; }
-      #hero .container { padding-bottom: 0; }
-      #hero-photo-mobile {
-        display: block !important;
-        width: 100%;
-        max-height: 55vw;
-        object-fit: cover;
-        object-position: center 20%;
-        margin-top: 24px;
+      #hero::before {
+        inset: 0 !important;
+        animation: none !important;
+        background:
+          linear-gradient(to top, rgba(5,12,35,.95) 0%, rgba(5,12,35,.7) 30%, rgba(5,12,35,.15) 65%, rgba(5,12,35,.05) 100%),
+          url('/images/leo-falkovsky.jpg') center 20%/cover no-repeat !important;
       }
+      #hero .container { padding-bottom: 28px; padding-top: 0; width: 100%; }
+      #hero .hero-badge { margin-bottom: 12px; }
+      #hero .hero-sub { display: none; }
+      #hero .hero-stats { display: none; }
+      #hero .hero-actions { margin-bottom: 0; gap: 10px; }
+      #hero .hero-title { font-size: clamp(1.9rem, 8vw, 2.6rem); margin-bottom: 16px; }
+      #hero-photo-mobile { display: none !important; }
     }
 
     /* ── Specialties ── */
