@@ -66,8 +66,8 @@ section { padding: 88px 0; }
   font-size: .93rem; letter-spacing: .03em; cursor: pointer;
   border: 2px solid transparent; transition: var(--transition); line-height: 1;
 }
-.btn-primary  { background: var(--gold); color: var(--white); border-color: var(--gold); }
-.btn-primary:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,.35); }
+.btn-primary  { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.btn-primary:hover { background: var(--navy-dark); border-color: var(--navy-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,63,111,.4); }
 .btn-outline  { background: transparent; color: var(--white); border-color: rgba(255,255,255,.6); }
 .btn-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); transform: translateY(-2px); }
 .btn-navy    { background: var(--navy); color: var(--white); border-color: var(--navy); }
