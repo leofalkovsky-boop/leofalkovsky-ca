@@ -488,6 +488,8 @@ footer { background: var(--navy-dark); color: rgba(255,255,255,.88); padding: 60
   .form-row { grid-template-columns: 1fr; }
   .form-wrap { padding: 28px 20px; }
   .process-grid { grid-template-columns: 1fr; }
+  .trust-bar-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; justify-items: start; }
+  .trust-bar-inner .trust-item:last-child { grid-column: 1 / -1; justify-self: center; }
   /* Fix hero image cutoff on mobile — remove bleed inset and Ken Burns zoom */
   #hero::before {
     inset: 0 !important;
