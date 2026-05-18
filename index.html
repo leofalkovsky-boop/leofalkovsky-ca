@@ -159,11 +159,20 @@
     #hero::before {
       content: '';
       position: absolute;
-      inset: 0;
+      inset: -8%;
       z-index: 0;
       background:
-        linear-gradient(to right, rgba(5,12,35,0.75) 0%, rgba(5,12,35,0.45) 50%, rgba(5,12,35,0.20) 100%),
-        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80') center/cover no-repeat;
+        linear-gradient(to right, rgba(5,12,35,0.84) 0%, rgba(5,12,35,0.42) 44%, rgba(5,12,35,0.08) 100%),
+        linear-gradient(180deg, rgba(2,4,18,.28) 0%, transparent 35%, transparent 65%, rgba(2,4,18,.42) 100%),
+        linear-gradient(110deg, rgba(180,130,20,.10) 0%, transparent 50%, rgba(8,18,50,.18) 100%),
+        url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600&q=80') center/cover no-repeat;
+      animation: kenBurnsHome 32s ease-in-out infinite alternate;
+      filter: contrast(1.08) saturate(1.12) brightness(1.05);
+    }
+    @keyframes kenBurnsHome {
+      0%   { transform: scale(1.06) translate(1%,  0%); }
+      50%  { transform: scale(1.10) translate(-1%, -0.5%); }
+      100% { transform: scale(1.07) translate(0%,  1%); }
     }
 
     .hero-text-col {
