@@ -147,33 +147,48 @@
     /* ── Hero ── */
     #hero {
       min-height: 100vh;
-      background: #0a1628;
+      background: #050c23;
+      display: grid;
+      grid-template-columns: 1fr 44%;
       padding: 0;
       position: relative;
       overflow: hidden;
+      align-items: stretch;
+    }
+    #hero::before, #hero::after { display: none !important; }
+
+    .hero-text-col {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
+      padding: 120px 48px 80px max(40px, 5vw);
+      position: relative;
+      z-index: 2;
     }
-    #hero::before {
-      content: ''; position: absolute; inset: -8%; z-index: 0;
-      background:
-        linear-gradient(to right, rgba(5,12,35,.88) 0%, rgba(5,12,35,.60) 35%, rgba(5,12,35,.15) 60%, rgba(5,12,35,.25) 100%),
-        linear-gradient(to top, rgba(5,12,35,.90) 0%, rgba(5,12,35,.55) 35%, transparent 65%),
-        url('/images/leo-falkovsky.jpg') 62% 25%/cover no-repeat;
-      animation: kenBurnsHome 38s ease-in-out infinite alternate;
-      filter: brightness(1.14) contrast(1.10) saturate(0.88);
+    .hero-text-col > div { max-width: 680px; }
+
+    .hero-photo-col {
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes kenBurnsHome {
-      0%   { transform: scale(1.04) translate(0%,    0%); }
-      50%  { transform: scale(1.08) translate(-0.8%, -0.5%); }
-      100% { transform: scale(1.05) translate(0.6%,  0.3%); }
+    .hero-photo-col img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
     }
-    #hero { align-items: flex-end !important; }
-    #hero::after { display: none !important; }
-    #hero .container { position: relative; z-index: 1; padding-top: 100px; padding-bottom: 72px; width: 100%; }
+    .hero-photo-col::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #050c23 0%, rgba(5,12,35,0.25) 40%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
     .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.55); }
     .hero-sub    { text-shadow: 0 1px 10px rgba(0,0,0,.4); }
-    .hero-split { display: flex; flex-direction: column; align-items: flex-start; max-width: 720px; }
     @keyframes slideUp   { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
     @keyframes slideRight{ from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
     @keyframes floatY    { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
@@ -211,28 +226,31 @@
     .hbf-icon { width:32px; height:32px; border-radius:8px; background:var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; }
     .hero-right-wrap { position:relative; }
 
-    @media(max-width:900px){ .hero-split{grid-template-columns:1fr;} .hero-right{display:none;} }
-    @media(max-width:768px){
+    @media(max-width:900px){
+      #hero { grid-template-columns: 1fr !important; }
+      .hero-photo-col { display: none !important; }
       #hero {
-        min-height: 72vh !important;
-        padding: 0 !important;
-        display: flex !important;
-        align-items: flex-end !important;
+        min-height: 72vh;
+        position: relative;
       }
       #hero::before {
-        inset: 0 !important;
-        animation: none !important;
+        display: block !important;
+        content: '';
+        position: absolute;
+        inset: 0;
         background:
           linear-gradient(to top, rgba(5,12,35,.95) 0%, rgba(5,12,35,.7) 30%, rgba(5,12,35,.15) 65%, rgba(5,12,35,.05) 100%),
-          url('/images/leo-falkovsky.jpg') center 20%/cover no-repeat !important;
+          url('/images/leo-falkovsky.jpg') center 20%/cover no-repeat;
+        z-index: 0;
       }
-      #hero .container { padding-bottom: 28px; padding-top: 0; width: 100%; }
-      #hero .hero-badge { margin-bottom: 12px; }
-      #hero .hero-sub { display: none; }
-      #hero .hero-stats { display: none; }
-      #hero .hero-actions { margin-bottom: 0; gap: 10px; }
-      #hero .hero-title { font-size: clamp(1.9rem, 8vw, 2.6rem); margin-bottom: 16px; }
-      #hero-photo-mobile { display: none !important; }
+      .hero-text-col {
+        padding: 100px 24px 40px;
+        align-items: flex-end;
+        min-height: 72vh;
+      }
+      .hero-text-col .hero-sub { display: none; }
+      .hero-text-col .hero-stats { display: none; }
+      .hero-title { font-size: clamp(1.9rem, 8vw, 2.6rem) !important; margin-bottom: 16px; }
     }
 
     /* ── Specialties ── */
@@ -302,32 +320,30 @@
 
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-split">
-
-      <!-- Left: content -->
-      <div class="hero-content">
-        <div class="hero-badge">Mortgage Broker · Licensed Since 2000</div>
-        <h1 class="hero-title">
-          How Smart Homeowners Pay Off Their Mortgage Years Faster — Without Paying More
-        </h1>
-        <p class="hero-sub">Leo Falkovsky helps GTA and Simcoe County homeowners save tens of thousands in interest using Manulife One, the Smith Manoeuvre, and mortgage acceleration — without paying more each month.</p>
-        <div class="hero-actions">
-          <a href="contact.html" class="btn btn-primary btn-lg">Book a Free Mortgage Review</a>
-          <a href="manulife-one.html" class="btn btn-outline btn-lg">Explore Manulife One →</a>
-        </div>
-        <div class="hero-stats">
-          <div><div class="stat-num" data-count="60000" data-prefix="$" data-suffix="K+">$60K+</div><div class="stat-label">Average interest saved</div></div>
-          <div><div class="stat-num" data-count="7" data-suffix=" yrs">7 yrs</div><div class="stat-label">Avg amortization cut</div></div>
-          <div><div class="stat-num" data-count="50" data-suffix="+">50+</div><div class="stat-label">Lending partners</div></div>
-          <div><div class="stat-num">5★</div><div class="stat-label">Google Reviews</div></div>
-        </div>
+  <!-- Left: text -->
+  <div class="hero-text-col">
+    <div>
+      <div class="hero-badge">Mortgage Broker · Licensed Since 2000</div>
+      <h1 class="hero-title">
+        How Smart Homeowners Pay Off Their Mortgage Years Faster — Without Paying More
+      </h1>
+      <p class="hero-sub">Leo Falkovsky helps GTA and Simcoe County homeowners save tens of thousands in interest using Manulife One, the Smith Manoeuvre, and mortgage acceleration — without paying more each month.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary btn-lg">Book a Free Mortgage Review</a>
+        <a href="manulife-one.html" class="btn btn-outline btn-lg">Explore Manulife One →</a>
       </div>
-
-
+      <div class="hero-stats">
+        <div><div class="stat-num" data-count="60000" data-prefix="$" data-suffix="K+">$60K+</div><div class="stat-label">Average interest saved</div></div>
+        <div><div class="stat-num" data-count="7" data-suffix=" yrs">7 yrs</div><div class="stat-label">Avg amortization cut</div></div>
+        <div><div class="stat-num" data-count="50" data-suffix="+">50+</div><div class="stat-label">Lending partners</div></div>
+        <div><div class="stat-num">5★</div><div class="stat-label">Google Reviews</div></div>
+      </div>
     </div>
   </div>
-  <img id="hero-photo-mobile" src="/images/leo-falkovsky.jpg" alt="Leo Falkovsky, Mortgage Broker" style="display:none;" />
+  <!-- Right: photo -->
+  <div class="hero-photo-col">
+    <img src="/images/leo-falkovsky.jpg" alt="Leo Falkovsky, Mortgage Broker" />
+  </div>
 </section>
 
 <!-- ── TRUST BAR ─────────────────────────────────────────────────── -->
