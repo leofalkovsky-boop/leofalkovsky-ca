@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/style.css?v=15" />
 
   <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
@@ -165,13 +165,11 @@
       animation: heroCarousel 21s ease-in-out infinite;
       filter: brightness(1.08) saturate(1.12) contrast(1.04);
     }
-    .hero-slide-1 { background-image: url('/images/41-redmond.jpg');                                                             animation-delay: 0s; }
-    .hero-slide-2 { background-image: url('/images/pexels-owen-outdoors-409204690-36677719.jpg'); background-position: center 40%; animation-delay: 7s; }
-    .hero-slide-3 { background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1600&q=80');           animation-delay: 14s; }
-    @keyframes heroCarousel {
-      0%, 3%  { opacity: 0; transform: scale(1.00); }
-      7%, 28% { opacity: 1; transform: scale(1.06); }
-      33%, 100% { opacity: 0; transform: scale(1.08); }
+    .hero-slide-1 { background-image: url('/images/41-redmond.jpg'); opacity: 1; animation: kenBurnsHome 32s ease-in-out infinite alternate; }
+    @keyframes kenBurnsHome {
+      0%   { transform: scale(1.04) translate(0%, 0%); }
+      50%  { transform: scale(1.08) translate(-0.8%, -0.5%); }
+      100% { transform: scale(1.05) translate(0.6%, 0.3%); }
     }
 
     /* Left-side gradient for text readability */
@@ -254,7 +252,7 @@
       #hero::before {
         background:
           linear-gradient(to top, rgba(5,12,35,0.96) 0%, rgba(5,12,35,0.65) 35%, rgba(5,12,35,0.15) 70%, transparent 100%),
-          url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80') center/cover no-repeat !important;
+          url('/images/41-redmond.jpg') center/cover no-repeat !important;
         animation: none !important;
         inset: 0 !important;
       }
@@ -336,10 +334,8 @@
 
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero" id="hero">
-  <!-- Background carousel -->
+  <!-- Background photo -->
   <div class="hero-slide hero-slide-1"></div>
-  <div class="hero-slide hero-slide-2"></div>
-  <div class="hero-slide hero-slide-3"></div>
   <!-- Text -->
   <div class="hero-text-col">
     <div>
@@ -748,7 +744,7 @@
     <div class="two-col">
       <div>
         <span class="section-label">Alternative Investing</span>
-        <h2 class="section-title">Become a<br /><span style="color:var(--gold);">Private Mortgage Lender</span></h2>
+        <h2 class="section-title">Become a<br /><span style="color:var(--white);">Private Mortgage Lender</span></h2>
         <div class="gold-rule"></div>
         <p style="font-size:.97rem;color:var(--text-mid);line-height:1.8;margin-bottom:16px;">Most investors leave significant returns on the table by staying in traditional markets. Private mortgage lending offers secured, predictable returns backed by real Canadian real estate — without the volatility of stocks or mutual funds.</p>
         <p style="font-size:.97rem;color:var(--text-mid);line-height:1.8;margin-bottom:16px;">As a private lender, your capital is secured by a registered mortgage on physical property. You choose the deals, set your terms, and earn consistent monthly income — typically 8–12% annually — while your investment is protected by real assets.</p>

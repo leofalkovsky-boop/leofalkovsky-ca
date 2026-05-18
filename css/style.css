@@ -154,7 +154,7 @@ section { padding: 88px 0; }
 }
 .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5.5vw, 4rem); color: var(--white); line-height: 1.1; margin-bottom: 22px; }
-.hero-title span { color: var(--gold); }
+.hero-title span { color: var(--white); }
 .hero-sub { font-size: clamp(.95rem, 2vw, 1.15rem); color: rgba(255,255,255,.85); line-height: 1.75; margin-bottom: 40px; max-width: 640px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 56px; }
 .hero-stats { display: flex; flex-wrap: wrap; gap: 40px; }
