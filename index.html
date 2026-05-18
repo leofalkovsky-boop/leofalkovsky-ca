@@ -162,8 +162,8 @@
       inset: 0;
       z-index: 0;
       background:
-        linear-gradient(to right, rgba(5,12,35,0.82) 0%, rgba(5,12,35,0.60) 45%, rgba(5,12,35,0.35) 100%),
-        url('https://images.unsplash.com/photo-1497366754035-f200968a7f82?w=1600&q=80') center/cover no-repeat;
+        linear-gradient(to right, rgba(5,12,35,0.75) 0%, rgba(5,12,35,0.45) 50%, rgba(5,12,35,0.20) 100%),
+        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80') center/cover no-repeat;
     }
 
     .hero-text-col {
@@ -179,6 +179,8 @@
       position: relative;
       overflow: hidden;
       z-index: 1;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+      mask-image: linear-gradient(to right, transparent 0%, black 30%);
     }
     .hero-photo-col img {
       position: absolute;
@@ -189,14 +191,7 @@
       object-position: top center;
       display: block;
     }
-    .hero-photo-col::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, rgba(5,12,35,0.6) 0%, rgba(5,12,35,0.1) 40%, transparent 70%);
-      z-index: 1;
-      pointer-events: none;
-    }
+    .hero-photo-col::before { display: none; }
     .hero-title { text-shadow: 0 2px 20px rgba(0,0,0,.55); }
     .hero-sub    { text-shadow: 0 1px 10px rgba(0,0,0,.4); }
     @keyframes slideUp   { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
