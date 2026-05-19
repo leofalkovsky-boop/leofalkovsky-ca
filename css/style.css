@@ -92,7 +92,7 @@ section { padding: 88px 0; }
 .nav-logo-tag { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-dark); }
 .nav-links {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  display: flex; align-items: center; gap: 18px; flex-wrap: nowrap;
+  display: flex; align-items: center; gap: 11px; flex-wrap: nowrap;
   pointer-events: none;
 }
 .nav-links li { pointer-events: auto; }
