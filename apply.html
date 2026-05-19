@@ -241,7 +241,26 @@
           </div>
           <p style="font-size:.78rem;color:var(--text-light);margin-bottom:20px;">📎 Select files to have them ready. After reviewing your application Leo will send a secure link to collect them.</p>
           <div class="form-group"><label>Anything else Leo should know?</label><textarea name="notes" placeholder="Special circumstances, timeline concerns, questions about Manulife One or Smith Manoeuvre..."></textarea></div>
-          <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;font-size:.82rem;color:var(--text-mid);line-height:1.65;">🔒 <strong>Your privacy is protected.</strong> All information is encrypted and used solely to process your mortgage application. I will never sell or share your data.</div>
+          <!-- ── FSRA Disclosure ── -->
+          <div style="background:#f0f4ff;border:1px solid #c7d4f5;border-radius:var(--radius-md);padding:16px;margin-bottom:16px;font-size:.78rem;color:#333;line-height:1.7;">
+            <strong style="display:block;margin-bottom:4px;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);">FSRA Disclosure</strong>
+            Leo Falkovsky (FSRA Mortgage Broker Licence <strong>#M09000003</strong>) is a licensed mortgage broker with 8Twelve Mortgage Corp. (FSRA Brokerage Licence <strong>#13230</strong>), regulated by the Financial Services Regulatory Authority of Ontario (FSRA). By submitting this application you acknowledge that your information will be used to facilitate mortgage services on your behalf.
+          </div>
+
+          <!-- ── PIPEDA Consent ── -->
+          <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin-bottom:16px;font-size:.78rem;color:var(--text-mid);line-height:1.7;">
+            <strong style="display:block;margin-bottom:6px;color:var(--navy-dark);">Privacy &amp; Consent (PIPEDA)</strong>
+            The personal information collected in this form is used solely to assess and process your mortgage application. It will be shared with 8Twelve Mortgage Corp. and, where required, with lenders, credit bureaus, and insurers for the purpose of arranging mortgage financing. Your information is protected in accordance with the <em>Personal Information Protection and Electronic Documents Act (PIPEDA)</em>. You have the right to access, correct, or withdraw your information at any time by contacting <a href="mailto:leo@leofalkovsky.com" style="color:var(--navy);">leo@leofalkovsky.com</a>. See our full <a href="/privacy.html" style="color:var(--navy);">Privacy Policy</a>.
+          </div>
+
+          <!-- ── Consent Checkbox ── -->
+          <div style="margin-bottom:20px;">
+            <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:.82rem;color:var(--text-mid);line-height:1.6;">
+              <input type="checkbox" id="consent-check" name="consent" value="yes" required style="margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--navy);" />
+              <span>I consent to the collection, use, and disclosure of my personal information as described above for the purpose of obtaining mortgage services, and I confirm I am 18 years of age or older. <span style="color:#c00;">*</span></span>
+            </label>
+          </div>
+
           <button type="submit" class="btn btn-primary form-submit">Submit My Application →</button>
           <div class="step-actions" style="margin-top:12px;justify-content:flex-start;"><button type="button" class="btn btn-ghost btn-sm" data-prev>← Back</button></div>
         </div>
@@ -284,22 +303,36 @@ document.querySelectorAll('.doc-upload-box input[type="file"]').forEach(function
 });
 
 // Submit via JSON so Formspree never sees multipart/file content
+// ── Replace WORKER_URL with your deployed Cloudflare Worker URL ──
+const FINMO_WORKER_URL = 'WORKER_URL_PLACEHOLDER';
+
 document.getElementById('application-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   var form = e.target;
   var btn = form.querySelector('[type="submit"]');
+
+  // Consent gate
+  if (!document.getElementById('consent-check').checked) {
+    alert('Please read and accept the privacy consent before submitting.');
+    return;
+  }
+
   if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
 
   var data = {};
   new FormData(form).forEach(function(val, key) { data[key] = val; });
+  // Record consent timestamp for PIPEDA audit trail
+  data.consent_timestamp = new Date().toISOString();
+  data.consent_ip_note   = 'Captured server-side via Cloudflare Worker';
 
   try {
-    var resp = await fetch('https://formspree.io/f/mwvyjqyv', {
+    var resp = await fetch(FINMO_WORKER_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-    if (resp.ok) {
+    var result = await resp.json();
+    if (resp.ok && result.success) {
       form.style.display = 'none';
       document.getElementById('app-success').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
