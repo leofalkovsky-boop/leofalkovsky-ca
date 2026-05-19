@@ -68,7 +68,7 @@ section { padding: 88px 0; }
 }
 .btn-primary  { background: var(--navy); color: var(--white); border-color: var(--navy); }
 .btn-primary:hover { background: var(--navy-dark); border-color: var(--navy-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,63,111,.4); }
-.btn-outline  { background: transparent; color: var(--white); border-color: rgba(255,255,255,.6); }
+.btn-outline  { background: transparent; color: var(--white); border-color: var(--white); }
 .btn-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); transform: translateY(-2px); }
 .btn-navy    { background: var(--navy); color: var(--white); border-color: var(--navy); }
 .btn-navy:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: var(--shadow-md); }
