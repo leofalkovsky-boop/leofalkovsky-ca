@@ -162,6 +162,83 @@
 </section>
 
 
+<!-- ── QUOTE CAROUSEL ────────────────────────────────────────────── -->
+<section style="background:var(--white);padding:20px 0 40px;border-top:1px solid var(--cream-dark);">
+  <div class="container" style="max-width:780px;">
+    <div class="qc-wrap">
+      <p class="qc-label">Words that shaped my thinking</p>
+      <div class="qc-stage" id="qcStage"></div>
+      <div class="qc-controls">
+        <button class="qc-btn" id="qcPrev">&#8249;</button>
+        <div class="qc-dots" id="qcDots"></div>
+        <button class="qc-btn" id="qcNext">&#8250;</button>
+      </div>
+      <div class="qc-progress-bar"><div class="qc-progress" id="qcProgress"></div></div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  const quotes=[
+    {text:"Assume the feeling of the wish fulfilled.",author:"Neville Goddard"},
+    {text:"You are already that which you want to be, and your refusal to believe this is the only reason you do not see it.",author:"Neville Goddard"},
+    {text:"The moment you change your perception is the moment you rewrite the chemistry of your body.",author:"Dr. Joe Dispenza"},
+    {text:"Every time you think a thought, you are influencing matter and information. You are co-creating your reality.",author:"Dr. Joe Dispenza"},
+    {text:"Abundance is not something we acquire. It is something we tune into.",author:"Wayne Dyer"},
+    {text:"When you change the way you look at things, the things you look at change.",author:"Wayne Dyer"},
+    {text:"You don't get what you want in life. You get what you are.",author:"Bob Proctor"},
+    {text:"See yourself living in abundance and you will attract it. It always works, it works every time with every person.",author:"Bob Proctor"},
+    {text:"Whatever you hold in your mind on a consistent basis is exactly what you will experience in your life.",author:"Tony Robbins"},
+    {text:"The only limit to your impact is your imagination and commitment.",author:"Tony Robbins"},
+    {text:"The mind is everything. What you think, you become.",author:"Buddha"},
+    {text:"What you think, you become. What you feel, you attract. What you imagine, you create.",author:"Buddha"},
+    {text:"Whether you think you can or you think you can't — you're right.",author:"Henry Ford"},
+    {text:"Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",author:"Albert Einstein"},
+    {text:"Everything you want is on the other side of fear.",author:"Jack Canfield"},
+    {text:"You become what you believe.",author:"Oprah Winfrey"},
+    {text:"The law of attraction is the law of love. Whatever you give out in thought, word, or action will return to you multiplied.",author:"Rhonda Byrne"},
+    {text:"A person is limited only by the thoughts that he chooses.",author:"James Allen"},
+    {text:"Your thoughts are the architects of your destiny.",author:"David O. McKay"},
+    {text:"The secret of getting ahead is getting started.",author:"Mark Twain"}
+  ];
+  const INTERVAL=6000;
+  let cur=0,timer=null;
+  const stage=document.getElementById('qcStage');
+  const dotsEl=document.getElementById('qcDots');
+  const prog=document.getElementById('qcProgress');
+  quotes.forEach((q,i)=>{
+    const d=document.createElement('div');
+    d.className='qc-slide'+(i===0?' qc-active':'');
+    d.innerHTML='<div class="qc-mark">“</div><p class="qc-text">'+q.text+'</p><div class="qc-divider"></div><p class="qc-author">'+q.author+'</p>';
+    stage.appendChild(d);
+    const dot=document.createElement('button');
+    dot.className='qc-dot'+(i===0?' qc-dot-active':'');
+    dot.setAttribute('aria-label','Quote '+(i+1));
+    dot.addEventListener('click',()=>goTo(i));
+    dotsEl.appendChild(dot);
+  });
+  function goTo(idx){
+    const slides=stage.querySelectorAll('.qc-slide');
+    const dots=dotsEl.querySelectorAll('.qc-dot');
+    slides[cur].classList.remove('qc-active');
+    dots[cur].classList.remove('qc-dot-active');
+    cur=(idx+quotes.length)%quotes.length;
+    slides[cur].classList.add('qc-active');
+    dots[cur].classList.add('qc-dot-active');
+    prog.style.transition='none';prog.style.width='0%';
+    clearTimeout(timer);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      prog.style.transition='width '+INTERVAL+'ms linear';
+      prog.style.width='100%';
+    }));
+    timer=setTimeout(()=>goTo(cur+1),INTERVAL);
+  }
+  document.getElementById('qcPrev').addEventListener('click',()=>goTo(cur-1));
+  document.getElementById('qcNext').addEventListener('click',()=>goTo(cur+1));
+  goTo(0);
+})();
+</script>
+
 <section class="cta-section"><div class="container cta-content" style="position:relative;z-index:1;"><span class="section-label">Get Started</span><h2 class="section-title">Ready to Talk Oro-Medonte Mortgages?</h2><p class="cta-sub">Book a free 30-minute consultation. Virtual or in-person. No obligation, just honest advice for Oro-Medonte homeowners.</p><div class="cta-actions"><a href="contact.html" class="btn btn-primary btn-lg">Book My Free Consultation</a><a href="tel:+14163566968" class="btn btn-outline">(416) 356-6968</a></div></div></section>
 
 <footer><div class="container"><div class="footer-grid"><div><div class="footer-brand-name">Leo Falkovsky</div><div class="footer-brand-tag">Mortgage Broker · Oro-Medonte, ON</div><p class="footer-brand-desc">Serving Oro-Medonte and Simcoe County with Manulife One, Smith Manoeuvre, and advanced mortgage strategies.</p></div><div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="manulife-one.html">Manulife One</a><a href="refinance.html">Refinancing</a><a href="contact.html">Home Purchase</a><a href="contact.html">Renewals</a></div></div><div class="footer-col"><h4>Areas Served</h4><div class="footer-links"><a href="barrie.html">Barrie</a><a href="innisfil.html">Innisfil</a><a href="springwater.html">Springwater</a><a href="oro-medonte.html">Oro-Medonte</a><a href="toronto.html">Toronto</a><a href="mississauga.html">Mississauga</a><a href="vaughan.html">Vaughan</a><a href="markham.html">Markham</a><a href="richmond-hill.html">Richmond Hill</a><a href="contact.html">Brampton</a><a href="oakville.html">Oakville</a><a href="contact.html">Newmarket</a></div></div><div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="calculators.html">Calculators</a><a href="blog/index.html">Blog</a><a href="apply.html">Apply Online</a><a href="contact.html">Contact</a></div></div></div><div class="footer-fsra"><strong style="color:rgba(255,255,255,.8);">Licensing:</strong> Leo Falkovsky, FSRA Licensed Mortgage Broker #M09000003. 8Twelve Mortgage FSRA #13230.</div><div class="footer-divider"></div><div class="footer-bottom"><span>© 2026 Leo Falkovsky · leofalkovsky.ca</span><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">FSRA Disclosure</a></div></div></div></footer>
