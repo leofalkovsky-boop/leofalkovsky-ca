@@ -304,7 +304,7 @@ document.querySelectorAll('.doc-upload-box input[type="file"]').forEach(function
 
 // Submit via JSON so Formspree never sees multipart/file content
 // ── Replace WORKER_URL with your deployed Cloudflare Worker URL ──
-const FINMO_WORKER_URL = 'WORKER_URL_PLACEHOLDER';
+const FINMO_WORKER_URL = 'https://finmo-proxy.leofalkovsky.workers.dev';
 
 document.getElementById('application-form').addEventListener('submit', async function(e) {
   e.preventDefault();
