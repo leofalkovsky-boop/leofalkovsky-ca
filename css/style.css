@@ -265,6 +265,8 @@ section { padding: 88px 0; }
 }
 .cta-section .section-label { color: var(--gold-dark); }
 .cta-section .section-title { color: var(--navy-dark); }
+.cta-section .btn-outline { color: var(--navy-dark); border-color: var(--navy-dark); }
+.cta-section .btn-outline:hover { background: rgba(13,35,66,.08); border-color: var(--navy-dark); }
 .cta-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
 .cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; position: relative; z-index: 1; }
 .cta-contact-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 32px; margin-top: 40px; position: relative; z-index: 1; padding-top: 32px; border-top: 1px solid var(--cream-dark); }
