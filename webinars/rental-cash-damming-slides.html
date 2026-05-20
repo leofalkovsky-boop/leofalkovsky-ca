@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Cash Damming — Leo Falkovsky</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-dark: #050c23;
+    --gold: #c8973a;
+    --white: #ffffff;
+    --light: #f0f4ff;
+    --accent: #1e4b8e;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #000;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    padding: 60px 80px;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 0.35s ease;
+  }
+
+  .slide.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Layouts */
+  .slide-cover   { background: var(--navy-dark); color: var(--white); align-items: center; text-align: center; }
+  .slide-dark    { background: var(--navy); color: var(--white); }
+  .slide-light   { background: var(--light); color: var(--navy); }
+  .slide-split   { background: var(--navy-dark); color: var(--white); flex-direction: row; gap: 60px; align-items: center; }
+  .slide-numbers { background: var(--accent); color: var(--white); }
+  .slide-cta     { background: var(--navy-dark); color: var(--white); align-items: center; text-align: center; }
+
+  /* Typography */
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .slide-cover .eyebrow { color: var(--gold); }
+
+  h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 24px; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+  h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+
+  .subtitle {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    opacity: 0.85;
+    max-width: 700px;
+    line-height: 1.6;
+  }
+
+  .presenter {
+    margin-top: 40px;
+    font-size: 1.05rem;
+    opacity: 0.7;
+  }
+
+  .presenter strong { color: var(--gold); opacity: 1; }
+
+  /* Lists */
+  ul.points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 800px;
+  }
+
+  ul.points li {
+    padding-left: 28px;
+    position: relative;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 1.5;
+    opacity: 0.92;
+  }
+
+  ul.points li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .slide-light ul.points li::before { color: var(--accent); }
+
+  /* Split layout */
+  .split-left  { flex: 1; }
+  .split-right { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+
+  /* Diagram */
+  .diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 32px 36px;
+    font-size: 1rem;
+  }
+
+  .diagram-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .diagram-box {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .diagram-box.blue { background: var(--accent); color: var(--white); }
+  .diagram-box.green { background: #2a7a4b; color: var(--white); }
+  .diagram-box.red { background: #8b2020; color: var(--white); }
+
+  .diagram-arrow {
+    font-size: 1.3rem;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .diagram-label {
+    font-size: 0.85rem;
+    opacity: 0.65;
+    font-style: italic;
+  }
+
+  .diagram-result {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 820px;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+
+  .stat-num {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    opacity: 0.75;
+    line-height: 1.4;
+  }
+
+  /* Steps */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 800px;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: 800;
+    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-text { font-size: 1.1rem; line-height: 1.5; opacity: 0.92; }
+  .step-text strong { color: var(--gold); }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 700px;
+  }
+
+  .checklist li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 1.1rem;
+    line-height: 1.45;
+  }
+
+  .check {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: 800;
+    font-size: 0.85rem;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* CTA */
+  .cta-btn {
+    display: inline-block;
+    margin-top: 36px;
+    padding: 18px 44px;
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: 800;
+    font-size: 1.15rem;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .url-pill {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  /* Quote */
+  .quote-block {
+    border-left: 4px solid var(--gold);
+    padding-left: 28px;
+    margin: 20px 0;
+    font-size: 1.25rem;
+    font-style: italic;
+    opacity: 0.9;
+    max-width: 760px;
+    line-height: 1.6;
+  }
+
+  /* Warning box */
+  .warning-box {
+    background: rgba(200, 151, 58, 0.12);
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 20px 24px;
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 700px;
+    margin-top: 20px;
+  }
+
+  .warning-box strong { color: var(--gold); }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  /* Slide counter */
+  .counter {
+    position: fixed;
+    bottom: 18px;
+    right: 24px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    font-family: monospace;
+    z-index: 100;
+    letter-spacing: 0.05em;
+  }
+
+  /* Nav */
+  .nav-btn {
+    position: fixed;
+    bottom: 10px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.25);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    padding: 8px 16px;
+    transition: color 0.2s;
+  }
+
+  .nav-btn:hover { color: var(--gold); }
+  .nav-prev { left: 16px; }
+  .nav-next { left: 60px; }
+
+  /* Logo watermark */
+  .watermark {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    z-index: 100;
+  }
+
+  .highlight { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: Cover -->
+  <div class="slide slide-cover active">
+    <div class="eyebrow">Leo Falkovsky · Mortgage Broker · Licensed Since 2000</div>
+    <h1>Turn Your Rental Property Into a<br><span class="highlight">Tax-Deduction Machine</span></h1>
+    <p class="subtitle">How Rental Cash Damming converts non-deductible personal mortgage interest into a growing tax refund — legally, without paying more each month.</p>
+    <p class="presenter">Presented by <strong>Leo Falkovsky</strong> · leofalkovsky.ca</p>
+  </div>
+
+  <!-- SLIDE 2: Agenda -->
+  <div class="slide slide-dark">
+    <div class="eyebrow">Tonight's Webinar</div>
+    <h2>What We'll Cover</h2>
+    <ul class="points">
+      <li>Why most Canadian landlords are overpaying tax without knowing it</li>
+      <li>The CRA rule that makes Cash Damming work</li>
+      <li>How the strategy works — step by step</li>
+      <li>Real numbers: what it's worth in dollars and tax refunds</li>
+      <li>What you need to qualify and how to set it up</li>
+      <li>Q&A + your next step</li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 3: The Problem -->
+  <div class="slide slide-dark">
+    <div class="eyebrow">The Problem</div>
+    <h2>Most Landlords Are Structured the Wrong Way</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">You have a personal home mortgage — <strong>interest is NOT tax-deductible</strong></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">You have a rental property — <strong>rental expenses ARE deductible</strong></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">You're paying personal mortgage interest with <strong>after-tax dollars</strong> — the most expensive kind</div>
+      </div>
+    </div>
+    <div class="warning-box">
+      <strong>Example:</strong> $450,000 personal mortgage at 5.5% = $24,750/year in interest. Every dollar of that costs you $1.67 if you're in a 40% tax bracket.
+    </div>
+  </div>
+
+  <!-- SLIDE 4: The CRA Rule -->
+  <div class="slide slide-light">
+    <div class="eyebrow">The Legal Foundation</div>
+    <h2 style="color:var(--navy)">The CRA Purpose Test</h2>
+    <div class="quote-block" style="color:var(--navy)">
+      "Interest on money borrowed to earn income from a business or property is deductible."
+      <br><span style="font-size:0.85rem; opacity:0.6;">— CRA IT-533 / Income Tax Act s. 20(1)(c)</span>
+    </div>
+    <ul class="points" style="margin-top:20px;">
+      <li style="color:var(--navy)">Personal mortgage = borrowed to own your home = <strong style="color:#8b2020">NOT deductible</strong></li>
+      <li style="color:var(--navy)">HELOC used to fund rental expenses = borrowed to earn rental income = <strong style="color:#2a7a4b">DEDUCTIBLE</strong></li>
+      <li style="color:var(--navy)">Cash Damming is built entirely on this distinction — it's well-established and CRA-recognized</li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 5: How It Works -->
+  <div class="slide slide-split">
+    <div class="split-left">
+      <div class="eyebrow">The Strategy</div>
+      <h2>How Cash Damming Works</h2>
+      <div class="steps" style="margin-top:8px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Deposit all rental income onto your <strong>personal mortgage</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Draw from a <strong>HELOC</strong> to pay all rental property expenses</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">HELOC interest = <strong>fully deductible</strong> (used for income-producing purpose)</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">Repeat monthly — personal mortgage <strong>shrinks</strong>, deductible debt <strong>grows</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="split-right">
+      <div class="diagram">
+        <div class="diagram-row">
+          <div class="diagram-box">Rental Income<br><small>$2,400/mo</small></div>
+          <div class="diagram-arrow">→</div>
+          <div class="diagram-box blue">Personal Mortgage<br><small>Pays down faster</small></div>
+        </div>
+        <div style="height:12px; border-left: 2px dashed rgba(255,255,255,0.25); margin-left: 18px;"></div>
+        <div class="diagram-row">
+          <div class="diagram-box red">HELOC Draw<br><small>$1,800/mo</small></div>
+          <div class="diagram-arrow">→</div>
+          <div class="diagram-box green">Rental Expenses<br><small>Tax-deductible ✓</small></div>
+        </div>
+        <div class="diagram-result">
+          Net result: same cash flow.<br>
+          Non-deductible debt converts to deductible debt every month.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Real Numbers -->
+  <div class="slide slide-numbers">
+    <div class="eyebrow">Real Numbers · Barrie Example</div>
+    <h2>What This Looks Like in Year 1</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">$28,800</div>
+        <div class="stat-label">Rental income deposited onto personal mortgage over 12 months</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$21,600</div>
+        <div class="stat-label">HELOC drawn for rental expenses — 100% tax-deductible interest</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$8,640</div>
+        <div class="stat-label">Tax refund in Year 1 at 40% marginal rate on $21,600 deductible interest</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$86,400+</div>
+        <div class="stat-label">Cumulative tax savings over 10 years — growing each year as deductible debt increases</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Year by Year -->
+  <div class="slide slide-dark">
+    <div class="eyebrow">The Compounding Effect</div>
+    <h2>It Gets Better Every Year</h2>
+    <ul class="points">
+      <li>Year 1: ~$21,600 of deductible HELOC → ~$8,640 refund</li>
+      <li>Year 3: ~$64,800 of deductible HELOC → ~$25,920 refund</li>
+      <li>Year 5: ~$108,000 of deductible HELOC → ~$43,200 refund</li>
+      <li>Meanwhile, your personal mortgage shrinks by ~$28,800/yr — years ahead of schedule</li>
+      <li>The strategy snowballs: more deductible debt = bigger refund = more to redeploy</li>
+    </ul>
+    <div class="warning-box">
+      <strong>Key insight:</strong> You're not paying more each month. You're restructuring which account dollars flow through. The tax refund is the return on zero extra spending.
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Requirements -->
+  <div class="slide slide-light">
+    <div class="eyebrow">Do You Qualify?</div>
+    <h2 style="color:var(--navy)">What You Need</h2>
+    <ul class="checklist">
+      <li style="color:var(--navy)">
+        <div class="check" style="background:var(--accent); color:#fff;">✓</div>
+        A personal home with equity — needed to set up the HELOC
+      </li>
+      <li style="color:var(--navy)">
+        <div class="check" style="background:var(--accent); color:#fff;">✓</div>
+        A rental property generating income — any residential or commercial rental qualifies
+      </li>
+      <li style="color:var(--navy)">
+        <div class="check" style="background:var(--accent); color:#fff;">✓</div>
+        A readvanceable mortgage or HELOC product (Manulife One is ideal)
+      </li>
+      <li style="color:var(--navy)">
+        <div class="check" style="background:var(--accent); color:#fff;">✓</div>
+        A clean paper trail — CRA requires borrowed funds traceable to rental expenses
+      </li>
+      <li style="color:var(--navy)">
+        <div class="check" style="background:var(--accent); color:#fff;">✓</div>
+        An accountant who understands the strategy (I can refer you to the right people)
+      </li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 9: Manulife One -->
+  <div class="slide slide-dark">
+    <div class="eyebrow">Best Structure for Cash Damming</div>
+    <h2>Why Manulife One Makes This Easy</h2>
+    <ul class="points">
+      <li>Readvanceable all-in-one account — as you pay down principal, credit automatically frees up</li>
+      <li>No need to requalify for a HELOC separately — it's built into the structure</li>
+      <li>One account, clean paper trail — CRA-friendly by design</li>
+      <li>Can hold both your personal mortgage and track HELOC draws in one place</li>
+      <li>I've set this up for clients across Barrie, Innisfil, Springwater, Oro-Medonte, and the GTA</li>
+    </ul>
+    <div class="warning-box" style="margin-top:24px;">
+      <strong>Note:</strong> Other HELOC products can work — but Manulife One is the cleanest structure for this strategy. Setup takes 4–6 weeks from application to funded.
+    </div>
+  </div>
+
+  <!-- SLIDE 10: Common Questions -->
+  <div class="slide slide-split">
+    <div class="split-left">
+      <div class="eyebrow">Q&A</div>
+      <h2>Questions I Hear Every Time</h2>
+    </div>
+    <div class="split-right" style="gap: 20px; justify-content: center;">
+      <div class="stat-card">
+        <h3 style="color:var(--gold); margin-bottom:8px;">Is this legal?</h3>
+        <p style="font-size:0.95rem; opacity:0.85; line-height:1.5;">Yes — it's based on CRA IT-533 and the purpose test. The paper trail is what matters. Done right, it's bulletproof.</p>
+      </div>
+      <div class="stat-card">
+        <h3 style="color:var(--gold); margin-bottom:8px;">Does my rental need to be profitable?</h3>
+        <p style="font-size:0.95rem; opacity:0.85; line-height:1.5;">No. Even cash-flow neutral rentals benefit — the tax refund often creates positive cash flow.</p>
+      </div>
+      <div class="stat-card">
+        <h3 style="color:var(--gold); margin-bottom:8px;">What if I only have one property?</h3>
+        <p style="font-size:0.95rem; opacity:0.85; line-height:1.5;">Cash Damming needs a rental. If you only have a personal home, ask me about the Smith Manoeuvre — same principle, different execution.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: CTA -->
+  <div class="slide slide-cta">
+    <div class="eyebrow">Your Next Step</div>
+    <h1>Book a Free<br><span class="highlight">Mortgage Strategy Review</span></h1>
+    <p class="subtitle">We'll look at your specific numbers and determine if Cash Damming makes sense for your situation. No obligation. 30 minutes.</p>
+    <a class="cta-btn" href="https://leofalkovsky.ca/contact.html">Book Your Free Review →</a>
+    <p class="url-pill">leofalkovsky.ca/contact</p>
+    <p style="margin-top:32px; font-size:0.9rem; opacity:0.5;">Leo Falkovsky · Mortgage Broker · Barrie, ON · Licensed Since 2000</p>
+  </div>
+
+</div>
+
+<!-- UI -->
+<div class="progress-bar" id="progress"></div>
+<div class="counter" id="counter">1 / 11</div>
+<div class="watermark">leofalkovsky.ca</div>
+<button class="nav-btn nav-prev" onclick="changeSlide(-1)">&#8592;</button>
+<button class="nav-btn nav-next" onclick="changeSlide(1)">&#8594;</button>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + slides.length;
+    document.getElementById('progress').style.width = ((current + 1) / slides.length * 100) + '%';
+  }
+
+  function changeSlide(dir) { showSlide(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); changeSlide(-1); }
+    if (e.key === 'Home') showSlide(0);
+    if (e.key === 'End')  showSlide(slides.length - 1);
+  });
+
+  // Touch swipe
+  let touchX = 0;
+  document.addEventListener('touchstart', e => touchX = e.touches[0].clientX);
+  document.addEventListener('touchend',   e => {
+    const diff = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+  });
+
+  showSlide(0);
+</script>
+</body>
+</html>
