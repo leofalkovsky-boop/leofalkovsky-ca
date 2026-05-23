@@ -257,17 +257,17 @@
         animation: none !important;
         inset: 0 !important;
       }
-      /* Side-by-side: text left, Leo right */
+      /* Leo pinned to right half, starting below the fixed nav */
       .hero-leo {
-        position: relative !important;
-        top: auto !important; bottom: auto !important; right: auto !important;
-        width: 42% !important;
+        position: absolute !important;
+        top: 72px !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        left: 52% !important;
+        width: auto !important;
         height: auto !important;
-        min-height: 100% !important;
-        flex-shrink: 0 !important;
-        align-self: stretch !important;
         object-fit: cover !important;
-        object-position: 57% top !important;
+        object-position: center top !important;
         border-radius: 0 !important;
         box-shadow: none !important;
         -webkit-mask-image: none !important;
@@ -275,9 +275,8 @@
         opacity: 0.5 !important;
       }
       .hero-text-col {
-        padding: 56px 16px 20px 20px !important;
-        max-width: 58% !important;
-        flex: 1 !important;
+        padding: 88px 16px 20px 20px !important;
+        max-width: 55% !important;
         align-items: flex-start !important;
       }
       .hero-title { font-size: clamp(1.5rem, 6.8vw, 2.5rem) !important; line-height: 1.2 !important; margin-bottom: 10px; }
