@@ -257,24 +257,27 @@
         animation: none !important;
         inset: 0 !important;
       }
-      /* Leo as portrait card in bottom-right corner */
+      /* Side-by-side: text left, Leo right */
       .hero-leo {
-        display: block !important;
-        width: 44% !important;
-        height: 52% !important;
-        top: auto !important;
-        bottom: 0 !important;
-        right: 0 !important;
+        position: relative !important;
+        top: auto !important; bottom: auto !important; right: auto !important;
+        width: 42% !important;
+        height: auto !important;
+        min-height: 100% !important;
+        flex-shrink: 0 !important;
+        align-self: stretch !important;
         object-fit: cover !important;
         object-position: 57% top !important;
-        border-radius: 16px 0 0 0 !important;
-        box-shadow: -4px -4px 28px rgba(0,0,0,.6) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
         -webkit-mask-image: none !important;
         mask-image: none !important;
+        opacity: 0.5 !important;
       }
       .hero-text-col {
-        padding: 56px 20px 20px 20px !important;
-        max-width: 100% !important;
+        padding: 56px 16px 20px 20px !important;
+        max-width: 58% !important;
+        flex: 1 !important;
         align-items: flex-start !important;
       }
       .hero-title { font-size: clamp(1.5rem, 6.8vw, 2.5rem) !important; line-height: 1.2 !important; margin-bottom: 10px; }
