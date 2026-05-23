@@ -248,29 +248,34 @@
     @media(max-width:900px){
       #hero {
         min-height: 88vh !important;
-        align-items: center !important;
+        align-items: flex-start !important;
       }
       #hero::before {
         background:
-          linear-gradient(to right, rgba(5,12,35,.93) 0%, rgba(5,12,35,.68) 40%, rgba(5,12,35,.18) 60%, transparent 74%),
+          linear-gradient(to right, rgba(5,12,35,.96) 0%, rgba(5,12,35,.88) 45%, rgba(5,12,35,.65) 75%, rgba(5,12,35,.40) 100%),
           url('/images/41-redmond.jpg') center/cover no-repeat !important;
         animation: none !important;
         inset: 0 !important;
       }
-      /* Keep Leo visible on mobile — same right-side layout as desktop */
+      /* Leo as portrait card in bottom-right corner */
       .hero-leo {
         display: block !important;
-        width: 40% !important;
-        top: 72px !important;
-        height: calc(100% - 72px) !important;
+        width: 44% !important;
+        height: 52% !important;
+        top: auto !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        object-fit: cover !important;
         object-position: 57% top !important;
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 100%) !important;
-        mask-image: linear-gradient(to right, transparent 0%, black 10%, black 100%) !important;
+        border-radius: 16px 0 0 0 !important;
+        box-shadow: -4px -4px 28px rgba(0,0,0,.6) !important;
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
       }
       .hero-text-col {
-        padding: 72px 8px 44px 20px !important;
-        max-width: 62% !important;
-        align-items: center !important;
+        padding: 56px 20px 20px 20px !important;
+        max-width: 100% !important;
+        align-items: flex-start !important;
       }
       .hero-title { font-size: clamp(1.5rem, 6.8vw, 2.5rem) !important; line-height: 1.2 !important; margin-bottom: 10px; }
       .hero-sub { display: none !important; }
