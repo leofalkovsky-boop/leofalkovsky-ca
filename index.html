@@ -247,25 +247,31 @@
 
     @media(max-width:900px){
       #hero {
-        min-height: 80vh !important;
-        align-items: flex-end !important;
+        min-height: 88vh !important;
+        align-items: center !important;
       }
       #hero::before {
         background:
-          linear-gradient(to top, rgba(5,12,35,0.96) 0%, rgba(5,12,35,0.65) 35%, rgba(5,12,35,0.15) 70%, transparent 100%),
+          linear-gradient(to right, rgba(5,12,35,.93) 0%, rgba(5,12,35,.68) 40%, rgba(5,12,35,.18) 60%, transparent 74%),
           url('/images/41-redmond.jpg') center/cover no-repeat !important;
         animation: none !important;
         inset: 0 !important;
       }
-      .hero-leo { display: none !important; }
-      .hero-text-col {
-        padding: 0 24px 44px !important;
-        max-width: 100% !important;
-        align-items: flex-end !important;
+      /* Keep Leo visible on mobile — same right-side layout as desktop */
+      .hero-leo {
+        display: block !important;
+        width: 48% !important;
+        top: 72px !important;
+        height: calc(100% - 72px) !important;
       }
-      .hero-title { font-size: clamp(1.7rem, 7vw, 2.4rem) !important; margin-bottom: 14px; }
+      .hero-text-col {
+        padding: 72px 8px 44px 20px !important;
+        max-width: 54% !important;
+        align-items: center !important;
+      }
+      .hero-title { font-size: clamp(1.05rem, 4.6vw, 1.8rem) !important; margin-bottom: 10px; }
       .hero-sub { display: none !important; }
-      .hero-stats { gap: 20px !important; flex-wrap: wrap; }
+      .hero-stats { gap: 16px !important; flex-wrap: wrap; }
     }
 
     /* ── Specialties ── */
