@@ -263,15 +263,16 @@
         width: 50% !important;
         top: 72px !important;
         height: calc(100% - 72px) !important;
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 86%, transparent 100%) !important;
-        mask-image: linear-gradient(to right, transparent 0%, black 16%, black 86%, transparent 100%) !important;
+        object-position: 75% top !important;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 100%) !important;
+        mask-image: linear-gradient(to right, transparent 0%, black 16%, black 100%) !important;
       }
       .hero-text-col {
         padding: 72px 8px 44px 20px !important;
         max-width: 56% !important;
         align-items: center !important;
       }
-      .hero-title { font-size: clamp(1.2rem, 5.8vw, 2rem) !important; margin-bottom: 10px; }
+      .hero-title { font-size: clamp(1.3rem, 6vw, 2.2rem) !important; margin-bottom: 10px; }
       .hero-sub { display: none !important; }
       .hero-stats { gap: 16px !important; flex-wrap: wrap; }
     }
