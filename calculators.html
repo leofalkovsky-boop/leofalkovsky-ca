@@ -147,7 +147,7 @@
             <div class="ci-group"><div class="ci-label">Down Payment<span class="ci-hint">Minimum 5% of purchase price</span></div><input type="number" name="af-down" value="80000" min="5000" step="5000" /></div>
             <div class="ci-group"><div class="ci-label">Monthly Debt Payments<span class="ci-hint">Car loans, credit cards, student loans</span></div><input type="number" name="af-debts" value="400" min="0" step="50" /></div>
             <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="af-rate" value="4.99" min="1" max="12" step="0.01" /></div>
-            <div class="ci-group"><div class="ci-label">Amortization</div><select name="af-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+            <div class="ci-group"><div class="ci-label">Amortization</div><select name="af-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option><option value="35">35 years</option></select></div>
             <div class="ci-group"><div class="ci-label">Property Tax / Year<span class="ci-hint">Estimate if unknown</span></div><input type="number" name="af-tax" value="4800" min="0" step="100" /></div>
             <div class="ci-group"><div class="ci-label">Condo Fees / Month<span class="ci-hint">0 if detached</span></div><input type="number" name="af-condo" value="0" min="0" step="50" /></div>
             <div class="ci-group"><div class="ci-label">Heating Cost / Month<span class="ci-hint">Lender estimate ~$150</span></div><input type="number" name="af-heat" value="150" min="0" step="10" /></div>
@@ -191,7 +191,7 @@
             <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="pmt-rate" value="4.99" min="0.5" max="15" step="0.01" /></div>
             <div class="ci-group"><div class="ci-label">Amortization Period</div><select name="pmt-amort">
               <option value="10">10 years</option><option value="15">15 years</option><option value="20">20 years</option>
-              <option value="25" selected>25 years</option><option value="30">30 years</option>
+              <option value="25" selected>25 years</option><option value="30">30 years</option><option value="35">35 years</option>
             </select></div>
             <div class="ci-group"><div class="ci-label">Payment Frequency</div><select name="pmt-freq">
               <option value="monthly">Monthly</option>
@@ -258,7 +258,7 @@
             <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="m1-rate" value="5.49" min="1" max="12" step="0.01" /></div>
             <div class="ci-group"><div class="ci-label">Monthly Net Income<span class="ci-hint">What deposits into the account</span></div><input type="number" name="m1-income" value="7000" min="2000" max="50000" step="100" /></div>
             <div class="ci-group"><div class="ci-label">Monthly Spending<span class="ci-hint">Bills, groceries, expenses</span></div><input type="number" name="m1-spending" value="5500" min="1000" max="49000" step="100" /></div>
-            <div class="ci-group"><div class="ci-label">Original Amortization (years)</div><select name="m1-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+            <div class="ci-group"><div class="ci-label">Original Amortization (years)</div><select name="m1-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option><option value="35">35 years</option></select></div>
           </form>
         </div>
         <div>
@@ -295,10 +295,10 @@
             <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px;">Current Mortgage</p>
             <div class="ci-group"><div class="ci-label">Remaining Balance</div><input type="number" name="refi-balance" value="400000" min="50000" max="3000000" step="10000" /></div>
             <div class="ci-group"><div class="ci-label">Current Rate (%)</div><input type="number" name="refi-cur-rate" value="6.50" min="1" max="12" step="0.01" /></div>
-            <div class="ci-group"><div class="ci-label">Remaining Amortization (years)</div><select name="refi-cur-amort"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option><option value="25">25</option></select></div>
+            <div class="ci-group"><div class="ci-label">Remaining Amortization (years)</div><select name="refi-cur-amort"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option></select></div>
             <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">New Mortgage</p>
             <div class="ci-group"><div class="ci-label">New Rate (%)</div><input type="number" name="refi-new-rate" value="5.00" min="1" max="12" step="0.01" /></div>
-            <div class="ci-group"><div class="ci-label">New Amortization (years)</div><select name="refi-new-amort"><option value="15">15</option><option value="20">20</option><option value="25" selected>25</option></select></div>
+            <div class="ci-group"><div class="ci-label">New Amortization (years)</div><select name="refi-new-amort"><option value="15">15</option><option value="20">20</option><option value="25" selected>25</option><option value="30">30</option><option value="35">35</option></select></div>
             <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Costs</p>
             <div class="ci-group"><div class="ci-label">Break Penalty ($)<span class="ci-hint">Ask your lender</span></div><input type="number" name="refi-penalty" value="4000" min="0" max="50000" step="100" /></div>
             <div class="ci-group"><div class="ci-label">Legal + Appraisal Costs ($)</div><input type="number" name="refi-costs" value="1500" min="0" max="10000" step="100" /></div>
@@ -338,7 +338,7 @@
               <div class="ci-group"><div class="ci-label">Balance ($)</div><input type="number" name="debt-mort-bal" value="350000" min="50000" step="10000" /></div>
               <div class="ci-group"><div class="ci-label">Rate (%)</div><input type="number" name="debt-mort-rate" value="5.49" min="1" max="12" step="0.01" /></div>
             </div>
-            <div class="ci-group"><div class="ci-label">Remaining Amortization (years)</div><select name="debt-amort"><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option><option value="25">25</option></select></div>
+            <div class="ci-group"><div class="ci-label">Remaining Amortization (years)</div><select name="debt-amort"><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option></select></div>
             <p style="font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin:20px 0 12px;">Debts to Consolidate</p>
             <div class="debt-debt-section">
               <div class="debt-label">Credit Card 1</div>
@@ -424,7 +424,7 @@
             <div class="ci-group"><div class="ci-label">Monthly Debt Payments ($)<span class="ci-hint">Car loans, LOC minimums, etc.</span></div><input type="number" name="qual-debts" value="0" min="0" max="10000" step="50" /></div>
             <div class="ci-group"><div class="ci-label">Down Payment ($)</div><input type="number" name="qual-down" value="100000" min="10000" max="3000000" step="5000" /></div>
             <div class="ci-group"><div class="ci-label">Contract Interest Rate (%)<span class="ci-hint">Quoted rate from lender</span></div><input type="number" name="qual-rate" value="5.49" min="1" max="12" step="0.01" /></div>
-            <div class="ci-group"><div class="ci-label">Amortization (years)</div><select name="qual-amort"><option value="20">20 years</option><option value="25" selected>25 years</option></select></div>
+            <div class="ci-group"><div class="ci-label">Amortization (years)</div><select name="qual-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option><option value="35">35 years</option></select></div>
           </form>
         </div>
         <div>
