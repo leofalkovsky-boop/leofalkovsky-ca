@@ -292,7 +292,7 @@ function calcAfford() {
 
   const inc1   = getVal(form, 'af-inc1');
   const inc2   = getVal(form, 'af-inc2');
-  const down   = getVal(form, 'af-down');
+  const down   = 0;
   const debts  = getVal(form, 'af-debts');
   const rate   = getVal(form, 'af-rate')  || 4.99;
   const amort  = getInt(form, 'af-amort') || 25;
