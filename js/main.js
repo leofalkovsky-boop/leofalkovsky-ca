@@ -614,23 +614,30 @@ function calcPayment() {
     const down     = getVal(form, 'qual-down')      || 100000;
     const contract = getVal(form, 'qual-rate')      || 5.49;
     const amort    = getInt(form, 'qual-amort')     || 25;
+    const taxYr    = getVal(form, 'qual-tax')       || 4800;
+    const heat     = getVal(form, 'qual-heat')      || 150;
+    const condo    = getVal(form, 'qual-condo')     || 0;
 
-    const totalGross  = income + coIncome;
+    const totalGross   = income + coIncome;
     const monthlyGross = totalGross / 12;
-    const stressRate  = Math.max(contract + 2, 5.25);
+    const stressRate   = contract + 2;
     const r = canadianMonthlyRate(stressRate);
     const n = amort * 12;
 
-    // GDS ≤ 39%, TDS ≤ 44% (CMHC)
-    const maxGDSpmt = monthlyGross * 0.39;
-    const maxTDSpmt = Math.max(0, monthlyGross * 0.44 - debts);
+    // Housing costs required in GDS (Canadian standard)
+    const fixedCosts = (taxYr / 12) + heat + (condo * 0.5);
+
+    // GDS ≤ 39%: mortgage pmt + fixed costs ≤ 39% gross monthly
+    const maxGDSpmt = monthlyGross * 0.39 - fixedCosts;
+    // TDS ≤ 44%: mortgage pmt + fixed costs + debts ≤ 44% gross monthly
+    const maxTDSpmt = monthlyGross * 0.44 - fixedCosts - debts;
     const maxPmt = Math.min(maxGDSpmt, maxTDSpmt);
 
     const factor = r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
-    const maxMort = factor > 0 ? maxPmt / factor : 0;
+    const maxMort = factor > 0 && maxPmt > 0 ? maxPmt / factor : 0;
     const maxPurchase = maxMort + down;
-    const actualGDS = maxPmt / (monthlyGross || 1) * 100;
-    const actualTDS = (maxPmt + debts) / (monthlyGross || 1) * 100;
+    const actualGDS = ((maxPmt + fixedCosts) / (monthlyGross || 1)) * 100;
+    const actualTDS = ((maxPmt + fixedCosts + debts) / (monthlyGross || 1)) * 100;
 
     setEl('qual-max-mort',    fmtC(maxMort));
     setEl('qual-max-purchase', fmtC(maxPurchase));
