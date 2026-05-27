@@ -95,7 +95,7 @@ section { padding: 88px 0; }
   display: flex; align-items: center; gap: 0; flex-wrap: nowrap;
   pointer-events: none;
 }
-.nav-links li { pointer-events: auto; border-right: 1px solid rgba(0,0,0,.1); }
+.nav-links li { pointer-events: auto; border-right: 1px solid rgba(0,0,0,.22); }
 .nav-links li:last-child { border-right: none; }
 .nav-links a { color: var(--text-mid); font-size: .82rem; font-weight: 500; letter-spacing: .03em; transition: var(--transition); white-space: nowrap; padding: 4px 11px; display: block; border-radius: 4px; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold-dark); background: rgba(201,162,65,.08); }
