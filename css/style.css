@@ -91,11 +91,9 @@ section { padding: 88px 0; }
 .nav-logo-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy-dark); line-height: 1.1; }
 .nav-logo-tag { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-dark); }
 .nav-links {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  display: flex; align-items: center; gap: 0; flex-wrap: nowrap;
-  pointer-events: none;
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap;
 }
-.nav-links li { pointer-events: auto; padding: 0 2px; border-right: 1px solid var(--navy); }
+.nav-links li { padding: 0 2px; border-right: 1px solid var(--navy); }
 .nav-links li:last-child { border-right: none; }
 .nav-links a { color: var(--text-mid); font-size: .82rem; font-weight: 500; letter-spacing: .03em; transition: var(--transition); white-space: nowrap; padding: 4px 11px; display: block; border-radius: 4px; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold-dark); background: rgba(201,162,65,.08); }
