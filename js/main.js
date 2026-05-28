@@ -310,47 +310,36 @@ function calcAfford() {
   const form = document.getElementById('calc-afford');
   if (!form) return;
 
-  const inc1   = getVal(form, 'af-inc1');
-  const inc2   = getVal(form, 'af-inc2');
-  const down   = getVal(form, 'af-down');
-  const debts  = getVal(form, 'af-debts');
-  const rate   = getVal(form, 'af-rate')  || 4.99;
-  const amort  = getInt(form, 'af-amort') || 25;
-  const taxYr  = getVal(form, 'af-tax')   || 4800;
-  const condo  = getVal(form, 'af-condo');
-  const heat   = getVal(form, 'af-heat')  || 150;
+  const inc1  = getVal(form, 'af-inc1');
+  const inc2  = getVal(form, 'af-inc2');
+  const down  = getVal(form, 'af-down');
+  const debts = getVal(form, 'af-debts');
+  const rate  = getVal(form, 'af-rate')  || 4.99;
+  const amort = getInt(form, 'af-amort') || 25;
 
   const grossMonthly = (inc1 + inc2) / 12;
   const qualRate = Math.max(rate + 2, 5.25);
   const r = canadianMonthlyRate(qualRate);
   const n = amort * 12;
 
-  const monthlyTax  = taxYr / 12;
-  const monthlyHeat = heat;
-  const monthlyCondo = condo * 0.5;
-  const fixedCosts  = monthlyTax + monthlyHeat + monthlyCondo;
-
-  // GDS limit: (payment + fixedCosts) / grossMonthly ≤ 0.39
-  const maxPmtGDS = grossMonthly * 0.39 - fixedCosts;
-  // TDS limit: (payment + fixedCosts + debts) / grossMonthly ≤ 0.44
-  const maxPmtTDS = grossMonthly * 0.44 - fixedCosts - debts;
+  // GDS: payment / grossMonthly ≤ 39%
+  const maxPmtGDS = grossMonthly * 0.39;
+  // TDS: (payment + debts) / grossMonthly ≤ 44%
+  const maxPmtTDS = grossMonthly * 0.44 - debts;
   const maxPmt = Math.min(maxPmtGDS, maxPmtTDS);
 
   if (maxPmt <= 0) {
     const w = document.getElementById('af-warning');
-    if (w) { w.style.display = 'block'; w.textContent = 'Your existing debts and fixed costs exceed the qualifying ratios at this income level. Try reducing debts or adding a co-applicant.'; }
+    if (w) { w.style.display = 'block'; w.textContent = 'Monthly debts exceed the qualifying ratio for this income level. Try reducing debts or adding a co-applicant.'; }
     showEl('afford-results');
     document.getElementById('afford-placeholder').style.display = 'none';
     return;
   }
 
-  // Solve for max mortgage: P = pmt * ((1-(1+r)^-n) / r)
   const maxMortgage = maxPmt * (1 - Math.pow(1 + r, -n)) / r;
   const maxPrice = maxMortgage + down;
 
   const actualPmt = monthlyPayment(maxMortgage, canadianMonthlyRate(rate), n);
-  const gds = ((maxPmt + fixedCosts) / grossMonthly) * 100;
-  const tds = ((maxPmt + fixedCosts + debts) / grossMonthly) * 100;
 
   setEl('af-stress',    fmtPct(qualRate));
   setEl('af-max-pmt',  '$' + fmt(actualPmt) + ' / mo');
