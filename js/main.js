@@ -312,6 +312,7 @@ function calcAfford() {
 
   const inc1   = getVal(form, 'af-inc1');
   const inc2   = getVal(form, 'af-inc2');
+  const down   = getVal(form, 'af-down');
   const debts  = getVal(form, 'af-debts');
   const rate   = getVal(form, 'af-rate')  || 4.99;
   const amort  = getInt(form, 'af-amort') || 25;
@@ -345,6 +346,7 @@ function calcAfford() {
 
   // Solve for max mortgage: P = pmt * ((1-(1+r)^-n) / r)
   const maxMortgage = maxPmt * (1 - Math.pow(1 + r, -n)) / r;
+  const maxPrice = maxMortgage + down;
 
   const actualPmt = monthlyPayment(maxMortgage, canadianMonthlyRate(rate), n);
   const gds = ((maxPmt + fixedCosts) / grossMonthly) * 100;
@@ -353,14 +355,109 @@ function calcAfford() {
   setEl('af-stress',    fmtPct(qualRate));
   setEl('af-max-pmt',  '$' + fmt(actualPmt) + ' / mo');
   setEl('af-max-mort', '$' + fmt(maxMortgage));
-  setEl('af-gds',      fmtPct(gds) + (gds <= 39 ? ' ✓' : ' ✗ Over limit'));
-  setEl('af-tds',      fmtPct(tds) + (tds <= 44 ? ' ✓' : ' ✗ Over limit'));
+  setEl('af-max-price','$' + fmt(maxPrice));
 
   const warn = document.getElementById('af-warning');
   if (warn) warn.style.display = 'none';
   showEl('afford-results');
   showEl('afford-cta');
   document.getElementById('afford-placeholder').style.display = 'none';
+}
+
+// ── MORTGAGE PAYMENT CALCULATOR ──────────────────────────────────
+function calcMortgagePayment() {
+  const form = document.getElementById('calc-mortgage');
+  if (!form) return;
+  const propertyValue = getVal(form, 'mp-value');
+  const downPayment   = getVal(form, 'mp-down');
+  const rate          = getVal(form, 'mp-rate') || 4.99;
+  const amort         = getInt(form, 'mp-amort') || 25;
+  if (propertyValue <= 0) return;
+  const mortgageBase = Math.max(0, propertyValue - downPayment);
+  const downPct      = (downPayment / propertyValue) * 100;
+  const hint = document.getElementById('mp-down-hint');
+  if (hint) hint.textContent = downPct.toFixed(1) + '% of purchase price';
+  // CMHC: required if down < 20% and property < $1.5M and down ≥ 5%
+  let cmhcRate = 0;
+  if (downPct < 20 && propertyValue < 1500000 && downPct >= 5) {
+    if (downPct >= 15) cmhcRate = 0.028;
+    else if (downPct >= 10) cmhcRate = 0.031;
+    else cmhcRate = 0.04;
+  }
+  const cmhcPremium  = mortgageBase * cmhcRate;
+  const totalMortgage = mortgageBase + cmhcPremium;
+  const r = canadianMonthlyRate(rate);
+  const n = amort * 12;
+  const monthlyPmt   = monthlyPayment(totalMortgage, r, n);
+  const biweeklyAccel = monthlyPmt / 2;
+  const totalInt     = monthlyPmt * n - totalMortgage;
+  const cmhcRow = document.getElementById('mp-cmhc-row');
+  if (cmhcPremium > 0) {
+    setEl('mp-cmhc', '$' + fmt(cmhcPremium) + ' (' + (cmhcRate * 100).toFixed(2) + '%)');
+    if (cmhcRow) cmhcRow.style.display = 'flex';
+  } else {
+    if (cmhcRow) cmhcRow.style.display = 'none';
+  }
+  setEl('mp-down-display', '$' + fmt(downPayment) + ' (' + downPct.toFixed(1) + '%)');
+  setEl('mp-mortgage',     '$' + fmt(mortgageBase));
+  setEl('mp-total-mort',   '$' + fmt(totalMortgage));
+  setEl('mp-monthly',      '$' + fmt(monthlyPmt));
+  setEl('mp-biweekly',     '$' + fmt(biweeklyAccel) + ' / 2 wks');
+  setEl('mp-total-int',    '$' + fmt(totalInt));
+}
+
+// ── LAND TRANSFER TAX CALCULATOR ─────────────────────────────────
+function ontarioLTT(price) {
+  let t = 0;
+  if (price > 2000000) t += (price - 2000000) * 0.025;
+  if (price > 400000)  t += (Math.min(price, 2000000) - 400000) * 0.02;
+  if (price > 250000)  t += (Math.min(price, 400000) - 250000) * 0.015;
+  if (price > 55000)   t += (Math.min(price, 250000) - 55000) * 0.01;
+  t += Math.min(price, 55000) * 0.005;
+  return t;
+}
+function calcLandTransferTax() {
+  const form = document.getElementById('calc-ltt');
+  if (!form) return;
+  const price    = getVal(form, 'ltt-price');
+  const location = form.querySelector('[name="ltt-location"]')?.value || 'ontario';
+  const isFTB    = form.querySelector('[name="ltt-ftb"]')?.value === 'yes';
+  const isToronto = location === 'toronto';
+  if (price <= 0) return;
+  const onLTT  = ontarioLTT(price);
+  const torLTT = isToronto ? ontarioLTT(price) : 0;
+  const onRebate  = isFTB ? Math.min(onLTT,  4000) : 0;
+  const torRebate = (isFTB && isToronto) ? Math.min(torLTT, 4475) : 0;
+  const total = onLTT + torLTT - onRebate - torRebate;
+  setEl('ltt-ontario', '$' + fmt(onLTT));
+  const torRow = document.getElementById('ltt-toronto-row');
+  if (isToronto) {
+    if (torRow) torRow.style.display = 'flex';
+    setEl('ltt-toronto', '$' + fmt(torLTT));
+  } else {
+    if (torRow) torRow.style.display = 'none';
+  }
+  const rebateOnRow = document.getElementById('ltt-rebate-on-row');
+  if (isFTB && onRebate > 0) {
+    if (rebateOnRow) rebateOnRow.style.display = 'flex';
+    setEl('ltt-rebate-on', '−$' + fmt(onRebate));
+  } else {
+    if (rebateOnRow) rebateOnRow.style.display = 'none';
+  }
+  const rebateTorRow = document.getElementById('ltt-rebate-tor-row');
+  if (isFTB && isToronto && torRebate > 0) {
+    if (rebateTorRow) rebateTorRow.style.display = 'flex';
+    setEl('ltt-rebate-tor', '−$' + fmt(torRebate));
+  } else {
+    if (rebateTorRow) rebateTorRow.style.display = 'none';
+  }
+  setEl('ltt-total', '$' + fmt(total));
+  const note = document.getElementById('ltt-note');
+  if (note) {
+    note.textContent = isToronto
+      ? 'Toronto buyers pay both Ontario provincial and City of Toronto municipal LTT on every purchase.'
+      : 'Ontario LTT is due on closing. It is not financed into your mortgage.';
+  }
 }
 
 // ── PAYMENT SCHEDULE CALCULATOR ───────────────────────────────────
@@ -1018,3 +1115,8 @@ document.querySelectorAll('.optin-form').forEach(form => {
   '</div>';
   document.body.appendChild(bnav);
 }());
+
+
+// ── AUTO-INIT CALCULATORS ─────────────────────────────────────────
+if (document.getElementById('calc-mortgage')) calcMortgagePayment();
+if (document.getElementById('calc-ltt'))      calcLandTransferTax();
