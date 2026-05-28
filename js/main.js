@@ -166,6 +166,29 @@ if (hamburger && drawer) {
   drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
 }
 
+// ── RESOURCES DROPDOWN (click toggle) ────────────────────────────
+document.querySelectorAll('.nav-links li.has-dropdown').forEach(function(li) {
+  const toggle = li.querySelector('.dropdown-toggle');
+  if (!toggle) return;
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    const isOpen = li.classList.contains('open');
+    // Close all other dropdowns first
+    document.querySelectorAll('.nav-links li.has-dropdown.open').forEach(function(el) {
+      el.classList.remove('open');
+    });
+    if (!isOpen) li.classList.add('open');
+  });
+});
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.has-dropdown')) {
+    document.querySelectorAll('.nav-links li.has-dropdown.open').forEach(function(el) {
+      el.classList.remove('open');
+    });
+  }
+});
+
 // ── FAQ ACCORDION ─────────────────────────────────────────────────
 document.querySelectorAll('.faq-item').forEach(item => {
   const q = item.querySelector('.faq-q');
