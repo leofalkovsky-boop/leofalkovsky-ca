@@ -292,7 +292,7 @@ function calcAfford() {
 
   const inc1   = getVal(form, 'af-inc1');
   const inc2   = getVal(form, 'af-inc2');
-  const down   = 0;
+  const down   = getVal(form, 'af-down');
   const debts  = getVal(form, 'af-debts');
   const rate   = getVal(form, 'af-rate')  || 4.99;
   const amort  = getInt(form, 'af-amort') || 25;
@@ -301,7 +301,7 @@ function calcAfford() {
   const heat   = getVal(form, 'af-heat')  || 150;
 
   const grossMonthly = (inc1 + inc2) / 12;
-  const qualRate = rate + 2;
+  const qualRate = Math.max(rate + 2, 5.25);
   const r = canadianMonthlyRate(qualRate);
   const n = amort * 12;
 
