@@ -167,21 +167,18 @@ if (hamburger && drawer) {
 }
 
 // ── RESOURCES DROPDOWN (click toggle) ────────────────────────────
-document.querySelectorAll('.nav-links li.has-dropdown').forEach(function(li) {
-  const toggle = li.querySelector('.dropdown-toggle');
-  if (!toggle) return;
-  toggle.addEventListener('click', function(e) {
+document.addEventListener('click', function(e) {
+  const toggle = e.target.closest('.dropdown-toggle');
+  if (toggle) {
     e.preventDefault();
+    const li = toggle.closest('.has-dropdown');
     const isOpen = li.classList.contains('open');
-    // Close all other dropdowns first
-    document.querySelectorAll('.nav-links li.has-dropdown.open').forEach(function(el) {
+    document.querySelectorAll('.nav-links li.has-dropdown').forEach(function(el) {
       el.classList.remove('open');
     });
     if (!isOpen) li.classList.add('open');
-  });
-});
-// Close dropdown when clicking outside
-document.addEventListener('click', function(e) {
+    return;
+  }
   if (!e.target.closest('.has-dropdown')) {
     document.querySelectorAll('.nav-links li.has-dropdown.open').forEach(function(el) {
       el.classList.remove('open');
@@ -315,7 +312,6 @@ function calcAfford() {
 
   const inc1   = getVal(form, 'af-inc1');
   const inc2   = getVal(form, 'af-inc2');
-  const down   = getVal(form, 'af-down');
   const debts  = getVal(form, 'af-debts');
   const rate   = getVal(form, 'af-rate')  || 4.99;
   const amort  = getInt(form, 'af-amort') || 25;
@@ -349,16 +345,14 @@ function calcAfford() {
 
   // Solve for max mortgage: P = pmt * ((1-(1+r)^-n) / r)
   const maxMortgage = maxPmt * (1 - Math.pow(1 + r, -n)) / r;
-  const maxPrice = maxMortgage + down;
 
   const actualPmt = monthlyPayment(maxMortgage, canadianMonthlyRate(rate), n);
-  const gds = ((actualPmt + fixedCosts) / grossMonthly) * 100;
-  const tds = ((actualPmt + fixedCosts + debts) / grossMonthly) * 100;
+  const gds = ((maxPmt + fixedCosts) / grossMonthly) * 100;
+  const tds = ((maxPmt + fixedCosts + debts) / grossMonthly) * 100;
 
   setEl('af-stress',    fmtPct(qualRate));
-  setEl('af-max-pmt',  '$' + fmt(maxPmt) + ' / mo');
+  setEl('af-max-pmt',  '$' + fmt(actualPmt) + ' / mo');
   setEl('af-max-mort', '$' + fmt(maxMortgage));
-  setEl('af-max-price','$' + fmt(maxPrice));
   setEl('af-gds',      fmtPct(gds) + (gds <= 39 ? ' ✓' : ' ✗ Over limit'));
   setEl('af-tds',      fmtPct(tds) + (tds <= 44 ? ' ✓' : ' ✗ Over limit'));
 
