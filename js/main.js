@@ -323,7 +323,7 @@ function calcAfford() {
   const r = canadianMonthlyRate(qualRate);
   const n = amort * 12;
 
-  const fixedCosts = tax + (condo * 0.5);
+  const fixedCosts = (tax / 12) + (condo * 0.5);
 
   // GDS: (payment + fixedCosts) / grossMonthly ≤ 39%
   const maxPmtGDS = grossMonthly * 0.39 - fixedCosts;
