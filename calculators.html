@@ -207,10 +207,11 @@
           <form id="calc-afford">
             <div class="ci-group"><div class="ci-label">Annual Gross Income — Applicant 1<span class="ci-hint">Before tax</span></div><input type="number" name="af-inc1" value="95000" min="0" step="1000" /></div>
             <div class="ci-group"><div class="ci-label">Annual Gross Income — Applicant 2<span class="ci-hint">Leave 0 if single applicant</span></div><input type="number" name="af-inc2" value="0" min="0" step="1000" /></div>
-            <div class="ci-group"><div class="ci-label">Down Payment<span class="ci-hint">Cash available for down payment</span></div><input type="number" name="af-down" value="100000" min="0" step="5000" /></div>
             <div class="ci-group"><div class="ci-label">Monthly Debt Payments<span class="ci-hint">Car loans, credit cards, student loans, LOC minimums</span></div><input type="number" name="af-debts" value="0" min="0" step="50" /></div>
             <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="af-rate" value="4.99" min="1" max="12" step="0.01" /></div>
             <div class="ci-group"><div class="ci-label">Amortization</div><select name="af-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option><option value="35">35 years</option></select></div>
+            <div class="ci-group"><div class="ci-label">Monthly Property Tax<span class="ci-hint">Included in GDS ratio</span></div><input type="number" name="af-tax" value="0" min="0" step="50" /></div>
+            <div class="ci-group"><div class="ci-label">Condo Fees / Month<span class="ci-hint">50% is included in GDS ratio — enter 0 if detached</span></div><input type="number" name="af-condo" value="0" min="0" step="50" /></div>
             <button type="button" onclick="calcAfford()" class="btn btn-primary" style="width:100%;margin-top:8px;">Calculate →</button>
           </form>
         </div>
@@ -219,10 +220,9 @@
             <div class="cr-title">Your Maximum Qualifying Amount</div>
             <div class="cr-row"><span class="cr-lbl">Qualifying rate (stress test)</span><span class="cr-val gold" id="af-stress">—</span></div>
             <div class="cr-row"><span class="cr-lbl">Actual monthly payment</span><span class="cr-val" id="af-max-pmt">—</span></div>
-            <div class="cr-row"><span class="cr-lbl">Max mortgage amount</span><span class="cr-val gold" id="af-max-mort">—</span></div>
             <div class="cr-highlight">
-              <div class="cr-highlight-lbl">Maximum Purchase Price</div>
-              <div class="cr-highlight-val" id="af-max-price">—</div>
+              <div class="cr-highlight-lbl">Maximum Mortgage</div>
+              <div class="cr-highlight-val" id="af-max-mort">—</div>
             </div>
             <div id="af-warning" style="display:none;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:12px;margin-top:12px;font-size:.8rem;color:#fca5a5;line-height:1.6;"></div>
             <div class="calc-cta" id="afford-cta" style="display:none;">

@@ -312,39 +312,39 @@ function calcAfford() {
 
   const inc1  = getVal(form, 'af-inc1');
   const inc2  = getVal(form, 'af-inc2');
-  const down  = getVal(form, 'af-down');
   const debts = getVal(form, 'af-debts');
   const rate  = getVal(form, 'af-rate')  || 4.99;
   const amort = getInt(form, 'af-amort') || 25;
+  const tax   = getVal(form, 'af-tax');
+  const condo = getVal(form, 'af-condo');
 
   const grossMonthly = (inc1 + inc2) / 12;
   const qualRate = Math.max(rate + 2, 5.25);
   const r = canadianMonthlyRate(qualRate);
   const n = amort * 12;
 
-  // GDS: payment / grossMonthly ≤ 39%
-  const maxPmtGDS = grossMonthly * 0.39;
-  // TDS: (payment + debts) / grossMonthly ≤ 44%
-  const maxPmtTDS = grossMonthly * 0.44 - debts;
+  const fixedCosts = tax + (condo * 0.5);
+
+  // GDS: (payment + fixedCosts) / grossMonthly ≤ 39%
+  const maxPmtGDS = grossMonthly * 0.39 - fixedCosts;
+  // TDS: (payment + fixedCosts + debts) / grossMonthly ≤ 44%
+  const maxPmtTDS = grossMonthly * 0.44 - fixedCosts - debts;
   const maxPmt = Math.min(maxPmtGDS, maxPmtTDS);
 
   if (maxPmt <= 0) {
     const w = document.getElementById('af-warning');
-    if (w) { w.style.display = 'block'; w.textContent = 'Monthly debts exceed the qualifying ratio for this income level. Try reducing debts or adding a co-applicant.'; }
+    if (w) { w.style.display = 'block'; w.textContent = 'Monthly obligations exceed the qualifying ratio for this income level. Try reducing debts or adding a co-applicant.'; }
     showEl('afford-results');
     document.getElementById('afford-placeholder').style.display = 'none';
     return;
   }
 
   const maxMortgage = maxPmt * (1 - Math.pow(1 + r, -n)) / r;
-  const maxPrice = maxMortgage + down;
-
   const actualPmt = monthlyPayment(maxMortgage, canadianMonthlyRate(rate), n);
 
-  setEl('af-stress',    fmtPct(qualRate));
-  setEl('af-max-pmt',  '$' + fmt(actualPmt) + ' / mo');
+  setEl('af-stress',   fmtPct(qualRate));
+  setEl('af-max-pmt', '$' + fmt(actualPmt) + ' / mo');
   setEl('af-max-mort', '$' + fmt(maxMortgage));
-  setEl('af-max-price','$' + fmt(maxPrice));
 
   const warn = document.getElementById('af-warning');
   if (warn) warn.style.display = 'none';
