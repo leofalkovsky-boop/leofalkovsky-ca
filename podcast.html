@@ -215,12 +215,33 @@
 
       ═══════════════════════════════════════════════════════ -->
 
-      <!-- Remove this coming-soon block once you add your first episode -->
-      <div class="coming-soon">
-        <div style="font-size:2rem;margin-bottom:12px;">🎧</div>
-        <strong>Episodes coming soon.</strong><br />
-        Check back for real mortgage and real estate conversations.
-      </div>
+      <article class="episode-card">
+        <div class="episode-locked" onclick="openGate()">
+          <img class="episode-thumb" src="https://img.youtube.com/vi/p4as0IVDYaw/maxresdefault.jpg" alt="Community Podcast Episode 1" />
+          <div class="episode-lock-overlay">
+            <div class="episode-lock-icon">🎙️</div>
+            <button class="episode-unlock-btn">Watch This Episode →</button>
+          </div>
+        </div>
+        <div class="episode-video">
+          <iframe
+            src="https://www.youtube.com/embed/p4as0IVDYaw"
+            title="Community Podcast Episode 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <div class="episode-info">
+          <div class="episode-num">01</div>
+          <div class="episode-body">
+            <h3 class="episode-title">Community Podcast</h3>
+            <div class="episode-meta">
+              <span>June 1, 2026</span>
+            </div>
+          </div>
+        </div>
+      </article>
       </article>
 
       -->
