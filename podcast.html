@@ -56,9 +56,8 @@
     .episode-card{background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);transition:var(--transition);}
     .episode-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
     /* locked thumbnail state */
-    .episode-locked{position:relative;width:100%;padding-top:56.25%;cursor:pointer;}
-    .episode-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-    .episode-lock-overlay{position:absolute;inset:0;background:rgba(8,18,40,.62);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+    .episode-locked{position:relative;width:100%;padding-top:56.25%;cursor:pointer;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy-mid) 60%,rgba(212,175,55,.15) 100%);}
+    .episode-lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
     .episode-lock-icon{font-size:2.2rem;line-height:1;}
     .episode-unlock-btn{background:var(--gold);color:var(--navy-dark);border:none;border-radius:10px;padding:13px 28px;font-weight:700;font-size:.95rem;cursor:pointer;transition:var(--transition);}
     .episode-unlock-btn:hover{background:var(--gold-light);}
@@ -173,7 +172,6 @@
 
       <article class="episode-card">
         <div class="episode-locked" onclick="openGate()">
-          <img class="episode-thumb" src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" alt="Episode title here" />
           <div class="episode-lock-overlay">
             <div class="episode-lock-icon">🎙️</div>
             <button class="episode-unlock-btn">Watch This Episode →</button>
@@ -181,7 +179,7 @@
         </div>
         <div class="episode-video">
           <iframe
-            src="https://www.youtube.com/embed/VIDEO_ID"
+            src="https://www.youtube.com/embed/VIDEO_ID?rel=0"
             title="Episode title here"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
@@ -207,7 +205,6 @@
 
       <article class="episode-card">
         <div class="episode-locked" onclick="openGate()">
-          <img class="episode-thumb" src="https://img.youtube.com/vi/p4as0IVDYaw/maxresdefault.jpg" alt="The Hidden Power of Home Equity Sharing—Your Secret Financial Weapon" />
           <div class="episode-lock-overlay">
             <div class="episode-lock-icon">🎙️</div>
             <button class="episode-unlock-btn">Watch This Episode →</button>
@@ -215,7 +212,7 @@
         </div>
         <div class="episode-video">
           <iframe
-            src="https://www.youtube.com/embed/p4as0IVDYaw"
+            src="https://www.youtube.com/embed/p4as0IVDYaw?rel=0"
             title="The Hidden Power of Home Equity Sharing—Your Secret Financial Weapon"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
