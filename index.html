@@ -890,17 +890,32 @@
 </section>
 
 <!-- ── QUOTE CAROUSEL ────────────────────────────────────────────── -->
-<section style="background:var(--white);padding:20px 0 40px;border-top:1px solid var(--cream-dark);">
-  <div class="container" style="max-width:780px;">
-    <div class="qc-wrap">
-      <p class="qc-label">Words that shaped my thinking</p>
-      <div class="qc-stage" id="qcStage"></div>
-      <div class="qc-controls">
-        <button class="qc-btn" id="qcPrev">&#8249;</button>
-        <div class="qc-dots" id="qcDots"></div>
-        <button class="qc-btn" id="qcNext">&#8250;</button>
+<section style="background:var(--white);padding:40px 0 60px;border-top:1px solid var(--cream-dark);">
+  <div class="container" style="max-width:1100px;">
+    <div class="qc-with-video">
+      <!-- YouTube Short -->
+      <div class="qc-video-col">
+        <p class="qc-label">Watch &amp; Learn</p>
+        <div class="qc-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/drRh9xMleEo"
+            title="Leo Falkovsky — YouTube Short"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
-      <div class="qc-progress-bar"><div class="qc-progress" id="qcProgress"></div></div>
+      <!-- Quote Carousel -->
+      <div class="qc-wrap">
+        <p class="qc-label">Words that shaped my thinking</p>
+        <div class="qc-stage" id="qcStage"></div>
+        <div class="qc-controls">
+          <button class="qc-btn" id="qcPrev">&#8249;</button>
+          <div class="qc-dots" id="qcDots"></div>
+          <button class="qc-btn" id="qcNext">&#8250;</button>
+        </div>
+        <div class="qc-progress-bar"><div class="qc-progress" id="qcProgress"></div></div>
+      </div>
     </div>
   </div>
 </section>
