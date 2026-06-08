@@ -316,14 +316,16 @@ function calcAfford() {
   const rate  = getVal(form, 'af-rate')  || 4.99;
   const amort = getInt(form, 'af-amort') || 25;
   const tax   = getVal(form, 'af-tax');
+  const heat  = getVal(form, 'af-heat') || 150;
   const condo = getVal(form, 'af-condo');
 
   const grossMonthly = (inc1 + inc2) / 12;
-  const qualRate = Math.max(rate + 2, 5.25);
+  const qualRate = rate + 2;
   const r = canadianMonthlyRate(qualRate);
   const n = amort * 12;
 
-  const fixedCosts = (tax / 12) + (condo * 0.5);
+  // GDS = (PITH + 50% condo fees) / gross monthly — heat is the H in PITH
+  const fixedCosts = (tax / 12) + heat + (condo * 0.5);
 
   // GDS: (payment + fixedCosts) / grossMonthly ≤ 39%
   const maxPmtGDS = grossMonthly * 0.39 - fixedCosts;
@@ -342,7 +344,7 @@ function calcAfford() {
   const maxMortgage = maxPmt * (1 - Math.pow(1 + r, -n)) / r;
   const actualPmt = monthlyPayment(maxMortgage, canadianMonthlyRate(rate), n);
 
-  setEl('af-stress',   fmtPct(qualRate));
+  setEl('af-stress',   qualRate.toFixed(2) + '%');
   setEl('af-max-pmt', '$' + fmt(actualPmt) + ' / mo');
   setEl('af-max-mort', '$' + fmt(maxMortgage));
 
@@ -361,25 +363,61 @@ function calcMortgagePayment() {
   const downPayment   = getVal(form, 'mp-down');
   const rate          = getVal(form, 'mp-rate') || 4.99;
   const amort         = getInt(form, 'mp-amort') || 25;
+  const term          = getInt(form, 'mp-term') || 5;
+  const freq          = form.querySelector('[name="mp-freq"]')?.value || 'biweekly-accel';
   if (propertyValue <= 0) return;
   const mortgageBase = Math.max(0, propertyValue - downPayment);
   const downPct      = (downPayment / propertyValue) * 100;
   const hint = document.getElementById('mp-down-hint');
   if (hint) hint.textContent = downPct.toFixed(1) + '% of purchase price';
-  // CMHC: required if down < 20% and property < $1.5M and down ≥ 5%
+  // CMHC: required if down < 20% and property ≤ $1.5M and down ≥ 5%
   let cmhcRate = 0;
   if (downPct < 20 && propertyValue < 1500000 && downPct >= 5) {
     if (downPct >= 15) cmhcRate = 0.028;
     else if (downPct >= 10) cmhcRate = 0.031;
     else cmhcRate = 0.04;
   }
-  const cmhcPremium  = mortgageBase * cmhcRate;
+  const cmhcPremium   = mortgageBase * cmhcRate;
   const totalMortgage = mortgageBase + cmhcPremium;
-  const r = canadianMonthlyRate(rate);
-  const n = amort * 12;
-  const monthlyPmt   = monthlyPayment(totalMortgage, r, n);
-  const biweeklyAccel = monthlyPmt / 2;
-  const totalInt     = monthlyPmt * n - totalMortgage;
+
+  // Canadian semi-annual compounding → per-period rates
+  const EAR  = Math.pow(1 + rate / 200, 2) - 1;
+  const r_m  = canadianMonthlyRate(rate);
+  const r_sm = Math.pow(1 + EAR, 1 / 24) - 1;
+  const r_bw = Math.pow(1 + EAR, 1 / 26) - 1;
+  const r_w  = Math.pow(1 + EAR, 1 / 52) - 1;
+
+  const n_m  = amort * 12;
+  const pmt_m  = monthlyPayment(totalMortgage, r_m,  n_m);
+  const pmt_sm = monthlyPayment(totalMortgage, r_sm, amort * 24);
+  const pmt_bw = monthlyPayment(totalMortgage, r_bw, amort * 26);
+  const pmt_w  = monthlyPayment(totalMortgage, r_w,  amort * 52);
+  const pmt_bwa = pmt_m / 2;   // accelerated = monthly ÷ 2 paid every 2 weeks
+  const pmt_wa  = pmt_m / 4;   // accelerated = monthly ÷ 4 paid every week
+
+  const freqDef = {
+    'monthly':        { pmt: pmt_m,   label: 'Monthly Payment',               n: n_m,          r: r_m  },
+    'semi-monthly':   { pmt: pmt_sm,  label: 'Semi-Monthly Payment',          n: amort * 24,   r: r_sm },
+    'biweekly':       { pmt: pmt_bw,  label: 'Bi-Weekly Payment',             n: amort * 26,   r: r_bw },
+    'biweekly-accel': { pmt: pmt_bwa, label: 'Bi-Weekly Accelerated Payment', n: null,         r: r_bw },
+    'weekly':         { pmt: pmt_w,   label: 'Weekly Payment',                n: amort * 52,   r: r_w  },
+    'weekly-accel':   { pmt: pmt_wa,  label: 'Weekly Accelerated Payment',    n: null,         r: r_w  },
+  };
+  const sel = freqDef[freq] || freqDef['monthly'];
+  const selectedPmt = sel.pmt;
+
+  // Actual number of periods (accelerated pays off early)
+  let totalPeriods;
+  if (sel.n === null) {
+    totalPeriods = selectedPmt > totalMortgage * sel.r
+      ? -Math.log(1 - totalMortgage * sel.r / selectedPmt) / Math.log(1 + sel.r)
+      : (freq === 'biweekly-accel' ? amort * 26 : amort * 52);
+  } else {
+    totalPeriods = sel.n;
+  }
+  const totalInterestPaid = selectedPmt * totalPeriods - totalMortgage;
+  const totalLoanCost     = totalMortgage + Math.max(0, totalInterestPaid);
+
   const cmhcRow = document.getElementById('mp-cmhc-row');
   if (cmhcPremium > 0) {
     setEl('mp-cmhc', '$' + fmt(cmhcPremium) + ' (' + (cmhcRate * 100).toFixed(2) + '%)');
@@ -387,12 +425,53 @@ function calcMortgagePayment() {
   } else {
     if (cmhcRow) cmhcRow.style.display = 'none';
   }
-  setEl('mp-down-display', '$' + fmt(downPayment) + ' (' + downPct.toFixed(1) + '%)');
-  setEl('mp-mortgage',     '$' + fmt(mortgageBase));
-  setEl('mp-total-mort',   '$' + fmt(totalMortgage));
-  setEl('mp-monthly',      '$' + fmt(monthlyPmt));
-  setEl('mp-biweekly',     '$' + fmt(biweeklyAccel) + ' / 2 wks');
-  setEl('mp-total-int',    '$' + fmt(totalInt));
+  setEl('mp-down-display',  '$' + fmt(downPayment) + ' (' + downPct.toFixed(1) + '%)');
+  setEl('mp-mortgage',      '$' + fmt(mortgageBase));
+  setEl('mp-total-mort',    '$' + fmt(totalMortgage));
+  setEl('mp-freq-label',    sel.label);
+  setEl('mp-monthly',       '$' + fmt(selectedPmt));
+  setEl('mp-num-payments',  Math.ceil(totalPeriods).toLocaleString('en-CA') + ' payments');
+  setEl('mp-total-cost',    '$' + fmt(totalLoanCost));
+  setEl('mp-total-int',     '$' + fmt(Math.max(0, totalInterestPaid)));
+
+  buildAmortTable(totalMortgage, r_m, term, amort);
+}
+
+function buildAmortTable(P, r_m, termYears, amortYears) {
+  const wrap  = document.getElementById('mp-amort-wrap');
+  const tbody = document.getElementById('mp-amort-tbody');
+  if (!wrap || !tbody) return;
+  const n = amortYears * 12;
+  const pmt = monthlyPayment(P, r_m, n);
+  let balance = P;
+  const startYear = new Date().getFullYear();
+  let html = '';
+  for (let yr = 1; yr <= amortYears && balance > 0.5; yr++) {
+    let yearPmt = 0, yearPrincipal = 0, yearInterest = 0;
+    for (let m = 0; m < 12; m++) {
+      if (balance < 0.01) break;
+      const interest  = balance * r_m;
+      const principal = Math.min(pmt - interest, balance);
+      yearInterest   += interest;
+      yearPrincipal  += principal;
+      yearPmt        += Math.min(pmt, balance + interest);
+      balance        -= principal;
+    }
+    balance = Math.max(0, balance);
+    const isTermEnd = termYears > 0 && yr === termYears;
+    html += `<tr${isTermEnd ? ' class="amort-term-row"' : ''}>
+      <td>${startYear + yr - 1}</td>
+      <td>$${fmt(yearPmt)}</td>
+      <td>$${fmt(yearPrincipal)}</td>
+      <td>$${fmt(yearInterest)}</td>
+      <td>${balance < 1 ? '—' : '$' + fmt(balance)}</td>
+    </tr>`;
+    if (isTermEnd) {
+      html += `<tr class="amort-term-marker"><td colspan="5">↑ End of ${termYears}-year term — mortgage renewal required</td></tr>`;
+    }
+  }
+  tbody.innerHTML = html;
+  wrap.style.display = 'block';
 }
 
 // ── LAND TRANSFER TAX CALCULATOR ─────────────────────────────────

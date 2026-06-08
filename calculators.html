@@ -69,7 +69,22 @@
     .debt-debt-section { background:var(--cream); border-radius:var(--radius-md); padding:16px; margin-bottom:16px; }
     .debt-debt-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     .debt-label { font-size:.73rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
-    @media(max-width:768px){.calc-wrap{grid-template-columns:1fr;}.calc-tabs{gap:6px;}.calc-tab{font-size:.78rem;padding:8px 14px;}}
+    /* AMORTIZATION TABLE */
+    .amort-table-wrap { margin-top:28px; background:var(--white); border-radius:var(--radius-lg); padding:28px; box-shadow:var(--shadow-md); border:1px solid var(--cream-dark); }
+    .amort-table-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px; }
+    .amort-table-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--navy-dark); margin:0; }
+    .amort-table-note { font-size:.72rem; color:var(--text-light); }
+    .amort-table-container { overflow-x:auto; }
+    .amort-table { width:100%; border-collapse:collapse; font-size:.82rem; min-width:460px; }
+    .amort-table th { text-align:left; font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--navy); border-bottom:2px solid var(--cream-dark); padding:10px 12px; }
+    .amort-table th:not(:first-child) { text-align:right; }
+    .amort-table td { padding:9px 12px; border-bottom:1px solid var(--cream-dark); color:var(--text-mid); }
+    .amort-table td:first-child { font-weight:600; color:var(--navy-dark); }
+    .amort-table td:not(:first-child) { text-align:right; }
+    .amort-table tr:hover td { background:var(--cream-light); }
+    .amort-term-row td { background:rgba(13,35,64,.05); border-top:2px solid var(--navy); }
+    .amort-term-marker td { background:var(--navy); color:var(--gold); font-size:.74rem; font-weight:700; text-align:center; padding:7px 12px; letter-spacing:.06em; }
+    @media(max-width:768px){.calc-wrap{grid-template-columns:1fr;}.calc-tabs{gap:6px;}.calc-tab{font-size:.78rem;padding:8px 14px;}.amort-table-wrap{padding:16px;}}
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mortgage Calculators Barrie | Leo Falkovsky","description":"Free interactive mortgage calculators: Manulife One savings, refinance break-even, debt consolidation, HELOC equity, mortgage qualifier, and Smith Manoeuvre wealth projections.","url":"https://leofalkovsky.ca/calculators.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"provider":{"@type":"LocalBusiness","name":"Leo Falkovsky Mortgage & Real Estate","url":"https://leofalkovsky.ca"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://leofalkovsky.ca/"},{"@type":"ListItem","position":2,"name":"Mortgage Calculators","item":"https://leofalkovsky.ca/calculators.html"}]}</script>
@@ -112,7 +127,7 @@
   <div class="container">
     <nav class="breadcrumb"><a href="/">Home</a><span>/</span><span>Calculators</span></nav>
     <div class="hero-content">
-      <div class="hero-badge">3 Free Calculators</div>
+      <div class="hero-badge">Free Calculators</div>
       <h1 class="hero-title">Mortgage Calculators<br /><span>Built for homeowners</span><br />Homeowners</h1>
       <p class="hero-sub">Run the real numbers on affordability, payment schedules, Manulife One, Smith Manoeuvre, refinancing, debt consolidation, home equity, and mortgage qualification — all in one place, instantly.</p>
     </div>
@@ -137,29 +152,53 @@
             <div class="ci-group"><div class="ci-label">Property Value</div><input type="number" name="mp-value" value="700000" min="100000" max="5000000" step="10000" oninput="calcMortgagePayment()" /></div>
             <div class="ci-group"><div class="ci-label">Down Payment<span class="ci-hint" id="mp-down-hint">20.0% of purchase price</span></div><input type="number" name="mp-down" value="140000" min="0" step="5000" oninput="calcMortgagePayment()" /></div>
             <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="mp-rate" value="4.99" min="0.5" max="15" step="0.01" oninput="calcMortgagePayment()" /></div>
-            <div class="ci-group"><div class="ci-label">Term</div><select name="mp-term" onchange="calcMortgagePayment()"><option value="1">1 Year Fixed</option><option value="2">2 Year Fixed</option><option value="3">3 Year Fixed</option><option value="4">4 Year Fixed</option><option value="5" selected>5 Year Fixed</option><option value="0">Variable Rate</option></select></div>
-            <div class="ci-group"><div class="ci-label">Amortization</div><select name="mp-amort" onchange="calcMortgagePayment()"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+            <div class="ci-group"><div class="ci-label">Mortgage Term</div><select name="mp-term" onchange="calcMortgagePayment()"><option value="1">1 Year Fixed</option><option value="2">2 Year Fixed</option><option value="3">3 Year Fixed</option><option value="4">4 Year Fixed</option><option value="5" selected>5 Year Fixed</option><option value="6">6 Year Fixed</option><option value="7">7 Year Fixed</option><option value="10">10 Year Fixed</option><option value="0">Variable Rate</option></select></div>
+            <div class="ci-group"><div class="ci-label">Amortization Period</div><select name="mp-amort" onchange="calcMortgagePayment()"><option value="5">5 years</option><option value="10">10 years</option><option value="15">15 years</option><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
+            <div class="ci-group"><div class="ci-label">Payment Frequency</div><select name="mp-freq" onchange="calcMortgagePayment()"><option value="monthly">Monthly</option><option value="semi-monthly">Semi-Monthly</option><option value="biweekly">Bi-Weekly</option><option value="biweekly-accel" selected>Bi-Weekly Accelerated</option><option value="weekly">Weekly</option><option value="weekly-accel">Weekly Accelerated</option></select></div>
             <div class="ci-group"><div class="ci-label">Province</div><select name="mp-province" onchange="calcMortgagePayment()"><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland &amp; Labrador</option><option value="NS">Nova Scotia</option><option value="ON" selected>Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option></select></div>
           </form>
         </div>
         <div>
           <div class="calc-results" id="mp-results">
-            <div class="cr-title">Payment Breakdown</div>
+            <div class="cr-title">Mortgage Summary</div>
             <div class="cr-row"><span class="cr-lbl">Down payment</span><span class="cr-val" id="mp-down-display">—</span></div>
             <div class="cr-row"><span class="cr-lbl">Mortgage (base)</span><span class="cr-val" id="mp-mortgage">—</span></div>
-            <div class="cr-row" id="mp-cmhc-row" style="display:none;"><span class="cr-lbl">CMHC insurance added</span><span class="cr-val" id="mp-cmhc">—</span></div>
+            <div class="cr-row" id="mp-cmhc-row" style="display:none;"><span class="cr-lbl">Mortgage insurance (CMHC)</span><span class="cr-val" id="mp-cmhc">—</span></div>
             <div class="cr-row"><span class="cr-lbl">Total mortgage financed</span><span class="cr-val gold" id="mp-total-mort">—</span></div>
             <div class="cr-highlight">
-              <div class="cr-highlight-lbl">Monthly Payment</div>
+              <div class="cr-highlight-lbl" id="mp-freq-label">Estimated Payment</div>
               <div class="cr-highlight-val" id="mp-monthly">—</div>
             </div>
-            <div class="cr-row" style="margin-top:12px;"><span class="cr-lbl">Bi-weekly accelerated</span><span class="cr-val gold" id="mp-biweekly">—</span></div>
-            <div class="cr-row"><span class="cr-lbl">Total interest (full amortization)</span><span class="cr-val" id="mp-total-int">—</span></div>
+            <div class="cr-row" style="margin-top:12px;"><span class="cr-lbl">Number of payments</span><span class="cr-val" id="mp-num-payments">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Total loan cost</span><span class="cr-val gold" id="mp-total-cost">—</span></div>
+            <div class="cr-row"><span class="cr-lbl">Total interest cost</span><span class="cr-val" id="mp-total-int">—</span></div>
           </div>
           <div class="calc-cta" style="display:block;margin-top:16px;">
             <p style="font-size:.82rem;color:var(--text-mid);line-height:1.5;margin-bottom:12px;">Want to lock in this rate with a pre-approval?</p>
             <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Get My Free Pre-Approval →</a>
           </div>
+        </div>
+      </div>
+
+      <!-- ── AMORTIZATION TABLE ── -->
+      <div class="amort-table-wrap" id="mp-amort-wrap" style="display:none;">
+        <div class="amort-table-header">
+          <h3 class="amort-table-title">Payment Schedule</h3>
+          <span class="amort-table-note">Assumes renewal at same rate after term ends</span>
+        </div>
+        <div class="amort-table-container">
+          <table class="amort-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Total Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="mp-amort-tbody"></tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -212,6 +251,7 @@
             <div class="ci-group"><div class="ci-label">Annual Interest Rate (%)</div><input type="number" name="af-rate" value="4.99" min="1" max="12" step="0.01" /></div>
             <div class="ci-group"><div class="ci-label">Amortization</div><select name="af-amort"><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option><option value="35">35 years</option></select></div>
             <div class="ci-group"><div class="ci-label">Annual Property Tax<span class="ci-hint">Divided by 12 in GDS ratio</span></div><input type="number" name="af-tax" value="0" min="0" step="100" /></div>
+            <div class="ci-group"><div class="ci-label">Monthly Heating Cost<span class="ci-hint">Included in GDS ratio — typical $100–$200/mo</span></div><input type="number" name="af-heat" value="150" min="0" step="10" /></div>
             <div class="ci-group"><div class="ci-label">Condo Fees / Month<span class="ci-hint">50% is included in GDS ratio — enter 0 if detached</span></div><input type="number" name="af-condo" value="0" min="0" step="50" /></div>
             <button type="button" onclick="calcAfford()" class="btn btn-primary" style="width:100%;margin-top:8px;">Calculate →</button>
           </form>
@@ -232,7 +272,7 @@
             </div>
           </div>
           <div style="background:var(--cream);border-radius:var(--radius-md);padding:20px;margin-top:16px;" id="afford-placeholder">
-            <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;margin-bottom:12px;">💡 <strong>How the stress test works:</strong> Your qualifying rate is the higher of your contract rate + 2%, or 5.25%. Lenders use this to ensure you can still afford payments if rates rise.</p>
+            <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;margin-bottom:12px;">💡 <strong>How the stress test works:</strong> Your qualifying rate is your contract rate + 2%. Lenders use this to ensure you can still afford payments if rates rise.</p>
             <p style="font-size:.83rem;color:var(--text-mid);line-height:1.7;">Fill in your details and click Calculate to see your maximum qualifying amount.</p>
           </div>
           <div style="background:var(--cream);border-radius:var(--radius-md);padding:16px;margin-top:16px;border-left:3px solid var(--gold);">
