@@ -260,20 +260,22 @@
       </article>
 
       <article class="episode-card">
-        <div class="episode-locked" onclick="openGate()">
-          <div class="episode-lock-overlay">
+        <div class="episode-locked" onclick="openGate()" style="background:none;">
+          <img src="https://img.youtube.com/vi/p4as0IVDYaw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/p4as0IVDYaw/hqdefault.jpg'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" alt="The Hidden Power of Home Equity Sharing — Your Secret Financial Weapon">
+          <div class="episode-lock-overlay" style="background:rgba(8,18,40,.5);">
             <div class="episode-lock-icon">🎙️</div>
             <button class="episode-unlock-btn">Watch This Episode →</button>
           </div>
         </div>
         <div class="episode-video">
-          <iframe
-            src="https://www.youtube.com/embed/p4as0IVDYaw?rel=0"
-            title="The Hidden Power of Home Equity Sharing—Your Secret Financial Weapon"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            loading="lazy">
-          </iframe>
+          <div onclick="loadYT(this,'p4as0IVDYaw')" style="position:absolute;inset:0;cursor:pointer;background:#000;">
+            <img src="https://img.youtube.com/vi/p4as0IVDYaw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/p4as0IVDYaw/hqdefault.jpg'" style="width:100%;height:100%;object-fit:cover;display:block;" alt="The Hidden Power of Home Equity Sharing — Your Secret Financial Weapon">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:68px;height:68px;background:rgba(255,0,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.4);">
+                <svg viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="episode-info">
           <div class="episode-num">01</div>
