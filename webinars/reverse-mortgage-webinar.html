@@ -68,9 +68,10 @@
       padding: 100px 48px 80px max(40px, 5vw);
       max-width: 620px;
     }
-    @media(max-width:900px){
-      .hero-leo { left:28%; width:auto; opacity:.5; -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 22%,black 45%,black 100%); mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.5) 22%,black 45%,black 100%); }
-      .hero-text-col { padding:88px 16px 48px 20px; max-width:62%; }
+    @media(max-width:768px){
+      .hero-leo { display:none !important; }
+      #hero::before { background:rgba(5,12,35,.72) !important; }
+      .hero-text-col { padding:88px 20px 56px 20px; max-width:100%; }
     }
     /* Rest of page */
     .web-layout { display:grid; grid-template-columns:1fr 380px; gap:48px; align-items:start; }
