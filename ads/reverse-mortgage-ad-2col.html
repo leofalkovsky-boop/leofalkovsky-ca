@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reverse Mortgage Webinar — 2-Col Newspaper Ad</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 3.1875in;
+      height: 5.3125in;
+    }
+
+    body {
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    @page { size: 3.1875in 5.3125in; margin: 0; }
+
+    .ad {
+      width: 3.1875in;
+      height: 5.3125in;
+      border: 3px solid #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .top-banner {
+      background: #1a3a5c;
+      color: #fff;
+      text-align: center;
+      padding: 6px 8px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .header {
+      background: #f5f0e8;
+      padding: 10px 12px 9px;
+      text-align: center;
+      border-bottom: 2px solid #1a3a5c;
+    }
+
+    .free-tag {
+      display: inline-block;
+      background: #c8973a;
+      color: #fff;
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      margin-bottom: 5px;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-weight: 900;
+      color: #1a3a5c;
+      line-height: 1.08;
+    }
+
+    .subheadline {
+      font-size: 9.5px;
+      color: #444;
+      line-height: 1.35;
+      margin-top: 5px;
+    }
+
+    .event-strip {
+      background: #1a3a5c;
+      color: #fff;
+      text-align: center;
+      padding: 7px 8px;
+    }
+    .event-strip .when {
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .event-strip .loc {
+      font-weight: 400;
+      font-size: 8.5px;
+      opacity: .85;
+      margin-top: 2px;
+    }
+
+    .body {
+      padding: 9px 12px 6px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hook {
+      font-size: 10px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.35;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 7px;
+      margin-bottom: 7px;
+    }
+    .hook span { color: #c8973a; }
+
+    .benefits-title {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: #1a3a5c;
+      margin-bottom: 4px;
+    }
+
+    .benefits {
+      list-style: none;
+      margin-bottom: 7px;
+    }
+    .benefits li {
+      font-size: 8.5px;
+      color: #333;
+      padding: 2.5px 0 2.5px 14px;
+      position: relative;
+      line-height: 1.3;
+      border-bottom: 1px dotted #e0e0e0;
+    }
+    .benefits li:last-child { border-bottom: none; }
+    .benefits li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #c8973a;
+      font-weight: 700;
+      font-size: 8px;
+    }
+
+    .includes {
+      background: #f5f0e8;
+      border-left: 3px solid #c8973a;
+      padding: 6px 8px;
+      font-size: 8px;
+      color: #444;
+      line-height: 1.5;
+    }
+    .includes strong {
+      color: #1a3a5c;
+      display: block;
+      font-size: 7px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      margin-bottom: 1px;
+    }
+
+    .cta {
+      background: #1a3a5c;
+      padding: 9px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+    .cta-text {
+      color: rgba(255,255,255,.8);
+      font-size: 6.5px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .cta-url {
+      color: #f5c842;
+      font-size: 8.5px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .cta-sub {
+      color: rgba(255,255,255,.7);
+      font-size: 7px;
+      margin-top: 2px;
+    }
+    .cta-sub strong { color: #fff; }
+    .qr-wrap { text-align: center; }
+    .qr-wrap img {
+      width: 46px;
+      height: 46px;
+      display: block;
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 2px;
+    }
+    .qr-label {
+      color: rgba(255,255,255,.7);
+      font-size: 5.5px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .footer {
+      padding: 6px 12px;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+    .presenter {
+      font-size: 8px;
+      font-weight: 700;
+      color: #1a3a5c;
+    }
+    .presenter span {
+      display: block;
+      font-weight: 400;
+      font-size: 6.8px;
+      color: #666;
+      margin-top: 1px;
+    }
+
+    .compliance {
+      background: #1a1a1a;
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      font-size: 5.2px;
+      line-height: 1.4;
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ad">
+
+    <div class="top-banner">Free Community Webinar — Seats Limited</div>
+
+    <div class="header">
+      <div class="free-tag">Free Admission</div>
+      <div class="headline">Is Your Home<br>Your Retirement Plan?</div>
+      <div class="subheadline">Homeowners 55+: unlock tax-free cash from your home — no monthly payments.</div>
+    </div>
+
+    <div class="event-strip">
+      <div class="when">Thursday, August 20, 2026 &middot; 11:00 AM</div>
+      <div class="loc">Royal Canadian Legion Br. 457, Stayner, ON</div>
+    </div>
+
+    <div class="body">
+      <p class="hook">
+        Access up to <span>55% of your home's value — tax-free</span>, while continuing to live in it.
+      </p>
+
+      <div class="benefits-title">At This Webinar You'll Learn:</div>
+      <ul class="benefits">
+        <li>How a reverse mortgage works — and who it's right for</li>
+        <li>The truth behind 5 common myths, busted</li>
+      </ul>
+
+      <div class="includes">
+        <strong>Also Included</strong>
+        Live Q&amp;A &middot; Lunch &amp; Refreshments &middot; Free Cost Calculator &middot; Surprise Giveaways
+      </div>
+    </div>
+
+    <div class="cta">
+      <div>
+        <div class="cta-text">Register Free</div>
+        <div class="cta-url">leofalkovsky.ca/webinars/<br>reverse-mortgage-webinar.html</div>
+        <div class="cta-sub">Call: <strong>416-356-6968</strong></div>
+        <div class="cta-sub">Email: <strong>leo@leofalkovsky.com</strong></div>
+      </div>
+      <div class="qr-wrap">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0AQMAAAAHA5RxAAAABlBMVEUaOlz///4a2Z6LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB0ElEQVRYhcWXQY6DMAxFjViw5AjcBC6GgKoXS2/CEbJkgfA8O0xnRqMuk6SiSC8bK/9/x4h8WKuqnjKL9I/YaOhCB9A9O4fI3J/9lX4ydkGkK8AH3Weq2mSRiUquLqjW5tT50K1/xeYYS3Jp4xqbW5dC3HV5RkET6V+H/NGrPHd/whf8OcLH377NyL9X4te/XJbm1LnzxPX2yXRMXTjyc8EnLR2iiUIuLvMJ7z07X/d5oC95dwicAx5Vr7MSl+HJySj9gcX7pXpMUoBbRdSzoZDpgjIaKvJ1lwHmfWOKE3VCXa/MHI+seKTBo2MfpLHTcd/m5fRJpSuxt6CL+9N1qcW9TrulzJ9WLUl915+Rkwp0ae2Eot2PaneGzQm1uLTcmxsJXcipO9b7VXY+PGlaLVl9mENJhUrSKzf3OY08itczvXWpxZ97G21ieqCLzw+3Xtk5CU055Z85QfXWpRI/TR3PaXIoE7QU4OZPnxPwKHMLO9S0Z+eS7qd0ErCR7hwq8jS/nZZTc2h3WZ88JDufkwbkdPP+zKT2Mz/X4P4dYXRJt5fppaX46Tlt9Eo7xbhGc4NNjK93Xipxe/p7cvGs8D1VgCd/3ve15dS681GPf1hfcrOb19GQk64AAAAASUVORK5CYII=" alt="Scan to register">
+        <div class="qr-label">Scan</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="presenter">Leo Falkovsky
+        <span>Mortgage Broker &amp; Reverse Mortgage Specialist &middot; 25+ Years in Ontario</span>
+      </div>
+    </div>
+
+    <div class="compliance">
+      FSRA Lic. Mortgage Broker #M09000003 &middot; 8Twelve Mortgage Corp. FSRA #13230<br>55 Renfrew Dr, Suite 201, Markham, ON L3R 8H3
+    </div>
+
+  </div>
+
+</body>
+</html>
