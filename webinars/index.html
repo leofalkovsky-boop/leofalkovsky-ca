@@ -429,7 +429,7 @@ document.getElementById('replayForm').addEventListener('submit', async function(
   const btn = this.querySelector('button[type=submit]');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
   try {
-    await fetch('https://formspree.io/f/mwvyjqyv', {
+    await fetch('https://formspree.io/f/xwlegopv', {
       method: 'POST',
       body: new FormData(this),
       headers: { 'Accept': 'application/json' }

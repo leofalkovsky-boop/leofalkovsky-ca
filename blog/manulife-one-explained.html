@@ -359,7 +359,7 @@ async function submitOptin(e) {
   fd.append('email', emailEl.value);
   fd.append('_type', 'optin');
   try {
-    await fetch('https://formspree.io/f/mwvyjqyv', {
+    await fetch('https://formspree.io/f/xwlegopv', {
       method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
     });
   } catch(err) {}
@@ -370,7 +370,7 @@ async function submitGate(e) {
   const btn = form.querySelector('button[type=submit]');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
   try {
-    await fetch('https://formspree.io/f/mwvyjqyv', {
+    await fetch('https://formspree.io/f/xwlegopv', {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }

@@ -100,7 +100,7 @@ document.querySelectorAll('form[data-ajax]').forEach(form => {
     const btn = form.querySelector('[type=submit]');
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
     try {
-      const res = await fetch('https://formspree.io/f/mwvyjqyv', {
+      const res = await fetch('https://formspree.io/f/xwlegopv', {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
@@ -828,7 +828,7 @@ document.querySelectorAll('[data-share]').forEach(btn => {
       const btn = finalForm.querySelector('[type=submit]');
       if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
       try {
-        const res = await fetch('https://formspree.io/f/mwvyjqyv', {
+        const res = await fetch('https://formspree.io/f/xwlegopv', {
           method: 'POST',
           body: new FormData(finalForm),
           headers: { 'Accept': 'application/json' }
